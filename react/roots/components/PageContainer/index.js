@@ -1,5 +1,5 @@
 import React from "react";
-import Footer from 'react/roots/components/Footer'
+import Footer from '../Footer/index.js'
 
 const PageContainer = ({ children, title }) => {
   return (
