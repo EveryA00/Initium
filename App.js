@@ -1,7 +1,7 @@
 // App.js
 
 import React, { Component } from 'react';
-import PageContainer from './react/roots/components/PageOne';
+import PageContainer from '../react/roots/components/PageOne';
 
 class App extends Component {
     render() {
