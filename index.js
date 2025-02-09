@@ -1,18 +1,18 @@
 // index.js
 
 import React from 'react';
-import {StrictMode} from 'react';
-import {createRoot} from 'react-dom/client';
+import ReactDOM from 'react-dom/client'; // Import from react-dom/client
+import App from './App';
+import { ThemeProvider } from 'styled-components';
+import { AppProvider } from './src/context/context.js';  // Import the Context Provider
+import theme from './src/theme';
 
-import App from './App'
-
-// This is the ID of the div in your index.html file
-
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
+const root = ReactDOM.createRoot(document.getElementById('root')); // Use createRoot
 
 root.render(
-    <StrictMode>
+  <AppProvider>
+    <ThemeProvider theme={theme}>
       <App />
-    </StrictMode>,
-  );
+    </ThemeProvider>
+  </AppProvider>
+);
