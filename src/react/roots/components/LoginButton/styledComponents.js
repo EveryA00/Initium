@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 // Styled component named StyledButton
 
-const LoginButton = styled(Link)`
+const LoginButton = styled.div`
   padding: 10px 20px;
   background: linear-gradient(135deg, #28a745, #218838);
   color: white;

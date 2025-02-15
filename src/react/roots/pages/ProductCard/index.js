@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Styled.Card>
-      <img src={product?.image || 'https://via.placeholder.com/150'} alt={product?.name} />
+      <Styled.Img src={product?.image} alt={product?.name} />
       <h3>{product?.name}</h3>
       <p>{product?.price}</p>
       <Styled.Link as={Link} to={`/product/${product?.id}`}>

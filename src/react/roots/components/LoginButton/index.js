@@ -1,31 +1,34 @@
 import React from "react";
-import { Styled } from './styledComponents.js'
-import { useNavigate } from 'react-router-dom';
-import { useAppContext} from "../../../../context/context.js";
-
+import { Styled } from "./styledComponents.js";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../../../../context/context.js";
 
 const LoginButton = ({ children, title }) => {
   const { isLoggedIn, user, logout, login } = useAppContext();
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate('/signin')
-  }
+    navigate("/signin");
+  };
 
   return (
-    <Styled.LoginButton className="min-h-screen flex flex-col bg-gray-100">
+    <>
       {isLoggedIn ? (
-        <div>
+        <Styled.LoginButton
+          onClick={handleClick}
+          className="min-h-screen flex flex-col bg-gray-100"
+        >
           <span>Welcome, {user.name}</span>
-          <button onClick={logout} className="ml-4 bg-red-500 px-3 py-1 rounded">
-            Logout
-          </button>
-        </div>
+          <span onClick={logout}>Logout</span>
+        </Styled.LoginButton>
       ) : (
-        <button onClick={handleClick} className="ml-4 bg-red-500 px-3 py-1 rounded">
-        Sign In
-      </button>
+        <Styled.LoginButton
+          onClick={handleClick}
+          className="min-h-screen flex flex-col bg-gray-100"
+        >
+          <span>Sign In</span>
+        </Styled.LoginButton>
       )}
-    </Styled.LoginButton>
+    </>
   );
 };
 

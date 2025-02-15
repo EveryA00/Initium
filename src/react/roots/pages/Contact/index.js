@@ -69,16 +69,6 @@ const Contact = ({ children, title }) => {
         <h2 className="text-3xl font-semibold text-gray-800 mb-4 text-center">Our Location</h2>
         <div className="w-full h-64 bg-gray-300 rounded-lg">
           {/* You can embed a map using Google Maps iframe or another map provider */}
-          <iframe
-            src="https://www.google.com/maps/embed/v1/place?q=123+Business+Ave,+City,+Country&key=YOUR_GOOGLE_MAP_API_KEY"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            aria-hidden="false"
-            tabIndex="0"
-          ></iframe>
         </div>
       </section>
     </Styled.Contact>

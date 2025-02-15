@@ -1,15 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Styled } from './styledComponents';
 
-// Sample product data (you could fetch this from an API or pass via context)
-const products = [
-    { id: 'pomegranate-juice', name: "Pomegranate Juice", image: "", price: "$5.99" },
-    { id: 'orange-juice', name: "Orange Juice", image: "", price: "$4.99" },
-    { id: 'apple-juice', name: "Apple Juice", image: "", price: "$3.99" },
-    { id: 'grape-juice', name: "Grape Juice", image: "", price: "$6.99" }
-  ];
-
-const ProductDetail = () => {
+const ProductDetail = ({products}) => {
   const { productId } = useParams();  // Access the productId from the URL
   const product = products.find((p) => p.id === productId);
 
@@ -18,12 +11,22 @@ const ProductDetail = () => {
   }
 
   return (
-    <div>
-      <h2>{product?.name}</h2>
-      <img src={product?.image || 'https://via.placeholder.com/150'} alt={product?.name} />
-      <p>{product?.description}</p>
-      <p>{product?.price}</p>
-    </div>
+    <Styled.ProductDetailCard>
+      <Styled.ProductSectionLeft>
+        <Styled.Img src={product?.secondImage || 'https://via.placeholder.com/150'} alt={product?.name} />
+      </Styled.ProductSectionLeft>
+      <Styled.ProductSectionRight>
+        <h1>💖 Baby Every 💙</h1>
+        <h2>September 2025</h2>
+        <h4>We can't wait to find out!</h4>
+        <h4>Gender: Unknown🤔</h4>
+        <h4>Description: Currently the size of a strawberry.</h4>
+        <h4 style={{ display: 'flex', alignItems: 'center' }}>
+          Price: <span style={{ fontSize: '3rem', fontWeight: 'bold', marginLeft: '5px', lineHeight: '0', }}>∞</span>
+        </h4>
+
+      </Styled.ProductSectionRight>
+    </Styled.ProductDetailCard>
   );
 };
 

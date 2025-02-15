@@ -12,6 +12,7 @@ const NavList = styled.ul`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;

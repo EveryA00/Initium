@@ -1,5 +1,7 @@
 {
+  "proxy": "http://localhost:3000",
   "dependencies": {
+    "next": "^15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.1.5",

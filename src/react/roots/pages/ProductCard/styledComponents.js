@@ -1,19 +1,21 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Card container
 export const Styled = {
   Card: styled.div`
-    border: 1px solid #ccc;
+    width: 100%; // Set the width of the card
+    height: auto; // Allow the height to adjust based on content
     padding: 16px;
-    text-align: center;
-    border-radius: 8px;
+    background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    overflow: hidden; // Prevent any overflow
+    margin: 0 auto;
   `,
 
   // Link for routing
@@ -24,7 +26,7 @@ export const Styled = {
   // Button style
   Button: styled.button`
     padding: 8px 16px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -34,5 +36,13 @@ export const Styled = {
     &:hover {
       background-color: #45a049;
     }
+  `,
+
+  // Styled image tag for Product Card
+  Img: styled.img`
+    height: 300px;
+    width: 100%;
+    object-fit: cover; // Ensures the image fills the container without distortion
+    border-radius: 4px; // Optional: adds a border-radius to the image
   `
 };

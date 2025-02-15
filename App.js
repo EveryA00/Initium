@@ -1,6 +1,6 @@
 // App.js
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 
@@ -19,6 +19,23 @@ import GlobalStyle from './src/styles/globalStyles.js';
 
 
 const App = () => {
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+            const response = await fetch("http://localhost:3000/api/products");
+            const data = await response.json();
+            setProducts(data);
+          } catch (error) {
+            console.error("Error fetching products:", error);
+          }
+        };
+    
+        fetchProducts();
+      }, []);
+
     return (
         <BrowserRouter>
             <GlobalStyle />
@@ -27,10 +44,10 @@ const App = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/bag" element={<Bag />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home products={products}/>} />
                     <Route path="/signin" element={<SignIn />} />
-                    <Route path="/products" element={<ProductGrid />} />
-                    <Route path="/product/:productId" element={<ProductDetail />} />
+                    <Route path="/products" element={<ProductGrid products={products} setProducts={setProducts}/>} />
+                    <Route path="/product/:productId" element={<ProductDetail products={products} setProducts={setProducts}/>} />
 
                 </Routes>
             <Footer />
