@@ -1,37 +1,29 @@
-import { MongoClient } from 'mongodb';
-
-const client = new MongoClient(process.env.MONGODB_URI); // Ensure this is the correct MongoDB URI
+import clientPromise from '../../../lib/mongodb';
 
 async function getProducts() {
   try {
-    await client.connect();
-    const db = client.db();
-    const productsCollection = db.collection('products');
-    const products = await productsCollection.find({}).toArray();
+    const client = await clientPromise;
+    const db = client.db(); // optional: pass a name here if needed
+    const products = await db.collection('products').find({}).toArray();
     return products;
   } catch (error) {
     console.error('Failed to fetch products:', error);
     throw new Error('Could not fetch products');
-  } finally {
-    await client.close();
   }
 }
 
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow requests from any origin
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle OPTIONS method (pre-flight request)
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (req.method === 'OPTIONS') return res.status(200).end();
 
   if (req.method === 'GET') {
     try {
-      const products = await getProducts(); // Fetch products from MongoDB
+      const products = await getProducts();
       res.status(200).json(products);
-    } catch (error) {
+    } catch {
       res.status(500).json({ message: 'Failed to fetch products' });
     }
   } else {

@@ -26,7 +26,7 @@ export const Styled = {
   // Button style
   Button: styled.button`
     padding: 8px 16px;
-    background-color: #4caf50;
+    background-color: #45a049;
     color: white;
     border: none;
     border-radius: 4px;
@@ -37,6 +37,22 @@ export const Styled = {
       background-color: #45a049;
     }
   `,
+
+    // Button style
+    RemoveButton: styled.button`
+    padding: 8px 16px;
+    background-color:rgb(223, 83, 83);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color:#c82121;
+    }
+  `,
+
 
   // Styled image tag for Product Card
   Img: styled.img`

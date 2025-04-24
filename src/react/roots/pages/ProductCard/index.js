@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { Styled } from './styledComponents';
-import { Link } from 'react-router-dom';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product, cart, setCart }) => {
+
+  const isInCart = cart?.some((item) => item.id === product.id);
+
+  const handleAddToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+
+  const handleRemoveFromCart = (product) => {
+    setCart((prevCart) => prevCart?.filter((item) => item.id !== product.id));
+  };
+
   return (
     <Styled.Card>
       <Styled.Img src={product?.image} alt={product?.name} />
       <h3>{product?.name}</h3>
       <p>{product?.price}</p>
-      <Styled.Link as={Link} to={`/product/${product?.id}`}>
-        <Styled.Button>View Details</Styled.Button>
-      </Styled.Link>
+
+      {isInCart ? (
+        <Styled.RemoveButton onClick={() => handleRemoveFromCart(product)}>
+          Remove From Cart
+        </Styled.RemoveButton>
+      ) : (
+        <Styled.Button onClick={() => handleAddToCart(product)}>
+          Add to Cart
+        </Styled.Button>
+      )}
     </Styled.Card>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navigation from "./src/react/roots/components/Navigation/index.js";
 import Footer from "./src/react/roots/components/Footer/index.js";
@@ -13,18 +13,19 @@ import GlobalStyle from './src/styles/globalStyles.js';
 import { ProductsProvider } from './src/context/ProductsContext'
 
 const App = () => {
+      const [cart, setCart] = useState([]);
     return (
         <ProductsProvider>
             <BrowserRouter>
                 <GlobalStyle />
-                <Navigation />
+                <Navigation cart={cart} setCart={setCart} />
                 <Routes>
                     <Route path="/about" element={<About />} />
                     <Route path="/bag" element={<Bag />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/signin" element={<SignIn />} />
-                    <Route path="/products" element={<ProductGrid />} />
+                    <Route path="/products" element={<ProductGrid cart={cart} setCart={setCart} />} />
                     <Route path="/product/:productId" element={<ProductDetail />} />
                 </Routes>
                 <Footer />
