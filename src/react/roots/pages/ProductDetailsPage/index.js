@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { Styled } from './styledComponents';
+import { ProductsContext } from '../../../../context/ProductsContext';
 
-const ProductDetail = ({products}) => {
+const ProductDetail = () => {
+  const { products } = useContext(ProductsContext); // Access products from context
   const { productId } = useParams();  // Access the productId from the URL
   const product = products.find((p) => p.id === productId);
 

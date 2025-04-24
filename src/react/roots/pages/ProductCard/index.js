@@ -2,8 +2,7 @@ import React from "react";
 import { Styled } from './styledComponents';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ product }) => {
-
+const ProductCard = ({product}) => {
   return (
     <Styled.Card>
       <Styled.Img src={product?.image} alt={product?.name} />
