@@ -1,14 +1,22 @@
-import React, {useContext} from "react";
-import { Styled } from './styledComponents'
+import React, { useContext } from "react";
+import { Styled } from "./styledComponents";
 import ProductCard from "../ProductCard";
-import { ProductsContext } from '../../../../context/ProductsContext';
+import { ProductsContext } from "../../../../context/ProductsContext";
 
-const ProductGrid = ({cart, setCart}) => {
-  const { products } = useContext(ProductsContext); // Access products from context
+const ProductGrid = () => {
+  const { products, cart, removeFromCart, addToCart, updateQuantity } =
+    useContext(ProductsContext); // Access products from context
   return (
     <Styled.GridContainer>
       {products.map((product) => (
-        <ProductCard key={product.id}  product={product} cart={cart} setCart={setCart} /> 
+        <ProductCard
+          key={product.id}
+          product={product}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          cart={cart}
+          updateQuantity={updateQuantity}
+        />
       ))}
     </Styled.GridContainer>
   );

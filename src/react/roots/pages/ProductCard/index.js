@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { Styled } from './styledComponents';
 
-const ProductCard = ({ product, cart, setCart }) => {
-
+const ProductCard = ({ product, cart, addToCart, removeFromCart, updateQuantity }) => {
   const isInCart = cart?.some((item) => item.id === product.id);
+  const cartItem = cart?.find((item) => item.id === product.id);
+  const quantity = cartItem ? cartItem.quantity : 1; // Always up-to-date from cart
 
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+  const handleIncrease = () => {
+    updateQuantity(product, quantity + 1);
   };
 
-  const handleRemoveFromCart = (product) => {
-    setCart((prevCart) => prevCart?.filter((item) => item.id !== product.id));
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      updateQuantity(product, quantity - 1);
+    }
   };
 
   return (
@@ -20,11 +23,18 @@ const ProductCard = ({ product, cart, setCart }) => {
       <p>{product?.price}</p>
 
       {isInCart ? (
-        <Styled.RemoveButton onClick={() => handleRemoveFromCart(product)}>
-          Remove From Cart
-        </Styled.RemoveButton>
+        <Styled.QuantityContainer>
+          <Styled.QuantityControls>
+            <Styled.QuantityButton onClick={handleDecrease}>-</Styled.QuantityButton>
+            <Styled.Quantity>{quantity}</Styled.Quantity>
+            <Styled.QuantityButton onClick={handleIncrease}>+</Styled.QuantityButton>
+          </Styled.QuantityControls>
+          <Styled.RemoveButton onClick={() => removeFromCart(product.id)}>
+            Remove From Cart
+          </Styled.RemoveButton>
+        </Styled.QuantityContainer>
       ) : (
-        <Styled.Button onClick={() => handleAddToCart(product)}>
+        <Styled.Button onClick={() => addToCart(product)}>
           Add to Cart
         </Styled.Button>
       )}

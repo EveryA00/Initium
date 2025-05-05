@@ -45,7 +45,7 @@ const CartLink = styled(Link)`
     transform: scale(1.1);
   }
 `;
-const CartWrapper = styled(Link)`
+const CartWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;

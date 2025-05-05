@@ -21,7 +21,7 @@ const Navigation = ({ cart }) => {
           <Styled.CartLink to="/bag">
             <Styled.CartWrapper>
               <Styled.Icon />
-              <Styled.Label>Cart</Styled.Label>
+              <Styled.Label>Bag</Styled.Label>
               {itemCount > 0 && <Styled.ItemCount>{itemCount}</Styled.ItemCount>}
             </Styled.CartWrapper>
           </Styled.CartLink>
