@@ -10,28 +10,29 @@ import SignIn from './react/roots/pages/SignIn/index.js';
 import ProductGrid from './react/roots/pages/ProductGrid/index.js';
 import ProductDetail from './react/roots/pages/ProductDetailsPage/index.js';
 import GlobalStyle from './styles/GlobalStyles.js';
-import { ProductsProvider } from './context/ProductsContext.js'
+import { ProductsProvider } from './context/ProductsContext.js';
 
 const App = () => {
-      const [cart, setCart] = useState([]);
-    return (
-        <ProductsProvider>
-            <BrowserRouter>
-                <GlobalStyle />
-                <Navigation cart={cart} setCart={setCart} />
-                <Routes>
-                    <Route path="/about" element={<About />} />
-                    <Route path="/bag" element={<Bag />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="/" element={<Home />} />
-                    <Route path="/signin" element={<SignIn />} />
-                    <Route path="/products" element={<ProductGrid cart={cart} setCart={setCart} />} />
-                    <Route path="/product/:productId" element={<ProductDetail />} />
-                </Routes>
-                <Footer />
-            </BrowserRouter>
-        </ProductsProvider>
-    );
+  const [cart, setCart] = useState([]);
+
+  return (
+    <ProductsProvider>
+      <BrowserRouter>
+        <GlobalStyle />
+        <Navigation cart={cart} setCart={setCart} />
+        <Routes>
+          <Route path="/about" element={<About />} />
+          <Route path="/bag" element={<Bag />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/products" element={<ProductGrid cart={cart} setCart={setCart} />} />
+          <Route path="/product/:productId" element={<ProductDetail />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </ProductsProvider>
+  );
 }
 
 export default App;
