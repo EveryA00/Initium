@@ -9,7 +9,7 @@ import Home from './react/roots/pages/Home/index.js';
 import SignIn from './react/roots/pages/SignIn/index.js';
 import ProductGrid from './react/roots/pages/ProductGrid/index.js';
 import ProductDetail from './react/roots/pages/ProductDetailsPage/index.js';
-import GlobalStyle from './styles/globalStyles.js';
+import GlobalStyle from './styles/GlobalStyles.js';
 import { ProductsProvider } from './context/ProductsContext.js'
 
 const App = () => {
