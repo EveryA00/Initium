@@ -1,14 +1,13 @@
-//webpack.config.js
-
+// webpack.config.js
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // Importing the plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'), // Changed from 'dist' to 'build'
         filename: 'bundle.js',
-        assetModuleFilename: 'images/[hash][ext][query]', // Saves images in dist/images
+        assetModuleFilename: 'images/[hash][ext][query]',
     },
     module: {
         rules: [
@@ -20,15 +19,14 @@ module.exports = {
                 },
             },
             {
-                test: /\.css$/, // Handle .css files
-                use: ['style-loader', 'css-loader'], // Use style-loader and css-loader
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(png|jpe?g|gif|svg)$/, // Add image formats
-                type: "asset/resource", // Handles images without needing file-loader
+                test: /\.(png|jpe?g|gif|svg)$/,
+                type: "asset/resource",
             },
         ],
-        
     },
     plugins: [
         new HtmlWebpackPlugin({
