@@ -3,7 +3,7 @@ import { Styled } from '../styles/aboutStyledComponent.js'
 
 const About = ({ children, title }) => {
   return (
-    <Styled.About className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-100">
            {/* Header */}
            <header className="bg-blue-600 text-white p-6 text-2xl font-bold text-center shadow-md">
         {title || "About Us"}
@@ -46,7 +46,7 @@ const About = ({ children, title }) => {
           <p className="text-gray-500 mt-2">Emily oversees operations and helps streamline our processes to maximize efficiency. She ensures our teams stay aligned and achieve optimal results.</p>
         </div>
       </section>
-    </Styled.About>
+    </div>
   );
 };
 
