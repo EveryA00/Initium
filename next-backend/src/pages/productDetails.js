@@ -1,11 +1,13 @@
-import React, {useContext} from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
 import { Styled } from '../styles/productDetailsStyledComponents';
 import { ProductsContext } from '../context/ProductsContext';
 
 const ProductDetail = () => {
   const { products } = useContext(ProductsContext); // Access products from context
-  const { productId } = useParams();  // Access the productId from the URL
+  const router = useRouter(); // Access Next.js router
+  const { productId } = router.query; // Access the productId from the URL
+
   const product = products.find((p) => p.id === productId);
 
   if (!product) {
@@ -26,7 +28,6 @@ const ProductDetail = () => {
         <h4 style={{ display: 'flex', alignItems: 'center' }}>
           Price: <span style={{ fontSize: '3rem', fontWeight: 'bold', marginLeft: '5px', lineHeight: '0', }}>∞</span>
         </h4>
-
       </Styled.ProductSectionRight>
     </Styled.ProductDetailCard>
   );
