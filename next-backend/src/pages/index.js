@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router"; // Import useRouter from Next.js
-import { Styled } from '.styles/styledComponents.js';
+import { Styled } from '../styles/styledComponents';
 import heritageBG from "../../public/images/juice/brand/heritageBG1.png"; 
 
 const Home = () => {
