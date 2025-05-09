@@ -16,6 +16,12 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            'next/babel', // Using Next.js's default Babel preset
+                            '@babel/preset-react' // This adds React-specific JSX handling
+                        ],
+                    },
                 },
             },
             {
