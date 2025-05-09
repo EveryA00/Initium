@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router"; // Import useRouter from Next.js
-import { Styled } from './Home/styledComponents.js';
-import heritageBG from "../../../../images/juice/brand/heritageBG1.png"; 
+import { Styled } from '.styles/styledComponents.js';
+import heritageBG from "../../public/images/juice/brand/heritageBG1.png"; 
 
 const Home = () => {
   const router = useRouter(); // Use Next.js useRouter hook

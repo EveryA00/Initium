@@ -25,9 +25,6 @@ const nextConfig = {
       },
     ];
   },
-  experimental: {
-    reactRoot: true, // Optional: React 18 features
-  },
 };
 
 export default nextConfig;
