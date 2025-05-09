@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import GlobalStyle from '../styles/GlobalStyles.js';
 import { ProductsProvider } from '../context/ProductsContext.js';
-import Navigation from '../src/react/roots/components/Navigation/index.js';
-import Footer from '../src/react/roots/components/Footer/index.js';
+import Navigation from '../components/Navigation/index.js';
+import Footer from '../components/Footer/index.js';
 
 function MyApp({ Component, pageProps }) {
   const [cart, setCart] = useState([]);

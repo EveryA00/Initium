@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Styled } from '../styles/bagStyledComponents.js'
-import { ProductsContext } from '../../../src/context/ProductsContext.js';
+import { ProductsContext } from '../context/ProductsContext.js';
 
 const Bag = () => {
   const { cart, removeFromCart, clearCart } = useContext(ProductsContext);
