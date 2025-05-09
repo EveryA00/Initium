@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import Link from 'next/link'; // Import Link from next/link
 
 // Card container
 export const Styled = {

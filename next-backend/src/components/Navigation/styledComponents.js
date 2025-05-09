@@ -1,5 +1,5 @@
 import { FaShoppingCart } from 'react-icons/fa';
-import { Link } from "react-router-dom";
+import Link from 'next/link'; // Import Link from next/link
 import styled from "styled-components";
 
 

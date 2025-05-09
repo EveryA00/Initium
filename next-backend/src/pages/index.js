@@ -1,13 +1,14 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Styled } from './Home/styledComponents.js'
+import { useRouter } from "next/router"; // Import useRouter from Next.js
+import { Styled } from './Home/styledComponents.js';
 import heritageBG from "../../../../images/juice/brand/heritageBG1.png"; 
 
-const Home = ({ children, title }) => {
-  const navigate  = useNavigate();
+const Home = () => {
+  const router = useRouter(); // Use Next.js useRouter hook
   const handleClick = () => {
-    navigate('/products')
-  }
+    router.push('/products'); // Use router.push to navigate to the /products route
+  };
+
   return (
     <Styled.Home className="min-h-screen flex flex-col bg-gray-100">
       <Styled.Container>

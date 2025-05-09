@@ -1,13 +1,14 @@
 import React from "react";
 import { Styled } from "./styledComponents.js";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useAppContext } from "../../context/context.js";
 
 const LoginButton = ({ children, title }) => {
   const { isLoggedIn, user, logout, login } = useAppContext();
-  const navigate = useNavigate();
+  const router = useRouter(); // Use Next.js useRouter hook
+
   const handleClick = () => {
-    navigate("/signin");
+    router.push("/signin"); // Navigate to /signin route
   };
 
   return (
