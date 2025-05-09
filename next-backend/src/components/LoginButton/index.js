@@ -1,7 +1,7 @@
 import React from "react";
 import { Styled } from "./styledComponents.js";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../../../context/context.js";
+import { useAppContext } from "../../../../src/context/context.js";
 
 const LoginButton = ({ children, title }) => {
   const { isLoggedIn, user, logout, login } = useAppContext();

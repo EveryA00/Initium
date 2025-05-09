@@ -1,5 +1,5 @@
 import React from "react";
-import { Styled } from './styledComponents.js'
+import { Styled } from '../styles/aboutStyledComponent.js'
 
 const About = ({ children, title }) => {
   return (

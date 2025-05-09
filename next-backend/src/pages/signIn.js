@@ -1,53 +1,43 @@
 import React, { useState } from "react";
-import { Styled } from "./styledComponents";
+import { Styled } from "../styles/signInStyledComponents";
 
-const CreateAccount = () => {
+const SignIn = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
 
-  // Handle form input changes
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Validate form on submit
+  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = {};
 
-    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.includes("@")) newErrors.email = "Invalid email address";
     if (formData.password.length < 6) newErrors.password = "Password must be at least 6 characters";
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setSuccessMessage("");
     } else {
       setErrors({});
-      setSuccessMessage("Account created successfully!");
+      setSuccessMessage("Signed in successfully!");
     }
   };
 
   return (
     <Styled.Container>
       <Styled.FormWrapper>
-        <h2>Create Account</h2>
+        <h2>Sign In</h2>
         {successMessage && <Styled.SuccessMessage>{successMessage}</Styled.SuccessMessage>}
         <form onSubmit={handleSubmit}>
-          <Styled.InputWrapper>
-            <label>Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-            {errors.name && <Styled.Error>{errors.name}</Styled.Error>}
-          </Styled.InputWrapper>
-
           <Styled.InputWrapper>
             <label>Email</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
@@ -60,17 +50,11 @@ const CreateAccount = () => {
             {errors.password && <Styled.Error>{errors.password}</Styled.Error>}
           </Styled.InputWrapper>
 
-          <Styled.InputWrapper>
-            <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-            {errors.confirmPassword && <Styled.Error>{errors.confirmPassword}</Styled.Error>}
-          </Styled.InputWrapper>
-
-          <Styled.SubmitButton type="submit">Create Account</Styled.SubmitButton>
+          <Styled.SubmitButton type="submit">Sign In</Styled.SubmitButton>
         </form>
       </Styled.FormWrapper>
     </Styled.Container>
   );
 };
 
-export default CreateAccount;
+export default SignIn;

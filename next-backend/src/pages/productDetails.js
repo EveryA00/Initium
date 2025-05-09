@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { useParams } from 'react-router-dom';
-import { Styled } from './styledComponents';
-import { ProductsContext } from '../../../../context/ProductsContext';
+import { Styled } from '../styles/productDetailsStyledComponents';
+import { ProductsContext } from '../../../src/context/ProductsContext';
 
 const ProductDetail = () => {
   const { products } = useContext(ProductsContext); // Access products from context

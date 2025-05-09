@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Styled } from './styledComponents.js'
+import { Styled } from './Home/styledComponents.js'
 import heritageBG from "../../../../images/juice/brand/heritageBG1.png"; 
 
 const Home = ({ children, title }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Styled } from './styledComponents';
+import { Styled } from '../styles/productCardStyledComponents';
 
 const ProductCard = ({ product, cart, addToCart, removeFromCart, updateQuantity }) => {
   const isInCart = cart?.some((item) => item.id === product.id);

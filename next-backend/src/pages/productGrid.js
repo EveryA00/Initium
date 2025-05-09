@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Styled } from "./styledComponents";
-import ProductCard from "../ProductCard";
-import { ProductsContext } from "../../../../context/ProductsContext";
+import { Styled } from "../styles/productGridStyledComponents";
+import ProductCard from "./productCard";
+import { ProductsContext } from "../../../src/context/ProductsContext";
 
 const ProductGrid = () => {
   const { products, cart, removeFromCart, addToCart, updateQuantity } =
