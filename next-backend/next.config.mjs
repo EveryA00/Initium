@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  compiler: {
+    styledComponents: true, // ✅ Enables proper SSR support
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      // Allow React Router to work on the client side
       config.resolve.fallback = { fs: false };
     }
     return config;
@@ -12,7 +14,7 @@ const nextConfig = {
     return [
       {
         source: '/products',
-        destination: '/api/products', // Ensure this API route works as intended
+        destination: '/api/products',
         permanent: false,
       },
     ];
@@ -21,7 +23,7 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        destination: '/index.html', // Serve the React app for all other routes
+        destination: '/index.html',
       },
     ];
   },

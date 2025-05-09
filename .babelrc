@@ -1,7 +1,6 @@
 {
-    "presets": [
-      "next/babel", // Use Next.js's default Babel preset
-      "@babel/preset-react" // JSX syntax support
-    ]
-  }
+  "presets": ["next/babel"],
+  "plugins": [["styled-components", { "ssr": true }]]
+}
+
   

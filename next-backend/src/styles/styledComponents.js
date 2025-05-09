@@ -1,13 +1,13 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 // Styled component named StyledButton
-const Home = styled.div`
+export const HomeContain = styled.div`
   background-color: #fff;
   margin: 1rem;
 `;
 
 // Styled Components
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@ const Container = styled.div`
   background: #f8f9fa;
 `;
 
-const HeroSection = styled.div`
+export const HeroSection = styled.div`
   width: 100%;
   height: 60vh;
   background: url('../../../../images/juice/brand/heritageBG1.png') center/cover no-repeat;
@@ -24,14 +24,14 @@ const HeroSection = styled.div`
   justify-content: center;
 `;
 
-const HeroText = styled.div`
+export const HeroText = styled.div`
   background: rgba(0, 0, 0, 0.6);
   color: white;
   padding: 20px 40px;
   border-radius: 10px;
 `;
 
-const ShopButton = styled.button`
+export const ShopButton = styled.button`
   padding: 12px 20px;
   margin-top: 10px;
   background: linear-gradient(135deg, #ff7f50, #ff4500);
@@ -48,19 +48,19 @@ const ShopButton = styled.button`
   }
 `;
 
-const Section = styled.div`
+export const Section = styled.div`
   margin: 40px 0;
   h2 {
     margin-bottom: 20px;
   }
 `;
 
-const JuiceGrid = styled.div`
+export const JuiceGrid = styled.div`
   display: flex;
   gap: 20px;
 `;
 
-const JuiceCard = styled.div`
+export const JuiceCard = styled.div`
   background: white;
   padding: 20px;
   border-radius: 10px;
@@ -73,12 +73,12 @@ const JuiceCard = styled.div`
   }
 `;
 
-const Price = styled.p`
+export const Price = styled.p`
   font-weight: bold;
   color: #ff4500;
 `;
 
-const AddToCart = styled.button`
+export const AddToCart = styled.button`
   padding: 8px 16px;
   background: #28a745;
   color: white;
@@ -91,39 +91,22 @@ const AddToCart = styled.button`
   }
 `;
 
-const TestimonialSection = styled.div`
+export const TestimonialSection = styled.div`
   background: #fff3cd;
   padding: 30px;
   border-radius: 10px;
   margin: 40px 0;
 `;
 
-const Testimonial = styled.div`
+export const Testimonial = styled.div`
   font-style: italic;
   margin: 10px 0;
 `;
 
-const CallToAction = styled.div`
+export const CallToAction = styled.div`
   background: #ff4500;
   color: white;
   padding: 40px;
   border-radius: 10px;
   margin: 20px 0;
 `;
-
-
-export const Styled = {
-    Home,
-    Container,
-    CallToAction,
-    Testimonial,
-    TestimonialSection,
-    AddToCart,
-    JuiceCard,
-    JuiceGrid,
-    Price,
-    Section,
-    HeroSection,
-    HeroText,
-    ShopButton
-  };

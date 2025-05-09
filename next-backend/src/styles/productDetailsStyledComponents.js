@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 // Card container
-export const Styled = {
-  ProductDetailCard: styled.div`
+
+  export const ProductDetailCard = styled.div`
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -10,29 +10,29 @@ export const Styled = {
     align-items: center;
     padding: 1rem;
     max-width: fit-content;
-  `,
+  `
   // Styled image tag for Product Card
-  Img: styled.img`
+  export const Img = styled.img`
     height: 450px;
     width: auto;
     object-fit: cover; // Ensures the image fills the container without distortion
     border-radius: 4px; // Optional: adds a border-radius to the image
-  `,
-  ProductSectionLeft: styled.div`
+  `
+  export const ProductSectionLeft = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 1rem;
-  `,
-  ProductSectionRight: styled.div`
+  `
+  export const ProductSectionRight = styled.div`
     text-align: left;
     display: flex ;
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-  `,
-  Button: styled.button`
+  `
+  export const Button = styled.button`
     background: #ff9a9e;
     color: white;
     border: none;
@@ -44,5 +44,4 @@ export const Styled = {
     &:hover {
       background: #fad0c4;
     }
-  `,
-};
+  `

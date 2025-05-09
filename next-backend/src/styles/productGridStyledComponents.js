@@ -1,13 +1,8 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
-
-const GridContainer = styled.div`
+export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
 `;
-
-export const Styled = {
-    GridContainer
-}

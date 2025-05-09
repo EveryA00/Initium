@@ -1,9 +1,5 @@
-import styled from "styled-components";
+import {styled, withConfig } from "styled-components";
 
-const About = styled.div`
+export const AboutContain = styled.div`
   background-color: #fff;
 `;
-
-export const Styled = {
-  About,
-};

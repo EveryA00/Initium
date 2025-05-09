@@ -1,9 +1,9 @@
 import React from "react";
-import { Styled } from '../styles/contactStyledComponents.js'
+import { ContactContain } from '../styles/contactStyledComponents.js'
 
 const Contact = ({ children, title }) => {
   return (
-    <Styled.Contact className="min-h-screen flex flex-col bg-gray-100">
+    <ContactContain className="min-h-screen flex flex-col bg-gray-100">
        {/* Header */}
        <header className="bg-blue-600 text-white p-6 text-2xl font-bold text-center shadow-md">
         {title || "Contact Us"}
@@ -71,7 +71,7 @@ const Contact = ({ children, title }) => {
           {/* You can embed a map using Google Maps iframe or another map provider */}
         </div>
       </section>
-    </Styled.Contact>
+    </ContactContain>
   );
 };
 

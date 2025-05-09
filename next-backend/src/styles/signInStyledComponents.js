@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 // Styled Components
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@ const Container = styled.div`
   background: #f4f4f4;
 `;
 
-const FormWrapper = styled.div`
+export const FormWrapper = styled.div`
   background: white;
   padding: 2rem;
   border-radius: 8px;
@@ -18,7 +18,7 @@ const FormWrapper = styled.div`
   text-align: center;
 `;
 
-const InputWrapper = styled.div`
+export const InputWrapper = styled.div`
   margin-bottom: 1rem;
   text-align: left;
 
@@ -36,19 +36,19 @@ const InputWrapper = styled.div`
   }
 `;
 
-const Error = styled.p`
+export const Error = styled.p`
   color: red;
   font-size: 0.9rem;
   margin-top: 5px;
 `;
 
-const SuccessMessage = styled.p`
+export const SuccessMessage = styled.p`
   color: green;
   font-size: 1rem;
   margin-bottom: 1rem;
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   width: 100%;
   padding: 10px;
   background: #007bff;
@@ -62,12 +62,3 @@ const SubmitButton = styled.button`
     background: #0056b3;
   }
 `;
-
-export const Styled = {
-  SubmitButton,
-  SuccessMessage,
-  Error,
-  Container,
-  FormWrapper,
-  InputWrapper
-}

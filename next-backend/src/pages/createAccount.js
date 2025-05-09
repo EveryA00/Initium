@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Styled } from "../styles/createAccountStyledComponents";
+import {
+  SubmitButton,
+  SuccessMessage,
+  Error,
+  Container,
+  FormWrapper,
+  InputWrapper,
+} from "../styles/createAccountStyledComponents";
 
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
@@ -23,9 +30,12 @@ const CreateAccount = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.includes("@")) newErrors.email = "Invalid email address";
-    if (formData.password.length < 6) newErrors.password = "Password must be at least 6 characters";
-    if (formData.password !== formData.confirmPassword) newErrors.confirmPassword = "Passwords do not match";
+    if (!formData.email.includes("@"))
+      newErrors.email = "Invalid email address";
+    if (formData.password.length < 6)
+      newErrors.password = "Password must be at least 6 characters";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -37,39 +47,65 @@ const CreateAccount = () => {
   };
 
   return (
-    <Styled.Container>
-      <Styled.FormWrapper>
+    <Container>
+      <FormWrapper>
         <h2>Create Account</h2>
-        {successMessage && <Styled.SuccessMessage>{successMessage}</Styled.SuccessMessage>}
+        {successMessage && (
+          <SuccessMessage>{successMessage}</SuccessMessage>
+        )}
         <form onSubmit={handleSubmit}>
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-            {errors.name && <Styled.Error>{errors.name}</Styled.Error>}
-          </Styled.InputWrapper>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            {errors.name && <Error>{errors.name}</Error>}
+          </InputWrapper>
 
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
-            {errors.email && <Styled.Error>{errors.email}</Styled.Error>}
-          </Styled.InputWrapper>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+            {errors.email && <Error>{errors.email}</Error>}
+          </InputWrapper>
 
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Password</label>
-            <input type="password" name="password" value={formData.password} onChange={handleChange} />
-            {errors.password && <Styled.Error>{errors.password}</Styled.Error>}
-          </Styled.InputWrapper>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            {errors.password && <Error>{errors.password}</Error>}
+          </InputWrapper>
 
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Confirm Password</label>
-            <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
-            {errors.confirmPassword && <Styled.Error>{errors.confirmPassword}</Styled.Error>}
-          </Styled.InputWrapper>
+            <input
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+            {errors.confirmPassword && (
+              <Error>{errors.confirmPassword}</Error>
+            )}
+          </InputWrapper>
 
-          <Styled.SubmitButton type="submit">Create Account</Styled.SubmitButton>
+          <SubmitButton type="submit">
+            Create Account
+          </SubmitButton>
         </form>
-      </Styled.FormWrapper>
-    </Styled.Container>
+      </FormWrapper>
+    </Container>
   );
 };
 

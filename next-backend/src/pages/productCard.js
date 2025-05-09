@@ -1,7 +1,23 @@
 import React from "react";
-import { Styled } from '../styles/productCardStyledComponents';
+import {
+  QuantityContainer,
+  QuantityButton,
+  QuantityControls,
+  Quantity,
+  Card,
+  Img,
+  Button,
+  RemoveButton,
+  CardLink,
+} from "../styles/productCardStyledComponents";
 
-const ProductCard = ({ product, cart, addToCart, removeFromCart, updateQuantity }) => {
+const ProductCard = ({
+  product,
+  cart,
+  addToCart,
+  removeFromCart,
+  updateQuantity,
+}) => {
   const isInCart = cart?.some((item) => item.id === product.id);
   const cartItem = cart?.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 1; // Always up-to-date from cart
@@ -17,28 +33,32 @@ const ProductCard = ({ product, cart, addToCart, removeFromCart, updateQuantity 
   };
 
   return (
-    <Styled.Card>
-      <Styled.Img src={product?.image} alt={product?.name} />
+    <Card>
+      <Img src={product?.image} alt={product?.name} />
       <h3>{product?.name}</h3>
       <p>{product?.price}</p>
 
       {isInCart ? (
-        <Styled.QuantityContainer>
-          <Styled.QuantityControls>
-            <Styled.QuantityButton onClick={handleDecrease}>-</Styled.QuantityButton>
-            <Styled.Quantity>{quantity}</Styled.Quantity>
-            <Styled.QuantityButton onClick={handleIncrease}>+</Styled.QuantityButton>
-          </Styled.QuantityControls>
-          <Styled.RemoveButton onClick={() => removeFromCart(product.id)}>
+        <QuantityContainer>
+          <QuantityControls>
+            <QuantityButton onClick={handleDecrease}>
+              -
+            </QuantityButton>
+            <Quantity>{quantity}</Quantity>
+            <QuantityButton onClick={handleIncrease}>
+              +
+            </QuantityButton>
+          </QuantityControls>
+          <RemoveButton onClick={() => removeFromCart(product.id)}>
             Remove From Cart
-          </Styled.RemoveButton>
-        </Styled.QuantityContainer>
+          </RemoveButton>
+        </QuantityContainer>
       ) : (
-        <Styled.Button onClick={() => addToCart(product)}>
+        <Button onClick={() => addToCart(product)}>
           Add to Cart
-        </Styled.Button>
+        </Button>
       )}
-    </Styled.Card>
+    </Card>
   );
 };
 

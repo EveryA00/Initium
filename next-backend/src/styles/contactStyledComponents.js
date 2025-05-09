@@ -1,10 +1,6 @@
-import styled from "styled-components";
+// styles/contactStyledComponents.js
+import {styled, withConfig } from 'styled-components';
 
-// Styled component named StyledButton
-const Contact = styled.div`
+export const ContactContain = styled.div`
   background-color: #fff;
 `;
-
-export const Styled = {
-    Contact,
-  };

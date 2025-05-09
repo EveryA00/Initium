@@ -1,21 +1,21 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 import Link from 'next/link'; // Import Link from next/link
 
 // Card container
-export const Styled = {
-  QuantityContainer: styled.div`
+
+  export const QuantityContainer = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-  `,
-  QuantityControls: styled.div`
+  `
+  export const QuantityControls = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
     margin: 1rem 0;
-  `,
-  QuantityButton: styled.button`
+  `
+  export const QuantityButton = styled.button`
     padding: 0.25rem 0.75rem;
     background: #f3f4f6;
     border: 1px solid #ccc;
@@ -27,15 +27,15 @@ export const Styled = {
     &:hover {
       background: #e5e7eb;
     }
-  `,
+  `
 
-  Quantity: styled.span`
+  export const Quantity = styled.span`
     font-size: 1.2rem;
     min-width: 30px;
     text-align: center;
-  `,
+  `
 
-  Card: styled.div`
+  export const Card = styled.div`
     width: 100%; // Set the width of the card
     height: auto; // Allow the height to adjust based on content
     padding: 16px;
@@ -48,15 +48,15 @@ export const Styled = {
     text-align: center;
     overflow: hidden; // Prevent any overflow
     margin: 0 auto;
-  `,
+  `
 
   // Link for routing
-  Link: styled(Link)`
+  export const CardLink = styled(Link)`
     text-decoration: none;
-  `,
+  `
 
   // Button style
-  Button: styled.button`
+  export const Button = styled.button`
     padding: 8px 16px;
     background-color: #45a049;
     color: white;
@@ -68,10 +68,10 @@ export const Styled = {
     &:hover {
       background-color: #45a049;
     }
-  `,
+  `
 
     // Button style
-    RemoveButton: styled.button`
+  export const RemoveButton = styled.button`
     padding: 8px 16px;
     background-color:rgb(223, 83, 83);
     color: white;
@@ -84,14 +84,12 @@ export const Styled = {
     &:hover {
       background-color:#c82121;
     }
-  `,
-
+  `
 
   // Styled image tag for Product Card
-  Img: styled.img`
+  export const Img = styled.img`
     height: 300px;
     width: 100%;
     object-fit: cover; // Ensures the image fills the container without distortion
     border-radius: 4px; // Optional: adds a border-radius to the image
-  `,
-};
+  `

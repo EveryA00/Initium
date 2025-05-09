@@ -5,16 +5,25 @@ export const ProductsContext = createContext();
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [loading, setLoading] = useState(true);  // Loading state
+  const [error, setError] = useState(null); // Error state
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        // Use the environment variable or fallback to localhost
         const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
         const response = await fetch(`${apiUrl}/api/products`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+
         const data = await response.json();
         setProducts(data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
+        setError(error.message);  // Store error message
         console.error('Error fetching products:', error);
       }
     };
@@ -58,6 +67,8 @@ export const ProductsProvider = ({ children }) => {
     <ProductsContext.Provider value={{
       products,
       cart,
+      loading,  // Provide loading state
+      error,    // Provide error state
       setProducts,
       addToCart,
       removeFromCart,

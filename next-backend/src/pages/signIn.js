@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Styled } from "../styles/signInStyledComponents";
+import {
+  SubmitButton,
+  SuccessMessage,
+  Error,
+  Container,
+  FormWrapper,
+  InputWrapper
+} from "../styles/signInStyledComponents";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -33,27 +40,27 @@ const SignIn = () => {
   };
 
   return (
-    <Styled.Container>
-      <Styled.FormWrapper>
+    <Container>
+      <FormWrapper>
         <h2>Sign In</h2>
-        {successMessage && <Styled.SuccessMessage>{successMessage}</Styled.SuccessMessage>}
+        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
         <form onSubmit={handleSubmit}>
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Email</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
-            {errors.email && <Styled.Error>{errors.email}</Styled.Error>}
-          </Styled.InputWrapper>
+            {errors.email && <Error>{errors.email}</Error>}
+          </InputWrapper>
 
-          <Styled.InputWrapper>
+          <InputWrapper>
             <label>Password</label>
             <input type="password" name="password" value={formData.password} onChange={handleChange} />
-            {errors.password && <Styled.Error>{errors.password}</Styled.Error>}
-          </Styled.InputWrapper>
+            {errors.password && <Error>{errors.password}</Error>}
+          </InputWrapper>
 
-          <Styled.SubmitButton type="submit">Sign In</Styled.SubmitButton>
+          <SubmitButton type="submit">Sign In</SubmitButton>
         </form>
-      </Styled.FormWrapper>
-    </Styled.Container>
+      </FormWrapper>
+    </Container>
   );
 };
 
