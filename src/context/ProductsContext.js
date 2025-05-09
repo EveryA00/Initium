@@ -9,7 +9,9 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/products');
+        // Use the environment variable or fallback to localhost
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+        const response = await fetch(`${apiUrl}/api/products`);
         const data = await response.json();
         setProducts(data);
       } catch (error) {
