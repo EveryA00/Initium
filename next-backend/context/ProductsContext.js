@@ -11,8 +11,7 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
-        const response = await fetch(`${apiUrl}/api/products`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/products`);
         
         if (!response.ok) {
           throw new Error('Failed to fetch products');
