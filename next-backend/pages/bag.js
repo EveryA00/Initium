@@ -1,5 +1,20 @@
 import React, { useContext } from 'react';
-import { Styled } from '../styles/bagStyledComponents.js'
+import { Container,
+  Title,
+  RemoveButton,
+  EmptyBag,
+  Content,
+  ItemsContainer,
+  CartItem,
+  Image,
+  Details,
+  Name,
+  Price,
+  Quantity,
+  Summary,
+  SummaryTitle,
+  Total,
+  CheckoutButton } from '../styles/bagStyledComponents.js'
 import { ProductsContext } from '../context/ProductsContext.js';
 
 const Bag = () => {
@@ -7,32 +22,32 @@ const Bag = () => {
   const total = cart?.reduce((sum, item) => sum + parseFloat(item?.price.replace('$', '')) * item?.quantity, 0);
 
   return (
-    <Styled.Container>
+    <Container>
     {cart.length === 0 ? (
-      <Styled.EmptyBag>Your bag is empty 🍋</Styled.EmptyBag>
+      <EmptyBag>Your bag is empty 🍋</EmptyBag>
     ) : (
-      <Styled.ItemsContainer>
+      <ItemsContainer>
         {cart.map((item) => (
-          <Styled.CartItem key={item?.id}>
-            <Styled.Image src={item?.image} alt={item?.name} />
-            <Styled.Details>
-              <Styled.Name>{item?.name}</Styled.Name>
-              <Styled.Price>${parseFloat(item?.price.replace('$', '')).toFixed(2)}</Styled.Price>
-              <Styled.Quantity>Quantity: {item?.quantity}</Styled.Quantity>
-            </Styled.Details>
-          </Styled.CartItem>
+          <CartItem key={item?.id}>
+            <Image src={item?.image} alt={item?.name} />
+            <Details>
+              <Name>{item?.name}</Name>
+              <Price>${parseFloat(item?.price.replace('$', '')).toFixed(2)}</Price>
+              <Quantity>Quantity: {item?.quantity}</Quantity>
+            </Details>
+          </CartItem>
         ))}
-      </Styled.ItemsContainer>
+      </ItemsContainer>
     )}
 
     {cart.length > 0 && (
-      <Styled.Summary>
-        <Styled.SummaryTitle>Summary</Styled.SummaryTitle>
-        <Styled.Total>Total: ${total.toFixed(2)}</Styled.Total>
-        <Styled.CheckoutButton>Checkout</Styled.CheckoutButton>
-      </Styled.Summary>
+      <Summary>
+        <SummaryTitle>Summary</SummaryTitle>
+        <Total>Total: ${total.toFixed(2)}</Total>
+        <CheckoutButton>Checkout</CheckoutButton>
+      </Summary>
     )}
-  </Styled.Container>
+  </Container>
   );
 };
 
