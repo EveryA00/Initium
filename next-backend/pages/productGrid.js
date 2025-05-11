@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GridContainer } from "../styles/productGridStyledComponents";
 import ProductCard from "./productCard";
 import { ProductsContext } from "../context/ProductsContext";
@@ -10,10 +10,12 @@ const ProductGrid = () => {
   const [error, setError] = useState(null);
 
   // If products are undefined or the array is empty, show loading state
-  if (loading || !products) {
-    return <p>Loading products...</p>; // Show loading message while products are being fetched
-  }
-
+  useEffect(() => {
+    if (!products) {
+      return <p>Loading products...</p>; // Show loading message while products are being fetched
+    }
+  }, [products])
+  
   // Handling error message when fetching products
   if (error) {
     return <p>Error fetching products: {error}</p>;

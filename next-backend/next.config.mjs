@@ -10,15 +10,6 @@ const nextConfig = {
     }
     return config;
   },
-  async redirects() {
-    return [
-      {
-        source: '/products',
-        destination: '/api/products',
-        permanent: false,
-      },
-    ];
-  },
   async rewrites() {
     return [
       {

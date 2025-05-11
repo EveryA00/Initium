@@ -20,7 +20,7 @@ import heritageBG from "../public/images/juice/brand/heritageBG1.png";
 const Home = () => {
   const router = useRouter(); // Use Next.js useRouter hook
   const handleClick = () => {
-    router.push('/products'); // Use router.push to navigate to the /products route
+    router.push('/productGrid'); // Use router.push to navigate to the /products route
   };
 
   return (
