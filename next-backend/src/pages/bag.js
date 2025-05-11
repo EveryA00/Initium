@@ -2,7 +2,13 @@ import React, { useContext } from "react";
 import { ProductsContext } from "../context/ProductsContext";
 
 const Bag = () => {
-  const { cart, removeFromCart, clearCart } = useContext(ProductsContext);
+  const context = useContext(ProductsContext);
+
+  if (!context) {
+    return <p>Loading context...</p>; // or handle it some other way
+  }
+
+  const { cart = [], removeFromCart, clearCart } = context;
 
   // Ensure cart is defined before rendering the page
   if (!cart) {

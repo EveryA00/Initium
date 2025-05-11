@@ -9,7 +9,13 @@ import {
 import { ProductsContext } from "../context/ProductsContext";
 
 const ProductDetail = () => {
-  const { products } = useContext(ProductsContext); // Access products from context
+    const context = useContext(ProductsContext);
+  
+    if (!context) {
+      return <p>Loading context...</p>; // or handle it some other way
+    }
+  
+  const { products = [] } = context; // Access products from context
   const router = useRouter(); // Access Next.js router
   const { productId } = router.query; // Access the productId from the URL
 
@@ -23,7 +29,7 @@ const ProductDetail = () => {
   }
 
   // Find the product based on the productId
-  const product = products.find((p) => p.id === productId);
+  const product = products?.find((p) => p.id === productId);
 
   // If no product is found for the given productId
   if (!product) {

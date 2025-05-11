@@ -6,12 +6,11 @@ import Navigation from '../components/Navigation/index.js';
 import Footer from '../components/Footer/index.js';
 
 function MyApp({ Component, pageProps }) {
-  const [cart, setCart] = useState([]);
 
   return (
     <ProductsProvider>
       <GlobalStyle />
-      <Navigation cart={cart} setCart={setCart} />
+      <Navigation />
       <Component {...pageProps} />
       <Footer />
     </ProductsProvider>
