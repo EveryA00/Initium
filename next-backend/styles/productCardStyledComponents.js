@@ -50,11 +50,6 @@ import Link from 'next/link'; // Import Link from next/link
     margin: 0 auto;
   `
 
-  // Link for routing
-  export const CardLink = styled(Link)`
-    text-decoration: none;
-  `
-
   // Button style
   export const Button = styled.button`
     padding: 8px 16px;

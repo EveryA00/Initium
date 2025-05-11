@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Styled } from "./styledComponents.js";
 import { useRouter } from "next/router";
 import { useAppContext } from "../../context/context.js";
 
-const LoginButton = ({ children, title }) => {
-  const { isLoggedIn, user, logout, login } = useAppContext();
+const LoginButton = () => {
+    const context = useContext(useAppContext);
+  
+    if (!context) {
+      return <p>Loading context...</p>; // or handle it some other way
+    }
+  const { isLoggedIn = false, user, logout, login } = context;
   const router = useRouter(); // Use Next.js useRouter hook
 
   const handleClick = () => {

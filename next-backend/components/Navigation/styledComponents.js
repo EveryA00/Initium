@@ -1,14 +1,14 @@
 import { FaShoppingCart } from 'react-icons/fa';
 import Link from 'next/link'; // Import Link from next/link
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 
-const NavBar = styled.nav`
+export const NavBar = styled.nav`
   background-color: #1e40af; /* Blue-600 */
   padding: 1rem;
 `;
 
-const NavList = styled.ul`
+export const NavList = styled.ul`
   display: flex;
   gap: 1.5rem;
   justify-content: center;
@@ -18,11 +18,11 @@ const NavList = styled.ul`
   margin: 0;
 `;
 
-const NavItem = styled.li`
+export const NavItem = styled.li`
   font-size: 1.1rem;
 `;
 
-const NavLink = styled(Link)`
+export const NavLink = styled(Link)`
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -34,7 +34,7 @@ const NavLink = styled(Link)`
   }
 `;
 
-const CartLink = styled(Link)`
+export const CartLink = styled(Link)`
   color: #1e40af;
   text-decoration: none;
   font-weight: bold;
@@ -45,7 +45,7 @@ const CartLink = styled(Link)`
     transform: scale(1.1);
   }
 `;
-const CartWrapper = styled.div`
+export const CartWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
@@ -61,12 +61,12 @@ const CartWrapper = styled.div`
   }
 `;
 
-const Icon = styled(FaShoppingCart)`
+export const Icon = styled(FaShoppingCart)`
   font-size: 1.4rem;
   margin-right: 0.5rem;
 `;
 
-const ItemCount = styled.span`
+export const ItemCount = styled.span`
   position: absolute;
   top: -6px;
   right: -6px;
@@ -78,19 +78,6 @@ const ItemCount = styled.span`
   border-radius: 50%;
 `;
 
-const Label = styled.span`
+export const Label = styled.span`
   font-weight: 500;
 `;
-
-
-export const Styled = {
-    NavBar,
-    NavList,
-    NavItem,
-    NavLink,
-    CartLink,
-    CartWrapper,
-    Label,
-    ItemCount,
-    Icon
-  };

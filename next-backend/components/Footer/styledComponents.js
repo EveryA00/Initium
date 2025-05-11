@@ -1,5 +1,4 @@
-import React from "react";
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 const FooterContainer = styled.footer`
   background-color: #1f2937; /* Gray-800 */

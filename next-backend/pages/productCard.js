@@ -8,7 +8,6 @@ import {
   Img,
   Button,
   RemoveButton,
-  CardLink,
 } from "../styles/productCardStyledComponents";
 
 const ProductCard = ({

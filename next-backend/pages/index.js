@@ -15,7 +15,7 @@ import {
   HeroText,
   ShopButton
 } from '../styles/styledComponents';
-import heritageBG from "../../public/images/juice/brand/heritageBG1.png"; 
+import heritageBG from "../public/images/juice/brand/heritageBG1.png"; 
 
 const Home = () => {
   const router = useRouter(); // Use Next.js useRouter hook

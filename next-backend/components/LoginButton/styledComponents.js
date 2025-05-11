@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { styled, withConfig } from "styled-components";
 
 // Styled component named StyledButton
 
