@@ -1,7 +1,7 @@
 import React from "react";
 import {AboutContain} from '../styles/aboutStyledComponent.js';
 
-const About = ({ children, title }) => {
+const About = ({ title }) => {
   return (
     <AboutContain className="min-h-screen flex flex-col bg-gray-100">
       {/* Header */}
