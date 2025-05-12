@@ -41,7 +41,7 @@ const Home = () => {
       <h2>Best Sellers</h2>
       <JuiceGrid>
         {products && products.length > 0 ? (
-          products.map((product) => (
+          products.slice(0, 3).map((product) => (
             <JuiceCard key={product._id}>
               <h3>{product.name}</h3>
               <p>{product.description}</p>
