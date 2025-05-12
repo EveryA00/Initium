@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useAppContext } from "../../context/context.js";
 
 const LoginButton = () => {
-    const context = useContext(useAppContext);
+    const context = useAppContext();
   
     if (!context) {
       return <p>Loading context...</p>; // or handle it some other way
