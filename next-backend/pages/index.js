@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router"; // Import useRouter from Next.js
+import { ProductsContext } from "../context/ProductsContext";
 import {
   HomeContain,
   Container,
