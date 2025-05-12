@@ -13,7 +13,7 @@ const LoginButton = () => {
   const router = useRouter(); // Use Next.js useRouter hook
 
   const handleClick = () => {
-    router.push("/signin"); // Navigate to /signin route
+    router.push("/signIn"); // Navigate to /signin route
   };
 
   return (
