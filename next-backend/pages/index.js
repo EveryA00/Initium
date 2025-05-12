@@ -18,6 +18,7 @@ import {
 import heritageBG from "../public/images/juice/brand/heritageBG1.png"; 
 
 const Home = () => {
+  const { products, addToCart} = useContext(ProductsContext) || {}; // Safe destructuring
   const router = useRouter(); // Use Next.js useRouter hook
   const handleClick = () => {
     router.push('/productGrid'); // Use router.push to navigate to the /products route
@@ -37,30 +38,23 @@ const Home = () => {
 
       {/* Featured Juices */}
       <Section>
-        <h2>Best Sellers</h2>
-        <JuiceGrid>
-          <JuiceCard>
-            <h3>Orange Juice</h3>
-            <p>Freshly squeezed oranges for a refreshing taste.</p>
-            <Price>$5.99</Price>
-            <AddToCart>Add to Cart</AddToCart>
-          </JuiceCard>
+      <h2>Best Sellers</h2>
+      <JuiceGrid>
+        {products && products.length > 0 ? (
+          products.map((product) => (
+            <JuiceCard key={product._id}>
+              <h3>{product.name}</h3>
+              <p>{product.description}</p>
+              <Price>${product.price.toFixed(2)}</Price>
+              <AddToCart onClick={() => addToCart(product)}>Add to Cart</AddToCart>
+            </JuiceCard>
+          ))
+        ) : (
+          <p>Loading products...</p>
+        )}
+      </JuiceGrid>
+    </Section>
 
-          <JuiceCard>
-            <h3>Apple Juice</h3>
-            <p>Sweet and crisp apples blended to perfection.</p>
-            <Price>$6.49</Price>
-            <AddToCart>Add to Cart</AddToCart>
-          </JuiceCard>
-
-          <JuiceCard>
-            <h3>Mixed Berry Juice</h3>
-            <p>A delicious mix of strawberries, blueberries, and raspberries.</p>
-            <Price>$7.99</Price>
-            <AddToCart>Add to Cart</AddToCart>
-          </JuiceCard>
-        </JuiceGrid>
-      </Section>
 
       {/* Customer Reviews */}
       <TestimonialSection>
