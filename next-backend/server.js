@@ -1,7 +1,7 @@
 // server.js
-import { createServer } from 'http';
-import { parse } from 'url';
-import next from 'next';
+const { createServer } = require('http');
+const { parse } = require('url');
+const next = require('next');
 
 const app = next({ dev: process.env.NODE_ENV !== 'production' });
 const handle = app.getRequestHandler();

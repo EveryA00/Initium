@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {  NavBar,
   NavList,
   NavItem,
@@ -10,9 +10,14 @@ import {  NavBar,
   Icon } from "./styledComponents";
 
 import LoginButton from "../LoginButton";
+import { ProductsContext } from "../../context/ProductsContext";
 
-const Navigation = ({ cart }) => {
-  const itemCount = cart?.length > 0 && cart?.length;
+const Navigation = () => {
+  const { cart } = useContext(ProductsContext);
+  
+  // Calculate total items in cart (sum of all quantities)
+  const itemCount = cart?.reduce((total, item) => total + (item.quantity || 1), 0) || 0;
+  
   return (
     <NavBar>
       <NavList>

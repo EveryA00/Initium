@@ -1,83 +1,137 @@
 import { FaShoppingCart } from 'react-icons/fa';
-import Link from 'next/link'; // Import Link from next/link
-import { styled, withConfig } from "styled-components";
-
+import Link from 'next/link';
+import { styled } from "styled-components";
 
 export const NavBar = styled.nav`
-  background-color: #1e40af; /* Blue-600 */
-  padding: 1rem;
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary} 0%, ${({ theme }) => theme.colors.primaryDark} 100%);
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
+  box-shadow: ${({ theme }) => theme.shadows.lg};
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderLight};
 `;
 
 export const NavList = styled.ul`
   display: flex;
-  gap: 1.5rem;
+  gap: ${({ theme }) => theme.spacing.xl};
   justify-content: center;
   align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+    gap: ${({ theme }) => theme.spacing.lg};
+    flex-wrap: wrap;
+  }
 `;
 
 export const NavItem = styled.li`
-  font-size: 1.1rem;
+  font-size: ${({ theme }) => theme.typography.fontSizeLarge};
+  font-weight: ${({ theme }) => theme.typography.medium};
 `;
 
 export const NavLink = styled(Link)`
-  color: white;
+  color: ${({ theme }) => theme.colors.surface};
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out, transform 0.2s ease;
+  font-weight: ${({ theme }) => theme.typography.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: ${({ theme }) => theme.colors.surface};
+    transition: width ${({ theme }) => theme.transitions.fast};
+  }
 
   &:hover {
-    color: #93c5fd; /* Lighter blue on hover */
-    transform: scale(1.1);
+    color: ${({ theme }) => theme.colors.accentLight};
+    transform: translateY(-1px);
+    
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
 export const CartLink = styled(Link)`
-  color: #1e40af;
+  color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out, transform 0.2s ease;
-
-  &:hover {
-    color:rgb(44, 74, 171); /* Lighter blue on hover */
-    transform: scale(1.1);
-  }
+  font-weight: ${({ theme }) => theme.typography.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
 `;
+
 export const CartWrapper = styled.div`
   display: flex;
   align-items: center;
   position: relative;
   text-decoration: none;
   color: inherit;
-  padding: 0.5rem 1rem;
-  border-radius: 2rem;
-  background:rgb(240, 240, 240);
-  transition: background 0.3s ease;
+  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.lg};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  background: ${({ theme }) => theme.colors.surface};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  box-shadow: ${({ theme }) => theme.shadows.sm};
+  border: 1px solid ${({ theme }) => theme.colors.borderLight};
 
   &:hover {
-    background: #e0e0e0;
+    background: ${({ theme }) => theme.colors.borderLight};
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
   }
 `;
 
 export const Icon = styled(FaShoppingCart)`
-  font-size: 1.4rem;
-  margin-right: 0.5rem;
+  font-size: ${({ theme }) => theme.typography.fontSizeLarge};
+  margin-right: ${({ theme }) => theme.spacing.sm};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const ItemCount = styled.span`
   position: absolute;
-  top: -6px;
-  right: -6px;
-  background-color: #ff5252;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 50%;
+  top: -10px;
+  right: -10px;
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.error} 0%, ${({ theme }) => theme.colors.warning} 100%);
+  color: ${({ theme }) => theme.colors.surface};
+  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+  font-weight: ${({ theme }) => theme.typography.bold};
+  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  min-width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  border: 2px solid ${({ theme }) => theme.colors.surface};
+  animation: pulse 2s infinite;
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 `;
 
 export const Label = styled.span`
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.typography.medium};
+  color: ${({ theme }) => theme.colors.text};
 `;

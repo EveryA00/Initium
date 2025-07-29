@@ -1,30 +1,47 @@
-import { styled, withConfig } from "styled-components";
-
-// Styled component named StyledButton
+import { styled } from "styled-components";
 
 const LoginButton = styled.div`
-  padding: 10px 20px;
-  background: linear-gradient(135deg, #28a745, #218838);
-  color: white;
-  font-weight: bold;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.success} 0%, ${({ theme }) => theme.colors.primary} 100%);
+  color: ${({ theme }) => theme.colors.surface};
+  font-weight: ${({ theme }) => theme.typography.semibold};
   text-transform: uppercase;
-  border-radius: 20px;
+  border-radius: ${({ theme }) => theme.borderRadius.full};
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all ${({ theme }) => theme.transitions.normal};
+  box-shadow: ${({ theme }) => theme.shadows.md};
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: inline-block;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left ${({ theme }) => theme.transitions.normal};
+  }
 
   &:hover {
-    background: linear-gradient(135deg, #218838, #1e7e34);
+    background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary} 0%, ${({ theme }) => theme.colors.success} 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: ${({ theme }) => theme.shadows.lg};
+    
+    &::before {
+      left: 100%;
+    }
   }
 
   &:active {
-    transform: scale(0.98);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+    box-shadow: ${({ theme }) => theme.shadows.md};
   }
 `;
 
 export const Styled = {
     LoginButton,
-  };
+};

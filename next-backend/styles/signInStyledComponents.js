@@ -1,64 +1,139 @@
-import { styled, withConfig } from "styled-components";
+import { styled } from "styled-components";
 
-// Styled Components
 export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: #f4f4f4;
+  min-height: 100vh;
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.background} 0%, ${({ theme }) => theme.colors.borderLight} 100%);
+  padding: ${({ theme }) => theme.spacing.xl};
 `;
 
 export const FormWrapper = styled.div`
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 350px;
+  background: ${({ theme }) => theme.colors.surface};
+  padding: ${({ theme }) => theme.spacing.xxl};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  box-shadow: ${({ theme }) => theme.shadows.xl};
+  width: 100%;
+  max-width: 400px;
   text-align: center;
+  border: 1px solid ${({ theme }) => theme.colors.borderLight};
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.secondary});
+  }
+  
+  h1 {
+    color: ${({ theme }) => theme.colors.text};
+    margin-bottom: ${({ theme }) => theme.spacing.xl};
+    font-size: ${({ theme }) => theme.typography.h3};
+    font-weight: ${({ theme }) => theme.typography.bold};
+  }
 `;
 
 export const InputWrapper = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
   text-align: left;
 
   label {
-    font-weight: bold;
+    font-weight: ${({ theme }) => theme.typography.medium};
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: ${({ theme }) => theme.spacing.sm};
+    color: ${({ theme }) => theme.colors.text};
+    font-size: ${({ theme }) => theme.typography.fontSize};
   }
 
   input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: ${({ theme }) => theme.spacing.md};
+    border: 2px solid ${({ theme }) => theme.colors.border};
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    font-size: ${({ theme }) => theme.typography.fontSize};
+    transition: all ${({ theme }) => theme.transitions.fast};
+    background: ${({ theme }) => theme.colors.surface};
+    color: ${({ theme }) => theme.colors.text};
+    
+    &:focus {
+      outline: none;
+      border-color: ${({ theme }) => theme.colors.primary};
+      box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.primaryLight}20;
+    }
+    
+    &::placeholder {
+      color: ${({ theme }) => theme.colors.textLight};
+    }
   }
 `;
 
 export const Error = styled.p`
-  color: red;
-  font-size: 0.9rem;
-  margin-top: 5px;
+  color: ${({ theme }) => theme.colors.error};
+  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+  margin-top: ${({ theme }) => theme.spacing.sm};
+  text-align: left;
+  font-weight: ${({ theme }) => theme.typography.medium};
 `;
 
 export const SuccessMessage = styled.p`
-  color: green;
-  font-size: 1rem;
-  margin-bottom: 1rem;
+  color: ${({ theme }) => theme.colors.success};
+  font-size: ${({ theme }) => theme.typography.fontSize};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  font-weight: ${({ theme }) => theme.typography.medium};
 `;
 
 export const SubmitButton = styled.button`
   width: 100%;
-  padding: 10px;
-  background: #007bff;
-  color: white;
+  padding: ${({ theme }) => theme.spacing.md};
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.primary} 0%, ${({ theme }) => theme.colors.secondary} 100%);
+  color: ${({ theme }) => theme.colors.surface};
   border: none;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   cursor: pointer;
-  font-size: 1rem;
-
+  font-size: ${({ theme }) => theme.typography.fontSizeLarge};
+  font-weight: ${({ theme }) => theme.typography.semibold};
+  transition: all ${({ theme }) => theme.transitions.fast};
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left ${({ theme }) => theme.transitions.normal};
+  }
+  
   &:hover {
-    background: #0056b3;
+    transform: translateY(-1px);
+    box-shadow: ${({ theme }) => theme.shadows.md};
+    
+    &::before {
+      left: 100%;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
   }
 `;

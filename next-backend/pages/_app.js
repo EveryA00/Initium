@@ -1,18 +1,24 @@
 // pages/_app.js
+import { ThemeProvider } from 'styled-components';
 import { ProductsProvider } from '../context/ProductsContext.js';
 import { AppProvider } from "../context/context.js";
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import GlobalStyle from '../styles/GlobalStyles';
+import theme from '../styles/theme';
 
 const MyApp = ({ Component, pageProps }) => {
   return (
-    <AppProvider>
-      <ProductsProvider>
-        <Navigation />
-        <Component {...pageProps} />
-        <Footer />
-      </ProductsProvider>
-    </AppProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <AppProvider>
+        <ProductsProvider>
+          <Navigation />
+          <Component {...pageProps} />
+          <Footer />
+        </ProductsProvider>
+      </AppProvider>
+    </ThemeProvider>
   );
 }
 
