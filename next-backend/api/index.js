@@ -46,12 +46,21 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Health check endpoint
+// Health check endpoint (no database connection required)
 app.get('/api/health', (req, res) => {
   res.status(200).json({ 
     status: 'OK', 
     timestamp: new Date().toISOString(),
-    environment: process.env.NODE_ENV || 'development'
+    environment: process.env.NODE_ENV || 'development',
+    message: 'API is running successfully'
+  });
+});
+
+// Simple test endpoint
+app.get('/api/test', (req, res) => {
+  res.status(200).json({ 
+    message: 'API test endpoint working!',
+    timestamp: new Date().toISOString()
   });
 });
 
