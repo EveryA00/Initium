@@ -5,6 +5,16 @@ const User = require('../models/User');
 const { validateSignup, validateSignin } = require('../middleware/validation');
 const { authenticateToken } = require('../middleware/auth');
 
+// Lazy database connection for serverless functions
+let isConnected = false;
+const ensureConnection = async () => {
+  if (!isConnected) {
+    const connectDB = require('../config/database');
+    await connectDB();
+    isConnected = true;
+  }
+};
+
 const router = express.Router();
 
 // Generate JWT token
@@ -34,6 +44,7 @@ const comparePassword = async (password, hashedPassword) => {
 // @access  Public
 router.post('/signup', validateSignup, async (req, res) => {
   try {
+    await ensureConnection();
     const { name, email, password } = req.body;
 
     // Check if user already exists
@@ -82,6 +93,7 @@ router.post('/signup', validateSignup, async (req, res) => {
 // @access  Public
 router.post('/signin', validateSignin, async (req, res) => {
   try {
+    await ensureConnection();
     const { email, password } = req.body;
 
     // Find user by email (include password for comparison)
@@ -141,6 +153,7 @@ router.post('/signin', validateSignin, async (req, res) => {
 // @access  Private
 router.get('/me', authenticateToken, async (req, res) => {
   try {
+    await ensureConnection();
     const user = await User.findById(req.user.userId);
     
     if (!user) {
@@ -171,6 +184,7 @@ router.get('/me', authenticateToken, async (req, res) => {
 // @access  Private
 router.put('/profile', authenticateToken, async (req, res) => {
   try {
+    await ensureConnection();
     console.log('Profile update request received');
     console.log('Request body:', req.body);
     console.log('User ID from token:', req.user.userId);
@@ -237,6 +251,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
 // @access  Private
 router.get('/orders', authenticateToken, async (req, res) => {
   try {
+    await ensureConnection();
     const userId = req.user.userId;
 
     // Find user
