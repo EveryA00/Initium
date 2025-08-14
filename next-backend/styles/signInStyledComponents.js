@@ -30,13 +30,20 @@ export const FormWrapper = styled.div`
     height: 4px;
     background: linear-gradient(90deg, ${({ theme }) => theme.colors.primary}, ${({ theme }) => theme.colors.secondary});
   }
-  
-  h1 {
-    color: ${({ theme }) => theme.colors.text};
-    margin-bottom: ${({ theme }) => theme.spacing.xl};
-    font-size: ${({ theme }) => theme.typography.h3};
-    font-weight: ${({ theme }) => theme.typography.bold};
-  }
+`;
+
+export const FormTitle = styled.h1`
+  color: ${({ theme }) => theme.colors.text};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  font-size: ${({ theme }) => theme.typography.h2};
+  font-weight: ${({ theme }) => theme.typography.bold};
+`;
+
+export const FormDescription = styled.p`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin-bottom: ${({ theme }) => theme.spacing.xl};
+  font-size: ${({ theme }) => theme.typography.fontSize};
+  line-height: ${({ theme }) => theme.typography.lineHeight};
 `;
 
 export const InputWrapper = styled.div`
@@ -70,6 +77,10 @@ export const InputWrapper = styled.div`
     &::placeholder {
       color: ${({ theme }) => theme.colors.textLight};
     }
+    
+    &[aria-invalid="true"] {
+      border-color: ${({ theme }) => theme.colors.error};
+    }
   }
 `;
 
@@ -86,6 +97,39 @@ export const SuccessMessage = styled.p`
   font-size: ${({ theme }) => theme.typography.fontSize};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   font-weight: ${({ theme }) => theme.typography.medium};
+`;
+
+export const ForgotPasswordLink = styled.a`
+  display: block;
+  text-align: right;
+  color: ${({ theme }) => theme.colors.primary};
+  text-decoration: none;
+  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  transition: color ${({ theme }) => theme.transitions.fast};
+  
+  &:hover {
+    color: ${({ theme }) => theme.colors.primaryDark};
+    text-decoration: underline;
+  }
+`;
+
+export const LinkText = styled.p`
+  margin-top: ${({ theme }) => theme.spacing.xl};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font-size: ${({ theme }) => theme.typography.fontSize};
+  
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    text-decoration: none;
+    font-weight: ${({ theme }) => theme.typography.medium};
+    transition: color ${({ theme }) => theme.transitions.fast};
+    
+    &:hover {
+      color: ${({ theme }) => theme.colors.primaryDark};
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const SubmitButton = styled.button`
@@ -113,7 +157,7 @@ export const SubmitButton = styled.button`
     transition: left ${({ theme }) => theme.transitions.normal};
   }
   
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-1px);
     box-shadow: ${({ theme }) => theme.shadows.md};
     
@@ -122,7 +166,7 @@ export const SubmitButton = styled.button`
     }
   }
   
-  &:active {
+  &:active:not(:disabled) {
     transform: translateY(0);
   }
   
