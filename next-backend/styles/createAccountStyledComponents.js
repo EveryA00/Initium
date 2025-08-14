@@ -93,6 +93,42 @@ export const Error = styled.p`
   font-weight: ${({ theme }) => theme.typography.medium};
 `;
 
+export const AlertMessage = styled.div`
+  background: ${({ theme, type }) => 
+    type === 'error' ? theme.colors.errorLight : 
+    type === 'warning' ? theme.colors.warningLight : 
+    theme.colors.infoLight};
+  border: 2px solid ${({ theme, type }) => 
+    type === 'error' ? theme.colors.error : 
+    type === 'warning' ? theme.colors.warning : 
+    theme.colors.info};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing.md};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  text-align: left;
+  position: relative;
+  
+  &::before {
+    content: '⚠️';
+    position: absolute;
+    left: ${({ theme }) => theme.spacing.md};
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2em;
+  }
+  
+  p {
+    margin: 0;
+    padding-left: 2rem;
+    color: ${({ theme, type }) => 
+      type === 'error' ? theme.colors.error : 
+      type === 'warning' ? theme.colors.warning : 
+      theme.colors.info};
+    font-weight: ${({ theme }) => theme.typography.medium};
+    font-size: ${({ theme }) => theme.typography.fontSize};
+  }
+`;
+
 export const SuccessMessage = styled.p`
   color: ${({ theme }) => theme.colors.success};
   font-size: ${({ theme }) => theme.typography.fontSize};

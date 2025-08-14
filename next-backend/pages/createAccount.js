@@ -3,6 +3,7 @@ import {
   SubmitButton,
   SuccessMessage,
   Error,
+  AlertMessage,
   Container,
   FormWrapper,
   InputWrapper,
@@ -25,6 +26,7 @@ const CreateAccount = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [accountExists, setAccountExists] = useState(false);
 
   // Enhanced email validation
   const validateEmail = (email) => {
@@ -79,6 +81,11 @@ const CreateAccount = () => {
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
+    }
+    
+    // Clear account exists warning when user changes email
+    if (name === "email" && accountExists) {
+      setAccountExists(false);
     }
   };
 
@@ -205,11 +212,22 @@ const CreateAccount = () => {
           });
           setErrors(backendErrors);
         } else {
-          setErrors({ general: data.message || "Something went wrong" });
+          // Handle specific API error messages
+          if (data.message === "User with this email already exists") {
+            setAccountExists(true);
+            setErrors({ 
+              email: "An account with this email address already exists. Please sign in instead or use a different email address.",
+              general: "Account already exists"
+            });
+          } else {
+            setAccountExists(false);
+            setErrors({ general: data.message || "Something went wrong" });
+          }
         }
         setSuccessMessage("");
       } else {
         setErrors({});
+        setAccountExists(false);
         setSuccessMessage("Account created successfully! Welcome to our juice store!");
         
         // Store token and user data in localStorage
@@ -229,6 +247,7 @@ const CreateAccount = () => {
               confirmPassword: "",
             });
             setSuccessMessage("");
+            setAccountExists(false);
             // Redirect to home page as signed-in user
             window.location.href = '/';
           }, 2000);
@@ -243,6 +262,7 @@ const CreateAccount = () => {
               confirmPassword: "",
             });
             setSuccessMessage("");
+            setAccountExists(false);
           }, 3000);
         }
       }
@@ -271,7 +291,23 @@ const CreateAccount = () => {
         <FormTitle>Create Your Account</FormTitle>
         <FormDescription>Join our juice community and start your healthy journey</FormDescription>
         
-        {errors.general && <Error>{errors.general}</Error>}
+        {accountExists && (
+          <AlertMessage type="warning">
+            <p>
+              <strong>Account Already Exists!</strong><br />
+              An account with this email address already exists. 
+              <br />
+              <a href="/signIn" style={{ color: 'inherit', textDecoration: 'underline', fontWeight: 'bold' }}>
+                Click here to sign in instead
+              </a>
+            </p>
+          </AlertMessage>
+        )}
+        {errors.general && !accountExists && (
+          <AlertMessage type="error">
+            <p>{errors.general}</p>
+          </AlertMessage>
+        )}
         {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
         
         <form onSubmit={handleSubmit} noValidate>
