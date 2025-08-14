@@ -46,6 +46,37 @@ const userSchema = new mongoose.Schema({
   isActive: {
     type: Boolean,
     default: true
+  },
+  phone: {
+    type: String,
+    trim: true,
+    match: [
+      /^[\+]?[1-9][\d]{0,15}$/,
+      'Please enter a valid phone number'
+    ]
+  },
+  address: {
+    type: String,
+    trim: true,
+    maxlength: [200, 'Address cannot exceed 200 characters']
+  },
+  city: {
+    type: String,
+    trim: true,
+    maxlength: [50, 'City cannot exceed 50 characters']
+  },
+  state: {
+    type: String,
+    trim: true,
+    maxlength: [50, 'State cannot exceed 50 characters']
+  },
+  zipCode: {
+    type: String,
+    trim: true,
+    match: [
+      /^\d{5}(-\d{4})?$/,
+      'Please enter a valid ZIP code'
+    ]
   }
 }, {
   timestamps: true,
@@ -93,7 +124,7 @@ userSchema.methods.getPublicProfile = function() {
   delete userObject.emailVerificationToken;
   delete userObject.emailVerificationExpires;
   delete userObject.passwordResetToken;
-  delete userSchema.passwordResetExpires;
+  delete userObject.passwordResetExpires;
   return userObject;
 };
 

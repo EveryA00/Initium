@@ -1,10 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-// const User = require('../models/User');
+const User = require('../models/User');
 const { validateSignup, validateSignin } = require('../middleware/validation');
 const { authenticateToken } = require('../middleware/auth');
-const { findUserByEmail, findUserById, getPublicProfile, addUser, updateUser } = require('../utils/memoryStorage');
 
 const router = express.Router();
 
@@ -38,7 +37,7 @@ router.post('/signup', validateSignup, async (req, res) => {
     const { name, email, password } = req.body;
 
     // Check if user already exists
-    const existingUser = findUserByEmail(email);
+    const existingUser = await User.findByEmail(email);
     if (existingUser) {
       return res.status(400).json({
         success: false,
@@ -46,23 +45,15 @@ router.post('/signup', validateSignup, async (req, res) => {
       });
     }
 
-    // Hash password
-    const hashedPassword = await hashPassword(password);
-
-    // Create new user
-    const user = {
+    // Create new user (password will be hashed automatically by the model)
+    const user = new User({
       name,
       email: email.toLowerCase(),
-      password: hashedPassword,
-      role: 'user',
-      isEmailVerified: false,
-      isActive: true,
-      lastLogin: new Date(),
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
+      password,
+      role: 'user'
+    });
 
-    const savedUser = addUser(user);
+    const savedUser = await user.save();
 
     // Generate token
     const token = generateToken(savedUser._id);
@@ -72,7 +63,7 @@ router.post('/signup', validateSignup, async (req, res) => {
       success: true,
       message: 'Account created successfully!',
       data: {
-        user: getPublicProfile(savedUser),
+        user: savedUser.getPublicProfile(),
         token
       }
     });
@@ -93,8 +84,8 @@ router.post('/signin', validateSignin, async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Find user by email
-    const user = findUserByEmail(email);
+    // Find user by email (include password for comparison)
+    const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     
     if (!user) {
       return res.status(401).json({
@@ -112,7 +103,7 @@ router.post('/signin', validateSignin, async (req, res) => {
     }
 
     // Check password
-    const isPasswordValid = await comparePassword(password, user.password);
+    const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       return res.status(401).json({
         success: false,
@@ -122,6 +113,7 @@ router.post('/signin', validateSignin, async (req, res) => {
 
     // Update last login
     user.lastLogin = new Date();
+    await user.save();
 
     // Generate token
     const token = generateToken(user._id);
@@ -130,7 +122,7 @@ router.post('/signin', validateSignin, async (req, res) => {
       success: true,
       message: 'Signed in successfully!',
       data: {
-        user: getPublicProfile(user),
+        user: user.getPublicProfile(),
         token
       }
     });
@@ -149,7 +141,7 @@ router.post('/signin', validateSignin, async (req, res) => {
 // @access  Private
 router.get('/me', authenticateToken, async (req, res) => {
   try {
-    const user = findUserById(req.user.userId);
+    const user = await User.findById(req.user.userId);
     
     if (!user) {
       return res.status(404).json({
@@ -161,7 +153,7 @@ router.get('/me', authenticateToken, async (req, res) => {
     res.json({
       success: true,
       data: {
-        user: getPublicProfile(user)
+        user: user.getPublicProfile()
       }
     });
 
@@ -187,7 +179,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
     const userId = req.user.userId;
 
     // Find user
-    const user = findUserById(userId);
+    const user = await User.findById(userId);
     console.log('User found:', user ? 'Yes' : 'No');
     if (!user) {
       return res.status(404).json({
@@ -197,7 +189,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
     }
 
     // Update user data
-    console.log('Updating user with data:', {
+    const updateData = {
       name: name || user.name,
       email: email || user.email,
       phone: phone || user.phone,
@@ -205,18 +197,15 @@ router.put('/profile', authenticateToken, async (req, res) => {
       city: city || user.city,
       state: state || user.state,
       zipCode: zipCode || user.zipCode
-    });
+    };
     
-    const updatedUser = updateUser(userId, {
-      name: name || user.name,
-      email: email || user.email,
-      phone: phone || user.phone,
-      address: address || user.address,
-      city: city || user.city,
-      state: state || user.state,
-      zipCode: zipCode || user.zipCode,
-      updatedAt: new Date()
-    });
+    console.log('Updating user with data:', updateData);
+    
+    const updatedUser = await User.findByIdAndUpdate(
+      userId, 
+      updateData,
+      { new: true, runValidators: true }
+    );
 
     console.log('Update result:', updatedUser ? 'Success' : 'Failed');
     if (!updatedUser) {
@@ -230,7 +219,7 @@ router.put('/profile', authenticateToken, async (req, res) => {
       success: true,
       message: 'Profile updated successfully',
       data: {
-        user: getPublicProfile(updatedUser)
+        user: updatedUser.getPublicProfile()
       }
     });
 
@@ -251,7 +240,7 @@ router.get('/orders', authenticateToken, async (req, res) => {
     const userId = req.user.userId;
 
     // Find user
-    const user = findUserById(userId);
+    const user = await User.findById(userId);
     if (!user) {
       return res.status(404).json({
         success: false,

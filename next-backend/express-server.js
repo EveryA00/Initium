@@ -5,8 +5,7 @@ const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
-// Comment out database connection for now
-// const connectDB = require('./config/database');
+const connectDB = require('./config/database');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 
@@ -19,7 +18,7 @@ app.use(helmet());
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yourdomain.com'] 
+    ? ['https://www.238-354-3873.com', 'https://238-354-3873.com'] 
     : ['http://localhost:3000'],
   credentials: true
 }));
@@ -100,13 +99,12 @@ app.use('*', (req, res) => {
 // Connect to database and start server
 const startServer = async () => {
   try {
-    // Comment out database connection for now
-    // await connectDB();
+    await connectDB();
     
     app.listen(PORT, () => {
       console.log(`🚀 Express server running on http://localhost:${PORT}`);
       console.log(`📊 Health check available at http://localhost:${PORT}/api/health`);
-      console.log(`⚠️  Running without database connection`);
+      console.log(`🗄️  Connected to MongoDB database`);
     });
   } catch (error) {
     console.error('❌ Failed to start server:', error);

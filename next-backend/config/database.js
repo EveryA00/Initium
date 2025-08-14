@@ -4,6 +4,9 @@ const connectDB = async () => {
   try {
     const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/juice-store';
     
+    console.log('🔍 Attempting to connect to MongoDB...');
+    console.log('🔍 URI:', mongoURI.substring(0, 50) + '...');
+    
     const conn = await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
