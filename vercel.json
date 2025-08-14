@@ -2,18 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "next-backend/package.json",
+      "src": "package.json",
       "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "https://api.238-354-3873.com/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/next-backend/$1"
     }
   ]
 } 
