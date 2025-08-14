@@ -1,0 +1,18 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/about": "pages/about.html",
+  "/bag": "pages/bag.html",
+  "/contact": "pages/contact.html",
+  "/api/products": "pages/api/products.js",
+  "/createAccount": "pages/createAccount.html",
+  "/": "pages/index.html",
+  "/productDetails": "pages/productDetails.html",
+  "/productCard": "pages/productCard.html",
+  "/productGrid": "pages/productGrid.html",
+  "/signIn": "pages/signIn.html",
+  "/profile": "pages/profile.html",
+  "/test-styles": "pages/test-styles.html",
+  "/404": "pages/404.html"
+}
