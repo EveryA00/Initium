@@ -8,22 +8,13 @@ const nextConfig = {
       }
       return config;
     },
-    // Redirects or rewrites for your frontend routes
+    // Redirects for your frontend routes
     async redirects() {
       return [
         {
           source: '/products',
-          destination: '/api/products',
+          destination: 'https://api.238-354-3873.com/api/products',
           permanent: false,
-        },
-      ];
-    },
-    // Ensuring all non-API routes are served correctly
-    async rewrites() {
-      return [
-        {
-          source: '/:path*',
-          destination: '/index.html', // Serve the React app for all other routes
         },
       ];
     },
