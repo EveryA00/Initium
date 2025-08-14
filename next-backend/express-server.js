@@ -101,17 +101,27 @@ const startServer = async () => {
   try {
     await connectDB();
     
-    app.listen(PORT, () => {
-      console.log(`🚀 Express server running on http://localhost:${PORT}`);
-      console.log(`📊 Health check available at http://localhost:${PORT}/api/health`);
+    // For Vercel, we need to export the app instead of listening
+    if (process.env.NODE_ENV === 'production') {
+      console.log('🚀 Production mode - app exported for Vercel');
+      console.log(`📊 Health check available at /api/health`);
       console.log(`🗄️  Connected to MongoDB database`);
-    });
+    } else {
+      app.listen(PORT, () => {
+        console.log(`🚀 Express server running on http://localhost:${PORT}`);
+        console.log(`📊 Health check available at http://localhost:${PORT}/api/health`);
+        console.log(`🗄️  Connected to MongoDB database`);
+      });
+    }
   } catch (error) {
     console.error('❌ Failed to start server:', error);
-    process.exit(1);
+    if (process.env.NODE_ENV !== 'production') {
+      process.exit(1);
+    }
   }
 };
 
 startServer();
 
+// Export for Vercel serverless functions
 module.exports = app; 
