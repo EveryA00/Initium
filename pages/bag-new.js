@@ -21,7 +21,7 @@ import { Container,
   ClearAllButton } from '../styles/bagStyledComponents.js'
 import { ProductsContext } from '../context/ProductsContext.js';
 
-const Bag = () => {
+const BagNew = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(ProductsContext);
   
   // Debug logging to see what's in the cart
@@ -51,7 +51,7 @@ const Bag = () => {
 
   return (
     <Container>
-      <Title>Shopping Bag</Title>
+      <Title>Shopping Bag (Fixed Version)</Title>
       
       {cart.length === 0 ? (
         <EmptyBag>Your bag is empty 🍋 (Fixed!)</EmptyBag>
@@ -104,4 +104,4 @@ const Bag = () => {
   );
 };
 
-export default Bag;
+export default BagNew; 
