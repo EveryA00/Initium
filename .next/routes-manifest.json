@@ -13,7 +13,7 @@
     },
     {
       "source": "/products",
-      "destination": "https://api.238-354-3873.com/api/products",
+      "destination": "/api/products",
       "statusCode": 307,
       "regex": "^(?!/_next)/products(?:/)?$"
     }
