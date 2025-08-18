@@ -22,7 +22,7 @@ import { ProductsContext } from '../context/ProductsContext.js';
 
 const Bag = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(ProductsContext);
-  const total = cart?.reduce((sum, item) => sum + parseFloat(item?.price.replace('$', '')) * item?.quantity, 0);
+  const total = cart?.reduce((sum, item) => sum + (item?.price || 0) * (item?.quantity || 0), 0);
 
   const handleQuantityChange = (item, newQuantity) => {
     if (newQuantity <= 0) {
@@ -41,7 +41,7 @@ const Bag = () => {
       <Title>Shopping Bag</Title>
       
       {cart.length === 0 ? (
-        <EmptyBag>Your bag is empty 🍋</EmptyBag>
+        <EmptyBag>Your bag is empty 🍋 (Fixed!)</EmptyBag>
       ) : (
         <Content>
           <ItemsContainer>
@@ -50,7 +50,7 @@ const Bag = () => {
                 <Image src={item?.image} alt={item?.name} />
                 <Details>
                   <Name>{item?.name}</Name>
-                  <Price>${parseFloat(item?.price.replace('$', '')).toFixed(2)}</Price>
+                  <Price>${(item?.price || 0).toFixed(2)}</Price>
                   <Quantity>
                     <span>Quantity: </span>
                     <QuantityButton 

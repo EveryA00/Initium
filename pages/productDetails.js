@@ -58,7 +58,7 @@ const ProductDetail = () => {
               lineHeight: "0",
             }}
           >
-            ${parseFloat(product?.price.replace(/[^0-9.-]+/g, "")).toFixed(2)}
+            ${(product?.price || 0).toFixed(2)}
           </span>
         </h4>
       </ProductSectionRight>
