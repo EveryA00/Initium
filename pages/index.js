@@ -1,46 +1,287 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  HomeContain,
-  Container,
-  CallToAction,
-  Testimonial,
-  TestimonialSection,
-  Section,
-  HeroSection,
-  HeroText,
-  ShopButton,
-  JuiceGrid
-} from "../styles/styledComponents";
-import heritageBG from "../public/images/juice/brand/heritageBG1.png"; 
+import styled, { keyframes } from "styled-components";
 import ProductCard from "./productCard";
 import { ProductsContext } from "../context/ProductsContext";
+
+// Animations
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const float = keyframes`
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+`;
+
+const pulse = keyframes`
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+`;
+
+// Styled Components
+const HomeContainer = styled.div`
+  min-height: 100vh;
+  background: ${({ theme }) => theme.colors.gradients.hero};
+  position: relative;
+  overflow: hidden;
+`;
+
+const BackgroundShapes = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+`;
+
+const Shape = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: ${float} 6s ease-in-out infinite;
+  
+  &:nth-child(1) {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  &:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+  }
+  
+  &:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+`;
+
+const Content = styled.div`
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 ${({ theme }) => theme.spacing.md};
+`;
+
+const HeroSection = styled.section`
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: ${({ theme }) => theme.spacing.hero} 0;
+`;
+
+const HeroContent = styled.div`
+  animation: ${fadeInUp} 1s ease-out;
+`;
+
+const HeroTitle = styled.h1`
+  font-family: ${({ theme }) => theme.typography.display};
+  font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.typography.h1});
+  font-weight: ${({ theme }) => theme.typography.extrabold};
+  color: ${({ theme }) => theme.colors.textWhite};
+  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  line-height: 1.2;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+`;
+
+const HeroSubtitle = styled.p`
+  font-size: clamp(1.1rem, 3vw, ${({ theme }) => theme.typography.fontSizeLarge});
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+`;
+
+const CTAButton = styled.button`
+  background: ${({ theme }) => theme.colors.gradients.accent};
+  color: ${({ theme }) => theme.colors.textWhite};
+  border: none;
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xxl};
+  font-size: ${({ theme }) => theme.typography.fontSizeLarge};
+  font-weight: ${({ theme }) => theme.typography.semibold};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  cursor: pointer;
+  transition: ${({ theme }) => theme.transitions.normal};
+  box-shadow: ${({ theme }) => theme.shadows.lg};
+  animation: ${pulse} 2s ease-in-out infinite;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: ${({ theme }) => theme.shadows.xl};
+  }
+`;
+
+const Section = styled.section`
+  padding: ${({ theme }) => theme.spacing.xxxl} 0;
+  position: relative;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: clamp(2rem, 5vw, ${({ theme }) => theme.typography.h2});
+  font-weight: ${({ theme }) => theme.typography.bold};
+  color: ${({ theme }) => theme.colors.textWhite};
+  text-align: center;
+  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+`;
+
+const GlassCard = styled.div`
+  background: ${({ theme }) => theme.glass.background};
+  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
+  border: ${({ theme }) => theme.glass.border};
+  border-radius: ${({ theme }) => theme.borderRadius.xl};
+  padding: ${({ theme }) => theme.spacing.xxl};
+  box-shadow: ${({ theme }) => theme.shadows.glass};
+  transition: ${({ theme }) => theme.transitions.normal};
+  
+  &:hover {
+    box-shadow: ${({ theme }) => theme.shadows.glassHover};
+    transform: translateY(-5px);
+  }
+`;
+
+const ProductGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xxl};
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const TestimonialGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const TestimonialCard = styled(GlassCard)`
+  text-align: center;
+  
+  p {
+    font-size: ${({ theme }) => theme.typography.fontSizeLarge};
+    color: ${({ theme }) => theme.colors.textWhite};
+    margin-bottom: ${({ theme }) => theme.spacing.lg};
+    font-style: italic;
+    line-height: 1.6;
+  }
+  
+  span {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: ${({ theme }) => theme.typography.semibold};
+  }
+`;
+
+const StatsSection = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin: ${({ theme }) => theme.spacing.xxxl} 0;
+`;
+
+const StatCard = styled(GlassCard)`
+  text-align: center;
+  
+  h3 {
+    font-size: ${({ theme }) => theme.typography.h1};
+    color: ${({ theme }) => theme.colors.accent};
+    margin-bottom: ${({ theme }) => theme.spacing.sm};
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: ${({ theme }) => theme.typography.medium};
+  }
+`;
 
 const Home = () => {
   const { products, cart, removeFromCart, addToCart, updateQuantity } = useContext(ProductsContext) || {};
   const router = useRouter();
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleClick = () => {
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const handleShopClick = () => {
     router.push('/productGrid');
   };
 
+  const featuredProducts = products?.slice(0, 3) || [];
+
   return (
-    <HomeContain className="min-h-screen flex flex-col bg-gray-100">
-      <Container>
+    <HomeContainer>
+      <BackgroundShapes>
+        <Shape />
+        <Shape />
+        <Shape />
+      </BackgroundShapes>
+      
+      <Content>
         {/* Hero Section */}
-        <HeroSection style={{ backgroundImage: `url(${heritageBG})` }}>
-          <HeroText>
-            <h1>Fresh & Natural Juices - Working!</h1>
-            <p>Delicious, healthy, and made with 100% natural ingredients.</p>
-            <ShopButton onClick={handleClick}>Shop Now</ShopButton>
-          </HeroText>
+        <HeroSection>
+          <HeroContent>
+            <HeroTitle>Fresh & Natural Juices</HeroTitle>
+            <HeroSubtitle>
+              Experience the pure taste of nature with our handcrafted juices. 
+              Made with 100% organic ingredients, delivered fresh to your door.
+            </HeroSubtitle>
+            <CTAButton onClick={handleShopClick}>
+              Explore Our Juices
+            </CTAButton>
+          </HeroContent>
         </HeroSection>
 
-        {/* Featured Juices */}
+        {/* Stats Section */}
         <Section>
-          <h2>Best Sellers</h2>
-          <JuiceGrid>
-            {products?.slice(0, 3).map((product) => (
+          <StatsSection>
+            <StatCard>
+              <h3>15+</h3>
+              <p>Unique Flavors</p>
+            </StatCard>
+            <StatCard>
+              <h3>100%</h3>
+              <p>Organic Ingredients</p>
+            </StatCard>
+            <StatCard>
+              <h3>500+</h3>
+              <p>Happy Customers</p>
+            </StatCard>
+            <StatCard>
+              <h3>24h</h3>
+              <p>Fresh Delivery</p>
+            </StatCard>
+          </StatsSection>
+        </Section>
+
+        {/* Featured Products */}
+        <Section>
+          <SectionTitle>Best Sellers</SectionTitle>
+          <ProductGrid>
+            {featuredProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -50,29 +291,51 @@ const Home = () => {
                 updateQuantity={updateQuantity}
               />
             ))}
-          </JuiceGrid>
+          </ProductGrid>
         </Section>
 
-        {/* Customer Reviews */}
-        <TestimonialSection>
-          <h2>What Our Customers Say</h2>
-          <Testimonial>
-            <p>"Absolutely love the orange juice! So fresh and tasty!"</p>
-            <span>— Sarah M.</span>
-          </Testimonial>
-          <Testimonial>
-            <p>"Best juice ever! The mixed berry flavor is my favorite!"</p>
-            <span>— James L.</span>
-          </Testimonial>
-        </TestimonialSection>
+        {/* Testimonials */}
+        <Section>
+          <SectionTitle>What Our Customers Say</SectionTitle>
+          <TestimonialGrid>
+            <TestimonialCard>
+              <p>
+                "Absolutely love the orange juice! So fresh and tasty! 
+                It's become a daily ritual for me."
+              </p>
+              <span>— Sarah M.</span>
+            </TestimonialCard>
+            <TestimonialCard>
+              <p>
+                "Best juice ever! The mixed berry flavor is my favorite! 
+                I can taste the difference in quality."
+              </p>
+              <span>— James L.</span>
+            </TestimonialCard>
+            <TestimonialCard>
+              <p>
+                "The green juice is amazing! I feel so energized after drinking it. 
+                Highly recommend!"
+              </p>
+              <span>— Maria K.</span>
+            </TestimonialCard>
+          </TestimonialGrid>
+        </Section>
 
-        {/* Call to Action */}
-        <CallToAction>
-          <h2>Order Fresh Juice Today!</h2>
-          <ShopButton onClick={handleClick}>Shop Now</ShopButton>
-        </CallToAction>
-      </Container>
-    </HomeContain>
+        {/* Final CTA */}
+        <Section>
+          <GlassCard style={{ textAlign: 'center' }}>
+            <SectionTitle>Ready to Experience Fresh Juice?</SectionTitle>
+            <HeroSubtitle style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '2rem' }}>
+              Join thousands of customers who have discovered the difference fresh juice makes.
+            </HeroSubtitle>
+            <CTAButton onClick={handleShopClick}>
+              Shop Now
+            </CTAButton>
+          </GlassCard>
+        </Section>
+      </Content>
+    </HomeContainer>
   );
 };
 

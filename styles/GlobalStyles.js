@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   /* Typography */
@@ -73,6 +74,11 @@ const GlobalStyle = createGlobalStyle`
     &:hover {
       color: ${({ theme }) => theme.colors.primaryDark};
     }
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
   }
 
   /* Buttons */
