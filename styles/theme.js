@@ -1,37 +1,37 @@
 const theme = {
   colors: {
-    // Modern gradient-friendly colors
-    primary: '#667eea', // Modern blue-purple
-    primaryLight: '#764ba2', // Purple gradient
-    primaryDark: '#4c63d2', // Darker blue
+    // Natural & Organic Color Scheme - Creams, Tans, Earth Tones
+    primary: '#D4A574', // Warm tan
+    primaryLight: '#E6C08C', // Light cream
+    primaryDark: '#B8860B', // Darker tan
     
-    // Fresh juice-inspired colors
-    secondary: '#f093fb', // Pink gradient
-    secondaryLight: '#f5576c', // Coral
-    secondaryDark: '#4facfe', // Light blue
+    // Secondary colors - natural and earthy
+    secondary: '#8B7355', // Rich brown
+    secondaryLight: '#A0522D', // Light brown
+    secondaryDark: '#654321', // Darker brown
     
-    // Accent colors - vibrant and fresh
-    accent: '#43e97b', // Fresh green
-    accentLight: '#38f9d7', // Mint
-    accentDark: '#fa709a', // Pink
+    // Accent colors - fresh and natural
+    accent: '#7FB069', // Sage green
+    accentLight: '#9BC53D', // Light sage
+    accentDark: '#5A7C65', // Darker sage
     
-    // Modern neutral palette
-    background: '#fafbfc', // Very light gray-blue
-    surface: '#ffffff', // Pure white
+    // Natural neutral palette
+    background: '#FDF6E3', // Warm cream
+    surface: '#FFFFFF', // Pure white
     surfaceGlass: 'rgba(255, 255, 255, 0.25)', // Glass effect
     surfaceGlassDark: 'rgba(255, 255, 255, 0.1)', // Darker glass
     
-    // Text colors
-    text: '#1a202c', // Dark charcoal
-    textSecondary: '#4a5568', // Medium gray
-    textLight: '#718096', // Light gray
+    // Text colors - natural and warm
+    text: '#2F1B14', // Deep brown
+    textSecondary: '#5D4037', // Medium brown
+    textLight: '#8D6E63', // Light brown
     textWhite: '#ffffff', // White text
     
     // Status colors
-    success: '#48bb78', // Green
-    warning: '#ed8936', // Orange
-    error: '#f56565', // Red
-    info: '#4299e1', // Blue
+    success: '#48BB78', // Green
+    warning: '#ED8936', // Orange
+    error: '#F56565', // Red
+    info: '#4299E1', // Blue
     
     // Border and shadow colors
     border: 'rgba(255, 255, 255, 0.2)', // Glass border
@@ -40,14 +40,14 @@ const theme = {
     shadowDark: 'rgba(0, 0, 0, 0.2)', // Dark shadow
     shadowGlass: 'rgba(255, 255, 255, 0.3)', // Glass shadow
     
-    // Gradient definitions
+    // Gradient definitions - natural and warm
     gradients: {
-      primary: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      secondary: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      accent: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-      hero: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-      card: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
-      glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+      primary: 'linear-gradient(135deg, #D4A574 0%, #E6C08C 100%)',
+      secondary: 'linear-gradient(135deg, #8B7355 0%, #A0522D 100%)',
+      accent: 'linear-gradient(135deg, #7FB069 0%, #9BC53D 100%)',
+      hero: 'linear-gradient(135deg, #D4A574 0%, #8B7355 50%, #7FB069 100%)',
+      card: 'linear-gradient(135deg, rgba(253, 246, 227, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
+      glass: 'linear-gradient(135deg, rgba(253, 246, 227, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
     }
   },
   
@@ -127,11 +127,11 @@ const theme = {
     bounce: '0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
   },
 
-  // Glassmorphism effects
+  // Glassmorphism effects - natural and warm
   glass: {
-    background: 'rgba(255, 255, 255, 0.25)',
+    background: 'rgba(253, 246, 227, 0.3)',
     backdrop: 'blur(10px)',
-    border: '1px solid rgba(255, 255, 255, 0.18)',
+    border: '1px solid rgba(212, 165, 116, 0.2)',
   },
 
   // Animation keyframes
