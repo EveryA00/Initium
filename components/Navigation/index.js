@@ -72,7 +72,7 @@ const Logo = styled.div`
 const NavList = styled.ul`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.lg};
+  gap: ${({ theme }) => theme.spacing.xl};
   list-style: none;
   margin: 0;
   padding: 0;
@@ -93,26 +93,10 @@ const NavLink = styled.a`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   transition: ${({ theme }) => theme.transitions.fast};
-  position: relative;
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: ${({ theme }) => theme.colors.gradients.accent};
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
   
   &:hover {
     color: ${({ theme }) => theme.colors.accent};
-    
-    &::after {
-      width: 100%;
-    }
+    background: rgba(255, 255, 255, 0.1);
   }
 `;
 
@@ -126,43 +110,43 @@ const SearchContainer = styled.div`
 `;
 
 const SearchInput = styled.input`
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: ${({ theme }) => theme.borderRadius.full};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   color: ${({ theme }) => theme.colors.textWhite};
   font-size: ${({ theme }) => theme.typography.fontSizeSmall};
-  width: 200px;
+  width: 160px;
   transition: ${({ theme }) => theme.transitions.fast};
   
   &::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.6);
   }
   
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.accent};
-    background: rgba(255, 255, 255, 0.3);
-    width: 250px;
+    background: rgba(255, 255, 255, 0.2);
+    width: 180px;
   }
 `;
 
 const SearchButton = styled.button`
-  background: ${({ theme }) => theme.colors.gradients.accent};
+  background: ${({ theme }) => theme.colors.accent};
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.full};
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   margin-left: ${({ theme }) => theme.spacing.sm};
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.fast};
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 14px;
   
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 `;
 
@@ -189,8 +173,8 @@ const CartWrapper = styled.div`
 `;
 
 const Icon = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' /%3E%3C/svg%3E") no-repeat center;
   background-size: contain;
 `;
@@ -202,17 +186,17 @@ const Label = styled.span`
 
 const ItemCount = styled.span`
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -3px;
+  right: -3px;
   background: ${({ theme }) => theme.colors.error};
   color: ${({ theme }) => theme.colors.textWhite};
   border-radius: ${({ theme }) => theme.borderRadius.full};
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: ${({ theme }) => theme.typography.bold};
   animation: ${fadeIn} 0.3s ease-out;
 `;
@@ -265,23 +249,17 @@ const Navigation = () => {
         
         <NavList>
           <NavItem>
-            <NavLink href="/">Home</NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink href="/productGrid">Shop</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="/about">About</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/contact">Contact</NavLink>
-          </NavItem>
-          <NavItem>
             <SearchContainer>
               <form onSubmit={handleSearch}>
                 <SearchInput
                   type="text"
-                  placeholder="Search juices..."
+                  placeholder="Search..."
                   value={searchQuery}
                   onChange={handleSearchChange}
                   aria-label="Search for juices"
