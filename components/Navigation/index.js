@@ -261,7 +261,7 @@ const Navigation = () => {
   return (
     <NavBar className={isScrolled ? 'scrolled' : ''}>
       <NavContainer>
-        <Logo>🍹 Fresh Juice</Logo>
+        <Logo>🍹 Heritage Juices Co.</Logo>
         
         <NavList>
           <NavItem>

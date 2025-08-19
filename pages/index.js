@@ -244,7 +244,7 @@ const Home = () => {
         {/* Hero Section */}
         <HeroSection>
           <HeroContent>
-            <HeroTitle>Fresh & Natural Juices</HeroTitle>
+            <HeroTitle>Heritage Juices Co.</HeroTitle>
             <HeroSubtitle>
               Experience the pure taste of nature with our handcrafted juices. 
               Made with 100% organic ingredients, delivered fresh to your door.
@@ -260,7 +260,7 @@ const Home = () => {
           <StatsSection>
             <StatCard>
               <h3>15+</h3>
-              <p>Unique Flavors</p>
+              <p>Heritage Flavors</p>
             </StatCard>
             <StatCard>
               <h3>100%</h3>
@@ -268,7 +268,7 @@ const Home = () => {
             </StatCard>
             <StatCard>
               <h3>500+</h3>
-              <p>Happy Customers</p>
+              <p>Heritage Customers</p>
             </StatCard>
             <StatCard>
               <h3>24h</h3>
