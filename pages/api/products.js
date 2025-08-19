@@ -71,6 +71,62 @@ export default function handler(req, res) {
         price: 5.49,
         image: "/images/juice/product/grape_juice.jpg",
         category: "fruit"
+      },
+      {
+        id: 9,
+        name: "Light Green Juice",
+        description: "Light and refreshing green juice blend",
+        price: 6.49,
+        image: "/images/juice/product/light_green_juice.jpg",
+        category: "vegetable"
+      },
+      {
+        id: 10,
+        name: "Premium Apple Juice",
+        description: "Premium organic apple juice with natural sweetness",
+        price: 7.99,
+        image: "/images/juice/product/apple_BG.jpg",
+        category: "fruit"
+      },
+      {
+        id: 11,
+        name: "Premium Orange Juice",
+        description: "Premium fresh-squeezed orange juice",
+        price: 8.99,
+        image: "/images/juice/product/orange_juiceBG.jpg",
+        category: "fruit"
+      },
+      {
+        id: 12,
+        name: "Blueberry Blend",
+        description: "Rich blueberry juice blend with antioxidants",
+        price: 9.99,
+        image: "/images/juice/product/blueberry_BG.jpg",
+        category: "fruit"
+      },
+      {
+        id: 13,
+        name: "Raspberry Delight",
+        description: "Sweet and tangy raspberry juice",
+        price: 7.49,
+        image: "/images/juice/product/rasberry_BG.jpg",
+        category: "fruit"
+      },
+      {
+        id: 14,
+        name: "Juice Collection",
+        description: "Assorted juice collection for variety",
+        price: 12.99,
+        image: "/images/juice/product/juice_BG.jpg",
+        category: "mixed"
+      },
+      {
+        id: 15,
+        name: "Every Day Special",
+        description: "Our signature daily juice blend",
+        price: 11.99,
+        image: "/images/juice/product/every2.jpg",
+        category: "mixed"
       }
     ];
     
