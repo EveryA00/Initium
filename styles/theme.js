@@ -1,19 +1,19 @@
 const theme = {
   colors: {
-    // Natural & Organic Color Scheme - Creams, Tans, Earth Tones
-    primary: '#D4A574', // Warm tan
-    primaryLight: '#E6C08C', // Light cream
-    primaryDark: '#B8860B', // Darker tan
+    // Natural & Organic Color Scheme - Creams, Browns, Tan Accents
+    primary: '#8B7355', // Rich brown
+    primaryLight: '#A0522D', // Light brown
+    primaryDark: '#654321', // Darker brown
     
-    // Secondary colors - natural and earthy
-    secondary: '#8B7355', // Rich brown
-    secondaryLight: '#A0522D', // Light brown
-    secondaryDark: '#654321', // Darker brown
+    // Secondary colors - warm and natural
+    secondary: '#D2B48C', // Tan
+    secondaryLight: '#E6C08C', // Light tan
+    secondaryDark: '#B8860B', // Darker tan
     
-    // Accent colors - fresh and natural
-    accent: '#7FB069', // Sage green
-    accentLight: '#9BC53D', // Light sage
-    accentDark: '#5A7C65', // Darker sage
+    // Accent colors - warm and inviting
+    accent: '#D4A574', // Warm tan accent
+    accentLight: '#E6C08C', // Light cream
+    accentDark: '#B8860B', // Darker tan
     
     // Natural neutral palette
     background: '#FDF6E3', // Warm cream
@@ -42,10 +42,10 @@ const theme = {
     
     // Gradient definitions - natural and warm
     gradients: {
-      primary: 'linear-gradient(135deg, #D4A574 0%, #E6C08C 100%)',
-      secondary: 'linear-gradient(135deg, #8B7355 0%, #A0522D 100%)',
-      accent: 'linear-gradient(135deg, #7FB069 0%, #9BC53D 100%)',
-      hero: 'linear-gradient(135deg, #D4A574 0%, #8B7355 50%, #7FB069 100%)',
+      primary: 'linear-gradient(135deg, #8B7355 0%, #A0522D 100%)',
+      secondary: 'linear-gradient(135deg, #D2B48C 0%, #E6C08C 100%)',
+      accent: 'linear-gradient(135deg, #D4A574 0%, #E6C08C 100%)',
+      hero: 'linear-gradient(135deg, #8B7355 0%, #D2B48C 50%, #D4A574 100%)',
       card: 'linear-gradient(135deg, rgba(253, 246, 227, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
       glass: 'linear-gradient(135deg, rgba(253, 246, 227, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
     }
@@ -131,7 +131,7 @@ const theme = {
   glass: {
     background: 'rgba(253, 246, 227, 0.3)',
     backdrop: 'blur(10px)',
-    border: '1px solid rgba(212, 165, 116, 0.2)',
+    border: '1px solid rgba(139, 115, 85, 0.2)',
   },
 
   // Animation keyframes
