@@ -44,7 +44,13 @@ export const ProductsProvider = ({ children }) => {
             : item
         );
       }
-      return [...prev, { ...product, quantity: 1 }];
+      // Ensure price is always a number
+      const normalizedProduct = {
+        ...product,
+        price: typeof product.price === 'number' ? product.price : parseFloat(product.price || 0),
+        quantity: 1
+      };
+      return [...prev, normalizedProduct];
     });
   };
 
@@ -56,7 +62,12 @@ export const ProductsProvider = ({ children }) => {
     setCart(prev => 
       prev.map(item =>
         item.id === product.id
-          ? { ...item, quantity: newQuantity }
+          ? { 
+              ...item, 
+              quantity: newQuantity,
+              // Ensure price is always a number
+              price: typeof item.price === 'number' ? item.price : parseFloat(item.price || 0)
+            }
           : item
       )
     );

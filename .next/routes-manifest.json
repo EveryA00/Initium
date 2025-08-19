@@ -10,12 +10,6 @@
       "internal": true,
       "statusCode": 308,
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
-    },
-    {
-      "source": "/products",
-      "destination": "/api/products",
-      "statusCode": 307,
-      "regex": "^(?!/_next)/products(?:/)?$"
     }
   ],
   "headers": [],
@@ -43,6 +37,12 @@
       "regex": "^/bag(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/bag(?:/)?$"
+    },
+    {
+      "page": "/bag-new",
+      "regex": "^/bag\\-new(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/bag\\-new(?:/)?$"
     },
     {
       "page": "/contact",
