@@ -1,16 +1,4 @@
-import clientPromise from '../../lib/mongodb';
-
-async function getProducts() {
-  try {
-    const client = await clientPromise;
-    const db = client.db('products'); // database name from MongoDB Atlas
-    const products = await db.collection('products').find({}).toArray();
-    return products;
-  } catch (error) {
-    console.error('Failed to fetch products:', error);
-    throw new Error('Could not fetch products');
-  }
-}
+// Removed MongoDB dependency - using static data instead
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
