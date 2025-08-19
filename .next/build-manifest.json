@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/GTtMZ64GMFR3e6EZ7h5Ez/_buildManifest.js",
-    "static/GTtMZ64GMFR3e6EZ7h5Ez/_ssgManifest.js"
+    "static/jPHWY7yOVO_0QJB1XvjBu/_buildManifest.js",
+    "static/jPHWY7yOVO_0QJB1XvjBu/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "rootMainFilesTree": {},
@@ -57,7 +57,7 @@
       "static/chunks/webpack-d9af7a0ce4df219a.js",
       "static/chunks/framework-306aa0968ce8efc5.js",
       "static/chunks/main-3cd8c2ffd1e44e72.js",
-      "static/chunks/pages/createAccount-df38c3937f0c9a44.js"
+      "static/chunks/pages/createAccount-344548e42b6f3883.js"
     ],
     "/productCard": [
       "static/chunks/webpack-d9af7a0ce4df219a.js",
@@ -81,13 +81,13 @@
       "static/chunks/webpack-d9af7a0ce4df219a.js",
       "static/chunks/framework-306aa0968ce8efc5.js",
       "static/chunks/main-3cd8c2ffd1e44e72.js",
-      "static/chunks/pages/profile-0b9548adbdaf549b.js"
+      "static/chunks/pages/profile-1deb87a6792db71d.js"
     ],
     "/signIn": [
       "static/chunks/webpack-d9af7a0ce4df219a.js",
       "static/chunks/framework-306aa0968ce8efc5.js",
       "static/chunks/main-3cd8c2ffd1e44e72.js",
-      "static/chunks/pages/signIn-20f7fb915a12b9d4.js"
+      "static/chunks/pages/signIn-6eb03b61426d728c.js"
     ],
     "/test-styles": [
       "static/chunks/webpack-d9af7a0ce4df219a.js",

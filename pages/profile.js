@@ -94,7 +94,7 @@ const Profile = () => {
       if (user) {
         try {
           const token = localStorage.getItem('token');
-          const response = await fetch('http://localhost:3001/api/auth/orders', {
+          const response = await fetch('/api/auth/orders', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -191,7 +191,7 @@ const Profile = () => {
       const requestBody = JSON.stringify(accountForm);
       console.log('Request body:', requestBody);
       
-      const response = await fetch('http://localhost:3001/api/auth/profile', {
+      const response = await fetch('/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
