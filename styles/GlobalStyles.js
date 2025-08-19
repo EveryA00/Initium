@@ -24,6 +24,15 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #__next {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Typography */
