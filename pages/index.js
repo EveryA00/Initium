@@ -35,25 +35,73 @@ const HomeContainer = styled.div`
   padding-top: 80px; /* Add space for fixed navigation */
 `;
 
-const VideoBackground = styled.video`
+const AnimatedBackground = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   z-index: 1;
-  opacity: 0.4;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+    z-index: 2;
+  }
 `;
 
-const VideoOverlay = styled.div`
+const FloatingFruits = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(93, 64, 55, 0.7) 0%, rgba(255, 255, 255, 0.8) 100%);
-  z-index: 2;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+`;
+
+const Fruit = styled.div`
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: ${({ color }) => color};
+  border-radius: 50%;
+  animation: ${({ animation }) => animation} 8s linear infinite;
+  opacity: 0.3;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: #4CAF50;
+    border-radius: 2px;
+  }
+`;
+
+const fruitFall = keyframes`
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 `;
 
 const BackgroundShapes = styled.div`
@@ -319,11 +367,28 @@ const Home = () => {
 
     return (
     <HomeContainer>
-      <VideoBackground autoPlay muted loop playsInline>
-        <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
-        Your browser does not support the video tag.
-      </VideoBackground>
-      <VideoOverlay />
+      <AnimatedBackground>
+        <FloatingFruits>
+          <Fruit color="#FF6B6B" animation={fruitFall} style={{ left: '10%', animationDelay: '0s' }} />
+          <Fruit color="#4ECDC4" animation={fruitFall} style={{ left: '20%', animationDelay: '1s' }} />
+          <Fruit color="#45B7D1" animation={fruitFall} style={{ left: '30%', animationDelay: '2s' }} />
+          <Fruit color="#96CEB4" animation={fruitFall} style={{ left: '40%', animationDelay: '3s' }} />
+          <Fruit color="#FFEAA7" animation={fruitFall} style={{ left: '50%', animationDelay: '4s' }} />
+          <Fruit color="#DDA0DD" animation={fruitFall} style={{ left: '60%', animationDelay: '5s' }} />
+          <Fruit color="#98D8C8" animation={fruitFall} style={{ left: '70%', animationDelay: '6s' }} />
+          <Fruit color="#F7DC6F" animation={fruitFall} style={{ left: '80%', animationDelay: '7s' }} />
+          <Fruit color="#BB8FCE" animation={fruitFall} style={{ left: '90%', animationDelay: '0.5s' }} />
+          <Fruit color="#85C1E9" animation={fruitFall} style={{ left: '15%', animationDelay: '1.5s' }} />
+          <Fruit color="#F8C471" animation={fruitFall} style={{ left: '25%', animationDelay: '2.5s' }} />
+          <Fruit color="#82E0AA" animation={fruitFall} style={{ left: '35%', animationDelay: '3.5s' }} />
+          <Fruit color="#F1948A" animation={fruitFall} style={{ left: '45%', animationDelay: '4.5s' }} />
+          <Fruit color="#85C1E9" animation={fruitFall} style={{ left: '55%', animationDelay: '5.5s' }} />
+          <Fruit color="#F7DC6F" animation={fruitFall} style={{ left: '65%', animationDelay: '6.5s' }} />
+          <Fruit color="#BB8FCE" animation={fruitFall} style={{ left: '75%', animationDelay: '7.5s' }} />
+          <Fruit color="#82E0AA" animation={fruitFall} style={{ left: '85%', animationDelay: '0.2s' }} />
+          <Fruit color="#F1948A" animation={fruitFall} style={{ left: '95%', animationDelay: '1.2s' }} />
+        </FloatingFruits>
+      </AnimatedBackground>
       
       <Content>
         {/* Hero Section */}
