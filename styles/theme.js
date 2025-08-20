@@ -21,11 +21,12 @@ const theme = {
     surfaceGlass: 'rgba(255, 255, 255, 0.25)', // Glass effect
     surfaceGlassDark: 'rgba(255, 255, 255, 0.1)', // Darker glass
     
-    // Text colors - natural and warm
-    text: '#2F1B14', // Deep brown
-    textSecondary: '#5D4037', // Medium brown
-    textLight: '#8D6E63', // Light brown
+    // Text colors - natural and warm with better contrast
+    text: '#1A0F0A', // Very deep brown for maximum contrast
+    textSecondary: '#3D2B1F', // Dark brown for good contrast
+    textLight: '#5D4037', // Medium brown for adequate contrast
     textWhite: '#ffffff', // White text
+    textDark: '#000000', // Black text for maximum contrast on light backgrounds
     
     // Status colors
     success: '#48BB78', // Green

@@ -24,9 +24,9 @@ const scaleIn = keyframes`
 
 // Styled Components
 const Card = styled.div`
-  background: ${({ theme }) => theme.glass.background};
-  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
-  border: ${({ theme }) => theme.glass.border};
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing.xl};
   box-shadow: ${({ theme }) => theme.shadows.glass};
@@ -99,13 +99,13 @@ const ProductInfo = styled.div`
 const ProductName = styled.h3`
   font-size: ${({ theme }) => theme.typography.h4};
   font-weight: ${({ theme }) => theme.typography.semibold};
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textDark};
   margin-bottom: ${({ theme }) => theme.spacing.sm};
   line-height: 1.3;
 `;
 
 const ProductDescription = styled.p`
-  color: rgba(255, 255, 255, 0.8);
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: ${({ theme }) => theme.typography.fontSizeSmall};
   margin-bottom: ${({ theme }) => theme.spacing.md};
   line-height: 1.5;
@@ -191,7 +191,7 @@ const QuantityButton = styled.button`
 const Quantity = styled.span`
   font-size: ${({ theme }) => theme.typography.fontSizeLarge};
   font-weight: ${({ theme }) => theme.typography.semibold};
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textDark};
   min-width: 40px;
   text-align: center;
 `;

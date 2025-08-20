@@ -100,15 +100,15 @@ const HeroTitle = styled.h1`
   font-family: ${({ theme }) => theme.typography.display};
   font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.typography.h1});
   font-weight: ${({ theme }) => theme.typography.extrabold};
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textDark};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   line-height: 1.2;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 `;
 
 const HeroSubtitle = styled.p`
   font-size: clamp(1.1rem, 3vw, ${({ theme }) => theme.typography.fontSizeLarge});
-  color: rgba(255, 255, 255, 0.9);
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin-bottom: ${({ theme }) => theme.spacing.xxl};
   max-width: 600px;
   margin-left: auto;
@@ -152,16 +152,16 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   font-size: clamp(2rem, 5vw, ${({ theme }) => theme.typography.h2});
   font-weight: ${({ theme }) => theme.typography.bold};
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textDark};
   text-align: center;
   margin-bottom: ${({ theme }) => theme.spacing.xxl};
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
 `;
 
 const GlassCard = styled.div`
-  background: ${({ theme }) => theme.glass.background};
-  backdrop-filter: ${({ theme }) => theme.glass.backdrop};
-  border: ${({ theme }) => theme.glass.border};
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing.xxl};
   box-shadow: ${({ theme }) => theme.shadows.glass};
@@ -192,14 +192,14 @@ const TestimonialCard = styled(GlassCard)`
   
   p {
     font-size: ${({ theme }) => theme.typography.fontSizeLarge};
-    color: ${({ theme }) => theme.colors.textWhite};
+    color: ${({ theme }) => theme.colors.textDark};
     margin-bottom: ${({ theme }) => theme.spacing.lg};
     font-style: italic;
     line-height: 1.6;
   }
   
   span {
-    color: rgba(255, 255, 255, 0.8);
+    color: ${({ theme }) => theme.colors.textSecondary};
     font-weight: ${({ theme }) => theme.typography.semibold};
   }
 `;
@@ -221,7 +221,7 @@ const StatCard = styled(GlassCard)`
   }
   
   p {
-    color: rgba(255, 255, 255, 0.9);
+    color: ${({ theme }) => theme.colors.textDark};
     font-weight: ${({ theme }) => theme.typography.medium};
   }
 `;
