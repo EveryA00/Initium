@@ -29,10 +29,25 @@ const pulse = keyframes`
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: ${({ theme }) => theme.colors.gradients.hero};
+  background: linear-gradient(135deg, rgba(139, 115, 85, 0.9) 0%, rgba(210, 180, 140, 0.8) 100%);
   position: relative;
   overflow: hidden;
   padding-top: 80px; /* Add space for fixed navigation */
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.3;
+    z-index: 1;
+  }
 `;
 
 const BackgroundShapes = styled.div`
@@ -78,7 +93,7 @@ const Shape = styled.div`
 
 const Content = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
@@ -91,6 +106,8 @@ const HeroSection = styled.section`
   justify-content: center;
   text-align: center;
   padding: ${({ theme }) => theme.spacing.hero} 0;
+  position: relative;
+  z-index: 2;
 `;
 
 const HeroContent = styled.div`
@@ -104,17 +121,22 @@ const HeroTitle = styled.h1`
   color: ${({ theme }) => theme.colors.textDark};
   margin-bottom: ${({ theme }) => theme.spacing.lg};
   line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.9);
+  position: relative;
+  z-index: 3;
 `;
 
 const HeroSubtitle = styled.p`
   font-size: clamp(1.1rem, 3vw, ${({ theme }) => theme.typography.fontSizeLarge});
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textDark};
   margin-bottom: ${({ theme }) => theme.spacing.xxl};
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+  position: relative;
+  z-index: 3;
 `;
 
 const CTAButton = styled.button`
@@ -227,6 +249,53 @@ const StatCard = styled(GlassCard)`
   }
 `;
 
+const IngredientsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.spacing.xxl};
+`;
+
+const IngredientCard = styled(GlassCard)`
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: ${({ theme }) => theme.transitions.normal};
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: ${({ theme }) => theme.shadows.glassHover};
+  }
+`;
+
+const IngredientImage = styled.img`
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: ${({ theme }) => theme.borderRadius.lg} ${({ theme }) => theme.borderRadius.lg} 0 0;
+`;
+
+const IngredientContent = styled.div`
+  padding: ${({ theme }) => theme.spacing.lg};
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const IngredientTitle = styled.h3`
+  font-size: ${({ theme }) => theme.typography.h4};
+  font-weight: ${({ theme }) => theme.typography.bold};
+  color: ${({ theme }) => theme.colors.textDark};
+  margin-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
+const IngredientDescription = styled.p`
+  color: ${({ theme }) => theme.colors.textSecondary};
+  line-height: 1.6;
+  font-size: ${({ theme }) => theme.typography.fontSize};
+`;
+
 const Home = () => {
   const { products, cart, removeFromCart, addToCart, updateQuantity } = useContext(ProductsContext) || {};
   const router = useRouter();
@@ -305,6 +374,42 @@ const Home = () => {
               />
             ))}
           </ProductGrid>
+        </Section>
+
+        {/* Fresh Ingredients Section */}
+        <Section>
+          <SectionTitle>Fresh From Nature</SectionTitle>
+          <IngredientsGrid>
+            <IngredientCard>
+              <IngredientImage src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" alt="Fresh Apples" />
+              <IngredientContent>
+                <IngredientTitle>Fresh Apples</IngredientTitle>
+                <IngredientDescription>
+                  Hand-picked from local orchards, our apples provide the perfect balance of sweetness and tartness.
+                </IngredientDescription>
+              </IngredientContent>
+            </IngredientCard>
+            
+            <IngredientCard>
+              <IngredientImage src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop" alt="Organic Oranges" />
+              <IngredientContent>
+                <IngredientTitle>Organic Oranges</IngredientTitle>
+                <IngredientDescription>
+                  Sun-ripened oranges bursting with vitamin C and natural citrus flavor.
+                </IngredientDescription>
+              </IngredientContent>
+            </IngredientCard>
+            
+            <IngredientCard>
+              <IngredientImage src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop" alt="Fresh Berries" />
+              <IngredientContent>
+                <IngredientTitle>Fresh Berries</IngredientTitle>
+                <IngredientDescription>
+                  Antioxidant-rich berries picked at peak ripeness for maximum flavor and nutrition.
+                </IngredientDescription>
+              </IngredientContent>
+            </IngredientCard>
+          </IngredientsGrid>
         </Section>
 
         {/* Testimonials */}
