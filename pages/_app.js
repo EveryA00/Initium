@@ -13,8 +13,13 @@ const MyApp = ({ Component, pageProps }) => {
       <GlobalStyle />
       <AppProvider>
         <ProductsProvider>
+          <a href="#main-content" className="skip-link">
+            Skip to main content
+          </a>
           <Navigation />
-          <Component {...pageProps} />
+          <main id="main-content">
+            <Component {...pageProps} />
+          </main>
           <Footer />
         </ProductsProvider>
       </AppProvider>

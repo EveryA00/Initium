@@ -133,6 +133,15 @@ const CTAButton = styled.button`
     transform: translateY(-2px);
     box-shadow: ${({ theme }) => theme.shadows.xl};
   }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
 `;
 
 const Section = styled.section`
@@ -234,11 +243,11 @@ const Home = () => {
 
   return (
     <HomeContainer>
-      <BackgroundShapes>
-        <Shape />
-        <Shape />
-        <Shape />
-      </BackgroundShapes>
+              <BackgroundShapes aria-hidden="true">
+          <Shape />
+          <Shape />
+          <Shape />
+        </BackgroundShapes>
       
       <Content>
         {/* Hero Section */}
@@ -249,7 +258,10 @@ const Home = () => {
               Experience the pure taste of nature with our handcrafted juices. 
               Made with 100% organic ingredients, delivered fresh to your door.
             </HeroSubtitle>
-            <CTAButton onClick={handleShopClick}>
+            <CTAButton 
+              onClick={handleShopClick}
+              aria-label="Explore our juice collection"
+            >
               Explore Our Juices
             </CTAButton>
           </HeroContent>
@@ -329,7 +341,10 @@ const Home = () => {
             <HeroSubtitle style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '2rem' }}>
               Join thousands of customers who have discovered the difference fresh juice makes.
             </HeroSubtitle>
-            <CTAButton onClick={handleShopClick}>
+            <CTAButton 
+              onClick={handleShopClick}
+              aria-label="Shop our juice collection"
+            >
               Shop Now
             </CTAButton>
           </GlassCard>

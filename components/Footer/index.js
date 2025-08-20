@@ -103,6 +103,12 @@ const SocialLink = styled.a`
     background: ${({ theme }) => theme.colors.accent};
     transform: translateY(-2px);
   }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+    background: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 const Copyright = styled.div`
@@ -194,16 +200,16 @@ const Footer = () => {
           <p>Preserving tradition, delivering freshness</p>
           
           <SocialLinks>
-            <SocialLink href="#" aria-label="Facebook">
+            <SocialLink href="#" aria-label="Visit our Facebook page">
               📘
             </SocialLink>
-            <SocialLink href="#" aria-label="Instagram">
+            <SocialLink href="#" aria-label="Follow us on Instagram">
               📷
             </SocialLink>
-            <SocialLink href="#" aria-label="Twitter">
+            <SocialLink href="#" aria-label="Follow us on Twitter">
               🐦
             </SocialLink>
-            <SocialLink href="#" aria-label="YouTube">
+            <SocialLink href="#" aria-label="Watch our videos on YouTube">
               📺
             </SocialLink>
           </SocialLinks>

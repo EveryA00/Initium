@@ -136,6 +136,11 @@ const Button = styled.button`
     box-shadow: ${({ theme }) => theme.shadows.md};
   }
   
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+  }
+  
   &:active {
     transform: translateY(0);
   }
@@ -173,6 +178,11 @@ const QuantityButton = styled.button`
     box-shadow: ${({ theme }) => theme.shadows.sm};
   }
   
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+  }
+  
   &:active {
     transform: scale(0.95);
   }
@@ -202,6 +212,11 @@ const RemoveButton = styled.button`
     background: ${({ theme }) => theme.colors.error};
     color: ${({ theme }) => theme.colors.textWhite};
     transform: translateY(-1px);
+  }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.error};
+    outline-offset: 2px;
   }
 `;
 
@@ -255,20 +270,32 @@ const ProductCard = ({
         {isInCart ? (
           <QuantityContainer>
             <QuantityControls>
-              <QuantityButton onClick={handleDecrease}>
+              <QuantityButton 
+                onClick={handleDecrease}
+                aria-label={`Decrease quantity of ${product?.name}`}
+              >
                 −
               </QuantityButton>
-              <Quantity>{quantity}</Quantity>
-              <QuantityButton onClick={handleIncrease}>
+              <Quantity aria-label={`Quantity: ${quantity}`}>{quantity}</Quantity>
+              <QuantityButton 
+                onClick={handleIncrease}
+                aria-label={`Increase quantity of ${product?.name}`}
+              >
                 +
               </QuantityButton>
             </QuantityControls>
-            <RemoveButton onClick={() => removeFromCart(product.id)}>
+            <RemoveButton 
+              onClick={() => removeFromCart(product.id)}
+              aria-label={`Remove ${product?.name} from cart`}
+            >
               Remove from Cart
             </RemoveButton>
           </QuantityContainer>
         ) : (
-          <Button onClick={() => addToCart(product)}>
+          <Button 
+            onClick={() => addToCart(product)}
+            aria-label={`Add ${product?.name} to cart`}
+          >
             Add to Cart
           </Button>
         )}

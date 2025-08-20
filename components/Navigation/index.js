@@ -98,6 +98,13 @@ const NavLink = styled.a`
     color: ${({ theme }) => theme.colors.accent};
     background: rgba(255, 255, 255, 0.1);
   }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+    color: ${({ theme }) => theme.colors.accent};
+    background: rgba(255, 255, 255, 0.1);
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -148,6 +155,11 @@ const SearchButton = styled.button`
   &:hover {
     transform: scale(1.05);
   }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+  }
 `;
 
 const CartLink = styled.a`
@@ -163,6 +175,13 @@ const CartLink = styled.a`
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     color: ${({ theme }) => theme.colors.accent};
+  }
+  
+  &:focus {
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline-offset: 2px;
+    color: ${({ theme }) => theme.colors.accent};
+    background: rgba(255, 255, 255, 0.1);
   }
 `;
 
