@@ -71,7 +71,8 @@ const Fruit = styled.div`
   height: 60px;
   background: ${({ color }) => color};
   border-radius: 50%;
-  animation: ${({ animation }) => animation} 8s linear infinite;
+  animation: fruitFall 8s linear infinite;
+  animation-delay: ${({ delay }) => delay};
   opacity: 0.3;
   
   &::before {
@@ -369,24 +370,24 @@ const Home = () => {
     <HomeContainer>
       <AnimatedBackground>
         <FloatingFruits>
-          <Fruit color="#FF6B6B" animation={fruitFall} style={{ left: '10%', animationDelay: '0s' }} />
-          <Fruit color="#4ECDC4" animation={fruitFall} style={{ left: '20%', animationDelay: '1s' }} />
-          <Fruit color="#45B7D1" animation={fruitFall} style={{ left: '30%', animationDelay: '2s' }} />
-          <Fruit color="#96CEB4" animation={fruitFall} style={{ left: '40%', animationDelay: '3s' }} />
-          <Fruit color="#FFEAA7" animation={fruitFall} style={{ left: '50%', animationDelay: '4s' }} />
-          <Fruit color="#DDA0DD" animation={fruitFall} style={{ left: '60%', animationDelay: '5s' }} />
-          <Fruit color="#98D8C8" animation={fruitFall} style={{ left: '70%', animationDelay: '6s' }} />
-          <Fruit color="#F7DC6F" animation={fruitFall} style={{ left: '80%', animationDelay: '7s' }} />
-          <Fruit color="#BB8FCE" animation={fruitFall} style={{ left: '90%', animationDelay: '0.5s' }} />
-          <Fruit color="#85C1E9" animation={fruitFall} style={{ left: '15%', animationDelay: '1.5s' }} />
-          <Fruit color="#F8C471" animation={fruitFall} style={{ left: '25%', animationDelay: '2.5s' }} />
-          <Fruit color="#82E0AA" animation={fruitFall} style={{ left: '35%', animationDelay: '3.5s' }} />
-          <Fruit color="#F1948A" animation={fruitFall} style={{ left: '45%', animationDelay: '4.5s' }} />
-          <Fruit color="#85C1E9" animation={fruitFall} style={{ left: '55%', animationDelay: '5.5s' }} />
-          <Fruit color="#F7DC6F" animation={fruitFall} style={{ left: '65%', animationDelay: '6.5s' }} />
-          <Fruit color="#BB8FCE" animation={fruitFall} style={{ left: '75%', animationDelay: '7.5s' }} />
-          <Fruit color="#82E0AA" animation={fruitFall} style={{ left: '85%', animationDelay: '0.2s' }} />
-          <Fruit color="#F1948A" animation={fruitFall} style={{ left: '95%', animationDelay: '1.2s' }} />
+          <Fruit color="#FF6B6B" delay="0s" style={{ left: '10%' }} />
+          <Fruit color="#4ECDC4" delay="1s" style={{ left: '20%' }} />
+          <Fruit color="#45B7D1" delay="2s" style={{ left: '30%' }} />
+          <Fruit color="#96CEB4" delay="3s" style={{ left: '40%' }} />
+          <Fruit color="#FFEAA7" delay="4s" style={{ left: '50%' }} />
+          <Fruit color="#DDA0DD" delay="5s" style={{ left: '60%' }} />
+          <Fruit color="#98D8C8" delay="6s" style={{ left: '70%' }} />
+          <Fruit color="#F7DC6F" delay="7s" style={{ left: '80%' }} />
+          <Fruit color="#BB8FCE" delay="0.5s" style={{ left: '90%' }} />
+          <Fruit color="#85C1E9" delay="1.5s" style={{ left: '15%' }} />
+          <Fruit color="#F8C471" delay="2.5s" style={{ left: '25%' }} />
+          <Fruit color="#82E0AA" delay="3.5s" style={{ left: '35%' }} />
+          <Fruit color="#F1948A" delay="4.5s" style={{ left: '45%' }} />
+          <Fruit color="#85C1E9" delay="5.5s" style={{ left: '55%' }} />
+          <Fruit color="#F7DC6F" delay="6.5s" style={{ left: '65%' }} />
+          <Fruit color="#BB8FCE" delay="7.5s" style={{ left: '75%' }} />
+          <Fruit color="#82E0AA" delay="0.2s" style={{ left: '85%' }} />
+          <Fruit color="#F1948A" delay="1.2s" style={{ left: '95%' }} />
         </FloatingFruits>
       </AnimatedBackground>
       
