@@ -29,25 +29,31 @@ const pulse = keyframes`
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(139, 115, 85, 0.9) 0%, rgba(210, 180, 140, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
   position: relative;
   overflow: hidden;
   padding-top: 80px; /* Add space for fixed navigation */
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://images.unsplash.com/photo-1625937286074-9ca519d5d9df?w=1920&h=1080&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.3;
-    z-index: 1;
-  }
+`;
+
+const VideoBackground = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 0.4;
+`;
+
+const VideoOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(93, 64, 55, 0.7) 0%, rgba(255, 255, 255, 0.8) 100%);
+  z-index: 2;
 `;
 
 const BackgroundShapes = styled.div`
@@ -93,7 +99,7 @@ const Shape = styled.div`
 
 const Content = styled.div`
   position: relative;
-  z-index: 3;
+  z-index: 4;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 ${({ theme }) => theme.spacing.md};
@@ -107,7 +113,7 @@ const HeroSection = styled.section`
   text-align: center;
   padding: ${({ theme }) => theme.spacing.hero} 0;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 `;
 
 const HeroContent = styled.div`
@@ -182,16 +188,16 @@ const SectionTitle = styled.h2`
 `;
 
 const GlassCard = styled.div`
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(93, 64, 55, 0.1);
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing.xxl};
-  box-shadow: ${({ theme }) => theme.shadows.glass};
+  box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
   transition: ${({ theme }) => theme.transitions.normal};
   
   &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.glassHover};
+    box-shadow: 0 12px 40px rgba(93, 64, 55, 0.15);
     transform: translateY(-5px);
   }
 `;
@@ -311,13 +317,13 @@ const Home = () => {
 
   const featuredProducts = products?.slice(0, 3) || [];
 
-  return (
+    return (
     <HomeContainer>
-              <BackgroundShapes aria-hidden="true">
-          <Shape />
-          <Shape />
-          <Shape />
-        </BackgroundShapes>
+      <VideoBackground autoPlay muted loop playsInline>
+        <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+        Your browser does not support the video tag.
+      </VideoBackground>
+      <VideoOverlay />
       
       <Content>
         {/* Hero Section */}

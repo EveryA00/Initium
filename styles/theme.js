@@ -1,54 +1,54 @@
 const theme = {
   colors: {
-    // Natural & Organic Color Scheme - Creams, Browns, Tan Accents
-    primary: '#8B7355', // Rich brown
-    primaryLight: '#A0522D', // Light brown
-    primaryDark: '#654321', // Darker brown
+    // Simplified Color Scheme - White and Brown
+    primary: '#5D4037', // Dark brown
+    primaryLight: '#8D6E63', // Medium brown
+    primaryDark: '#3E2723', // Very dark brown
     
-    // Secondary colors - warm and natural
-    secondary: '#D2B48C', // Tan
-    secondaryLight: '#E6C08C', // Light tan
-    secondaryDark: '#B8860B', // Darker tan
+    // Secondary colors - white variations
+    secondary: '#FFFFFF', // Pure white
+    secondaryLight: '#FAFAFA', // Off white
+    secondaryDark: '#F5F5F5', // Light gray
     
-    // Accent colors - warm and inviting
-    accent: '#D4A574', // Warm tan accent
-    accentLight: '#E6C08C', // Light cream
-    accentDark: '#B8860B', // Darker tan
+    // Accent colors - consistent with primary
+    accent: '#5D4037', // Same as primary for consistency
+    accentLight: '#8D6E63', // Medium brown
+    accentDark: '#3E2723', // Very dark brown
     
-    // Natural neutral palette
-    background: '#FDF6E3', // Warm cream
+    // Background and surface colors
+    background: '#FFFFFF', // Pure white
     surface: '#FFFFFF', // Pure white
-    surfaceGlass: 'rgba(255, 255, 255, 0.25)', // Glass effect
-    surfaceGlassDark: 'rgba(255, 255, 255, 0.1)', // Darker glass
+    surfaceGlass: 'rgba(255, 255, 255, 0.9)', // Glass effect
+    surfaceGlassDark: 'rgba(255, 255, 255, 0.8)', // Darker glass
     
-    // Text colors - natural and warm with better contrast
-    text: '#1A0F0A', // Very deep brown for maximum contrast
-    textSecondary: '#3D2B1F', // Dark brown for good contrast
-    textLight: '#5D4037', // Medium brown for adequate contrast
+    // Text colors - brown variations
+    text: '#3E2723', // Very dark brown
+    textSecondary: '#5D4037', // Dark brown
+    textLight: '#8D6E63', // Medium brown
     textWhite: '#ffffff', // White text
-    textDark: '#000000', // Black text for maximum contrast on light backgrounds
+    textDark: '#3E2723', // Very dark brown
     
     // Status colors
-    success: '#48BB78', // Green
-    warning: '#ED8936', // Orange
-    error: '#F56565', // Red
-    info: '#4299E1', // Blue
+    success: '#4CAF50', // Green
+    warning: '#FF9800', // Orange
+    error: '#F44336', // Red
+    info: '#2196F3', // Blue
     
     // Border and shadow colors
-    border: 'rgba(255, 255, 255, 0.2)', // Glass border
-    borderLight: 'rgba(255, 255, 255, 0.1)', // Light glass border
+    border: 'rgba(93, 64, 55, 0.2)', // Brown border
+    borderLight: 'rgba(93, 64, 55, 0.1)', // Light brown border
     shadow: 'rgba(0, 0, 0, 0.1)', // Light shadow
     shadowDark: 'rgba(0, 0, 0, 0.2)', // Dark shadow
-    shadowGlass: 'rgba(255, 255, 255, 0.3)', // Glass shadow
+    shadowGlass: 'rgba(255, 255, 255, 0.9)', // Glass shadow
     
-    // Gradient definitions - natural and warm
+    // Gradient definitions - simplified
     gradients: {
-      primary: 'linear-gradient(135deg, #8B7355 0%, #A0522D 100%)',
-      secondary: 'linear-gradient(135deg, #D2B48C 0%, #E6C08C 100%)',
-      accent: 'linear-gradient(135deg, #D4A574 0%, #E6C08C 100%)',
-      hero: 'linear-gradient(135deg, #8B7355 0%, #D2B48C 50%, #D4A574 100%)',
-      card: 'linear-gradient(135deg, rgba(253, 246, 227, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
-      glass: 'linear-gradient(135deg, rgba(253, 246, 227, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%)',
+      primary: 'linear-gradient(135deg, #5D4037 0%, #8D6E63 100%)',
+      secondary: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
+      accent: 'linear-gradient(135deg, #5D4037 0%, #8D6E63 100%)',
+      hero: 'linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%)',
+      card: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%)',
+      glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%)',
     }
   },
   

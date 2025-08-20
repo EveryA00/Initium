@@ -24,19 +24,19 @@ const scaleIn = keyframes`
 
 // Styled Components
 const Card = styled.div`
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(93, 64, 55, 0.1);
   border-radius: ${({ theme }) => theme.borderRadius.xl};
   padding: ${({ theme }) => theme.spacing.xl};
-  box-shadow: ${({ theme }) => theme.shadows.glass};
+  box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
   transition: ${({ theme }) => theme.transitions.normal};
   animation: ${fadeIn} 0.6s ease-out;
   position: relative;
   overflow: hidden;
   
   &:hover {
-    box-shadow: ${({ theme }) => theme.shadows.glassHover};
+    box-shadow: 0 12px 40px rgba(93, 64, 55, 0.15);
     transform: translateY(-8px);
   }
   
@@ -47,7 +47,7 @@ const Card = styled.div`
     left: 0;
     right: 0;
     height: 4px;
-    background: ${({ theme }) => theme.colors.gradients.accent};
+    background: ${({ theme }) => theme.colors.gradients.primary};
     transform: scaleX(0);
     transition: transform 0.3s ease;
   }

@@ -35,8 +35,8 @@ const NavBar = styled.nav`
   z-index: 1000;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: ${({ theme }) => theme.shadows.glass};
+  border-bottom: 1px solid rgba(93, 64, 55, 0.1);
+  box-shadow: 0 4px 20px rgba(93, 64, 55, 0.1);
   animation: ${slideDown} 0.6s ease-out;
   transition: ${({ theme }) => theme.transitions.normal};
   
@@ -65,7 +65,7 @@ const Logo = styled.div`
   transition: ${({ theme }) => theme.transitions.fast};
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -95,15 +95,15 @@ const NavLink = styled.a`
   transition: ${({ theme }) => theme.transitions.fast};
   
   &:hover {
-    color: ${({ theme }) => theme.colors.primaryDark};
-    background: rgba(0, 0, 0, 0.05);
+    color: ${({ theme }) => theme.colors.primary};
+    background: rgba(93, 64, 55, 0.05);
   }
   
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline: 3px solid ${({ theme }) => theme.colors.primary};
     outline-offset: 2px;
-    color: ${({ theme }) => theme.colors.primaryDark};
-    background: rgba(0, 0, 0, 0.05);
+    color: ${({ theme }) => theme.colors.primary};
+    background: rgba(93, 64, 55, 0.05);
   }
 `;
 
@@ -173,15 +173,15 @@ const CartLink = styled.a`
   position: relative;
   
   &:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: ${({ theme }) => theme.colors.primaryDark};
+    background: rgba(93, 64, 55, 0.05);
+    color: ${({ theme }) => theme.colors.primary};
   }
   
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline: 3px solid ${({ theme }) => theme.colors.primary};
     outline-offset: 2px;
-    color: ${({ theme }) => theme.colors.primaryDark};
-    background: rgba(0, 0, 0, 0.05);
+    color: ${({ theme }) => theme.colors.primary};
+    background: rgba(93, 64, 55, 0.05);
   }
 `;
 
