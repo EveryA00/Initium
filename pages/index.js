@@ -35,74 +35,28 @@ const HomeContainer = styled.div`
   padding-top: 80px; /* Add space for fixed navigation */
 `;
 
-const AnimatedBackground = styled.div`
+const BackgroundImage = styled.div`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : 'linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%)'};
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   z-index: 1;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
-    z-index: 2;
-  }
+  opacity: 0.4;
 `;
 
-const FloatingFruits = styled.div`
+const BackgroundOverlay = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-`;
-
-const Fruit = styled.div`
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: ${({ color }) => color};
-  border-radius: 50%;
-  animation: fruitFall 8s linear infinite;
-  animation-delay: ${({ delay }) => delay};
-  opacity: 0.3;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 20px;
-    background: #4CAF50;
-    border-radius: 2px;
-  }
-`;
-
-const fruitFall = keyframes`
-  0% {
-    transform: translateY(-100px) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.3;
-  }
-  90% {
-    opacity: 0.3;
-  }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
-  }
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(93, 64, 55, 0.7) 0%, rgba(255, 255, 255, 0.8) 100%);
+  z-index: 2;
 `;
 
 const BackgroundShapes = styled.div`
@@ -355,9 +309,27 @@ const Home = () => {
   const { products, cart, removeFromCart, addToCart, updateQuantity } = useContext(ProductsContext) || {};
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
     setIsVisible(true);
+  }, []);
+
+  // Fetch background image from Unsplash
+  useEffect(() => {
+    const fetchBackgroundImage = async () => {
+      try {
+        const response = await fetch('/api/images?query=fresh+fruits+juice&count=1');
+        const data = await response.json();
+        if (data.success && data.images.length > 0) {
+          setBackgroundImage(data.images[0].url);
+        }
+      } catch (error) {
+        console.log('Using fallback background');
+      }
+    };
+    
+    fetchBackgroundImage();
   }, []);
 
   const handleShopClick = () => {
@@ -368,28 +340,8 @@ const Home = () => {
 
     return (
     <HomeContainer>
-      <AnimatedBackground>
-        <FloatingFruits>
-          <Fruit color="#FF6B6B" delay="0s" style={{ left: '10%' }} />
-          <Fruit color="#4ECDC4" delay="1s" style={{ left: '20%' }} />
-          <Fruit color="#45B7D1" delay="2s" style={{ left: '30%' }} />
-          <Fruit color="#96CEB4" delay="3s" style={{ left: '40%' }} />
-          <Fruit color="#FFEAA7" delay="4s" style={{ left: '50%' }} />
-          <Fruit color="#DDA0DD" delay="5s" style={{ left: '60%' }} />
-          <Fruit color="#98D8C8" delay="6s" style={{ left: '70%' }} />
-          <Fruit color="#F7DC6F" delay="7s" style={{ left: '80%' }} />
-          <Fruit color="#BB8FCE" delay="0.5s" style={{ left: '90%' }} />
-          <Fruit color="#85C1E9" delay="1.5s" style={{ left: '15%' }} />
-          <Fruit color="#F8C471" delay="2.5s" style={{ left: '25%' }} />
-          <Fruit color="#82E0AA" delay="3.5s" style={{ left: '35%' }} />
-          <Fruit color="#F1948A" delay="4.5s" style={{ left: '45%' }} />
-          <Fruit color="#85C1E9" delay="5.5s" style={{ left: '55%' }} />
-          <Fruit color="#F7DC6F" delay="6.5s" style={{ left: '65%' }} />
-          <Fruit color="#BB8FCE" delay="7.5s" style={{ left: '75%' }} />
-          <Fruit color="#82E0AA" delay="0.2s" style={{ left: '85%' }} />
-          <Fruit color="#F1948A" delay="1.2s" style={{ left: '95%' }} />
-        </FloatingFruits>
-      </AnimatedBackground>
+      <BackgroundImage imageUrl={backgroundImage} />
+      <BackgroundOverlay />
       
       <Content>
         {/* Hero Section */}
