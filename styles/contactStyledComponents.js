@@ -6,6 +6,7 @@ export const ContactContain = styled.div`
   background: ${({ theme }) => theme.colors.background};
   min-height: 100vh;
   padding: ${({ theme }) => theme.spacing.xl};
+  padding-top: calc(80px + ${({ theme }) => theme.spacing.xl}); /* Add space for fixed navigation */
 `;
 
 // Hero section

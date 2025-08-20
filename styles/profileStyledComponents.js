@@ -4,6 +4,7 @@ export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  padding-top: calc(80px + 2rem); /* Add space for fixed navigation */
   min-height: 100vh;
   background: ${({ theme }) => theme.colors.background};
 `;

@@ -32,6 +32,7 @@ const HomeContainer = styled.div`
   background: ${({ theme }) => theme.colors.gradients.hero};
   position: relative;
   overflow: hidden;
+  padding-top: 80px; /* Add space for fixed navigation */
 `;
 
 const BackgroundShapes = styled.div`
@@ -84,7 +85,7 @@ const Content = styled.div`
 `;
 
 const HeroSection = styled.section`
-  min-height: 100vh;
+  min-height: calc(100vh - 80px); /* Subtract navigation height */
   display: flex;
   align-items: center;
   justify-content: center;

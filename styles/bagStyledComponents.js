@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
   padding: ${({ theme }) => theme.spacing.xl};
+  padding-top: calc(80px + ${({ theme }) => theme.spacing.xl}); /* Add space for fixed navigation */
   max-width: 1200px;
   margin: 0 auto;
   display: grid; 
@@ -11,6 +12,7 @@ export const Container = styled.div`
   @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
     gap: ${({ theme }) => theme.spacing.xl};
+    padding-top: calc(80px + ${({ theme }) => theme.spacing.lg}); /* Add space for fixed navigation */
   }
 `;
 
