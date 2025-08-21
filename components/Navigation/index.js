@@ -60,12 +60,12 @@ const Logo = styled.div`
   font-family: ${({ theme }) => theme.typography.display};
   font-size: ${({ theme }) => theme.typography.h4};
   font-weight: ${({ theme }) => theme.typography.bold};
-  color: #000000;
+  color: #1B3D1A;
   cursor: pointer;
   transition: ${({ theme }) => theme.transitions.fast};
   
   &:hover {
-    color: #3E2723;
+    color: #2E5A27;
   }
 `;
 
@@ -87,7 +87,7 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled.a`
-  color: #000000;
+  color: #1B3D1A;
   text-decoration: none;
   font-weight: ${({ theme }) => theme.typography.medium};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
@@ -95,15 +95,15 @@ const NavLink = styled.a`
   transition: ${({ theme }) => theme.transitions.fast};
   
   &:hover {
-    color: #3E2723;
-    background: rgba(62, 39, 35, 0.1);
+    color: #2E5A27;
+    background: rgba(46, 90, 39, 0.1);
   }
   
   &:focus {
-    outline: 3px solid #3E2723;
+    outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    color: #3E2723;
-    background: rgba(62, 39, 35, 0.1);
+    color: #2E5A27;
+    background: rgba(46, 90, 39, 0.1);
   }
 `;
 
@@ -139,7 +139,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  background: #3E2723;
+  background: #2E5A27;
   color: white;
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.full};
@@ -154,14 +154,14 @@ const SearchButton = styled.button`
   font-size: 14px;
   
   &:hover {
-    background: #1A0F0A;
+    background: #1B3D1A;
     transform: scale(1.05);
   }
   
   &:focus {
-    outline: 3px solid #3E2723;
+    outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    background: #1A0F0A;
+    background: #1B3D1A;
   }
 `;
 
@@ -169,22 +169,22 @@ const CartLink = styled.a`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #000000;
+  color: #1B3D1A;
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   border-radius: ${({ theme }) => theme.borderRadius.md};
   transition: ${({ theme }) => theme.transitions.fast};
   position: relative;
   
   &:hover {
-    background: rgba(62, 39, 35, 0.1);
-    color: #3E2723;
+    background: rgba(46, 90, 39, 0.1);
+    color: #2E5A27;
   }
   
   &:focus {
-    outline: 3px solid #3E2723;
+    outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    color: #3E2723;
-    background: rgba(62, 39, 35, 0.1);
+    color: #2E5A27;
+    background: rgba(46, 90, 39, 0.1);
   }
 `;
 
@@ -204,7 +204,7 @@ const Icon = styled.div`
 const Label = styled.span`
   font-weight: ${({ theme }) => theme.typography.medium};
   font-size: ${({ theme }) => theme.typography.fontSizeSmall};
-  color: #000000;
+  color: #1B3D1A;
 `;
 
 const ItemCount = styled.span`
@@ -228,7 +228,7 @@ const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: #000000;
+  color: #1B3D1A;
   font-size: 24px;
   cursor: pointer;
   padding: ${({ theme }) => theme.spacing.sm};

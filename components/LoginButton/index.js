@@ -95,16 +95,25 @@ const LoginButton = () => {
       <Styled.LoginButton
         onClick={handleClick}
         isLoggedIn={isLoggedIn}
+        aria-label={isLoggedIn ? `User menu for ${user?.name || 'User'}` : 'Sign in to your account'}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
       >
         {isLoggedIn ? (
           <>
-            <span>👤</span>
+            <span aria-hidden="true">👤</span>
             <span>{user?.name || 'User'}</span>
-            <span>▼</span>
+            <span aria-hidden="true">▼</span>
           </>
         ) : (
           <>
-            <span>🔐</span>
+            <span aria-hidden="true">🔐</span>
             <span>Sign In</span>
           </>
         )}
@@ -115,11 +124,33 @@ const LoginButton = () => {
           <Styled.UserInfo>
             Signed in as {user?.email}
           </Styled.UserInfo>
-          <Styled.MenuItem onClick={handleProfileClick}>
-            👤 My Profile
+          <Styled.MenuItem 
+            onClick={handleProfileClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleProfileClick();
+              }
+            }}
+            aria-label="View my profile"
+          >
+            My Profile
           </Styled.MenuItem>
-          <Styled.MenuItem onClick={handleLogout}>
-            🚪 Sign Out
+          <Styled.MenuItem 
+            onClick={handleLogout}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                handleLogout();
+              }
+            }}
+            aria-label="Sign out of account"
+          >
+            Sign Out
           </Styled.MenuItem>
         </Styled.UserMenu>
       )}

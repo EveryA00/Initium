@@ -1,19 +1,19 @@
 const theme = {
   colors: {
-    // Simplified Color Scheme - White and Brown
-    primary: '#5D4037', // Dark brown
-    primaryLight: '#8D6E63', // Medium brown
-    primaryDark: '#3E2723', // Very dark brown
+    // Forest Green and Light Tan Color Scheme
+    primary: '#2E5A27', // Forest green
+    primaryLight: '#4A7C59', // Medium forest green
+    primaryDark: '#1B3D1A', // Dark forest green
     
-    // Secondary colors - white variations
-    secondary: '#FFFFFF', // Pure white
-    secondaryLight: '#FAFAFA', // Off white
-    secondaryDark: '#F5F5F5', // Light gray
+    // Secondary colors - light tan variations
+    secondary: '#F5E6D3', // Light tan
+    secondaryLight: '#FAF0E6', // Very light tan
+    secondaryDark: '#E6D5C1', // Medium tan
     
     // Accent colors - consistent with primary
-    accent: '#5D4037', // Same as primary for consistency
-    accentLight: '#8D6E63', // Medium brown
-    accentDark: '#3E2723', // Very dark brown
+    accent: '#2E5A27', // Same as primary for consistency
+    accentLight: '#4A7C59', // Medium forest green
+    accentDark: '#1B3D1A', // Dark forest green
     
     // Background and surface colors
     background: '#FFFFFF', // Pure white
@@ -21,12 +21,12 @@ const theme = {
     surfaceGlass: 'rgba(255, 255, 255, 0.9)', // Glass effect
     surfaceGlassDark: 'rgba(255, 255, 255, 0.8)', // Darker glass
     
-    // Text colors - brown variations
-    text: '#3E2723', // Very dark brown
-    textSecondary: '#5D4037', // Dark brown
-    textLight: '#8D6E63', // Medium brown
+    // Text colors - forest green variations
+    text: '#1B3D1A', // Dark forest green
+    textSecondary: '#2E5A27', // Forest green
+    textLight: '#4A7C59', // Medium forest green
     textWhite: '#ffffff', // White text
-    textDark: '#3E2723', // Very dark brown
+    textDark: '#1B3D1A', // Dark forest green
     
     // Status colors
     success: '#4CAF50', // Green
@@ -35,18 +35,18 @@ const theme = {
     info: '#2196F3', // Blue
     
     // Border and shadow colors
-    border: 'rgba(93, 64, 55, 0.2)', // Brown border
-    borderLight: 'rgba(93, 64, 55, 0.1)', // Light brown border
+    border: 'rgba(46, 90, 39, 0.2)', // Forest green border
+    borderLight: 'rgba(46, 90, 39, 0.1)', // Light forest green border
     shadow: 'rgba(0, 0, 0, 0.1)', // Light shadow
     shadowDark: 'rgba(0, 0, 0, 0.2)', // Dark shadow
     shadowGlass: 'rgba(255, 255, 255, 0.9)', // Glass shadow
     
-    // Gradient definitions - simplified
+    // Gradient definitions - forest green and tan
     gradients: {
-      primary: 'linear-gradient(135deg, #5D4037 0%, #8D6E63 100%)',
-      secondary: 'linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%)',
-      accent: 'linear-gradient(135deg, #5D4037 0%, #8D6E63 100%)',
-      hero: 'linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%)',
+      primary: 'linear-gradient(135deg, #2E5A27 0%, #4A7C59 100%)',
+      secondary: 'linear-gradient(135deg, #F5E6D3 0%, #FAF0E6 100%)',
+      accent: 'linear-gradient(135deg, #2E5A27 0%, #4A7C59 100%)',
+      hero: 'linear-gradient(135deg, rgba(46, 90, 39, 0.8) 0%, rgba(245, 230, 211, 0.9) 100%)',
       card: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%)',
       glass: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%)',
     }

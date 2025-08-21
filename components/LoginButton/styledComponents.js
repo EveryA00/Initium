@@ -4,9 +4,9 @@ const LoginButton = styled.div`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
   background: ${({ theme, isLoggedIn }) => 
     isLoggedIn 
-      ? 'rgba(255, 255, 255, 0.1)' 
-      : `linear-gradient(135deg, ${theme.colors.success} 0%, ${theme.colors.primary} 100%)`};
-  color: ${({ theme }) => theme.colors.surface};
+      ? '#2E5A27' 
+      : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.primaryLight} 100%)`};
+  color: white;
   font-weight: ${({ theme }) => theme.typography.medium};
   font-size: 14px;
   border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -18,14 +18,19 @@ const LoginButton = styled.div`
   gap: ${({ theme }) => theme.spacing.xs};
   position: relative;
   border: 1px solid ${({ theme, isLoggedIn }) => 
-    isLoggedIn ? 'rgba(255, 255, 255, 0.2)' : 'transparent'};
+    isLoggedIn ? '#1B3D1A' : 'transparent'};
 
   &:hover {
     background: ${({ theme, isLoggedIn }) => 
       isLoggedIn 
-        ? 'rgba(255, 255, 255, 0.2)' 
-        : `linear-gradient(135deg, ${theme.colors.primary} 0%, ${theme.colors.success} 100%)`};
+        ? '#1B3D1A' 
+        : `linear-gradient(135deg, ${theme.colors.primaryDark} 0%, ${theme.colors.primary} 100%)`};
     transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 3px solid #1B3D1A;
+    outline-offset: 2px;
   }
 
   &:active {
@@ -37,10 +42,10 @@ const UserMenu = styled.div`
   position: absolute;
   top: 100%;
   right: 0;
-  background: ${({ theme }) => theme.colors.surface};
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  background: white;
+  border: 1px solid rgba(46, 90, 39, 0.2);
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  box-shadow: ${({ theme }) => theme.shadows.lg};
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   min-width: 180px;
   z-index: 1000;
   margin-top: ${({ theme }) => theme.spacing.xs};
@@ -49,10 +54,10 @@ const UserMenu = styled.div`
 
 const MenuItem = styled.div`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  color: ${({ theme }) => theme.colors.text};
+  color: #1B3D1A;
   cursor: pointer;
   transition: background-color ${({ theme }) => theme.transitions.normal};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  border-bottom: 1px solid rgba(46, 90, 39, 0.1);
   font-size: 14px;
 
   &:last-child {
@@ -60,16 +65,22 @@ const MenuItem = styled.div`
   }
 
   &:hover {
-    background: ${({ theme }) => theme.colors.background};
+    background: rgba(46, 90, 39, 0.05);
+  }
+
+  &:focus {
+    outline: 2px solid #2E5A27;
+    outline-offset: -2px;
+    background: rgba(46, 90, 39, 0.05);
   }
 `;
 
 const UserInfo = styled.div`
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  background: ${({ theme }) => theme.colors.background};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  background: #F5E6D3;
+  border-bottom: 1px solid rgba(46, 90, 39, 0.2);
   font-size: 12px;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #2E5A27;
 `;
 
 export const Styled = {
