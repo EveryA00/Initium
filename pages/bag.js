@@ -24,18 +24,9 @@ import { ProductsContext } from '../context/ProductsContext.js';
 const Bag = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(ProductsContext);
   
-  // Force cache refresh by adding a version parameter
-  React.useEffect(() => {
-    // Add a cache-busting parameter to force reload
-    const currentUrl = window.location.href;
-    if (!currentUrl.includes('v=')) {
-      const separator = currentUrl.includes('?') ? '&' : '?';
-      window.history.replaceState(null, '', `${currentUrl}${separator}v=${Date.now()}`);
-    }
-  }, []);
-  
   // Debug logging to see what's in the cart
-  console.log('Cart items:', cart);
+  console.log('Bag page - Cart items:', cart);
+  console.log('Bag page - Cart length:', cart?.length);
   
   // Fixed price calculation - ensure price is treated as number
   const total = cart?.reduce((sum, item) => {
