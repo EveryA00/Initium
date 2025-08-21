@@ -16,470 +16,510 @@ const fadeInUp = keyframes`
   }
 `;
 
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const float = keyframes`
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
 `;
 
-const pulse = keyframes`
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-`;
-
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(245, 230, 211, 0.9) 100% ,rgba(46, 90, 39, 0.8) 0%);
+  background: #ffffff;
   position: relative;
   overflow: hidden;
-  padding-top: 80px; /* Add space for fixed navigation */
-`;
-
-const BackgroundImage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : 'linear-gradient(135deg, rgba(245, 230, 211, 0.9) 100%, rgba(46, 90, 39, 0.8) 0%)'};
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: 1;
-  opacity: 0.4;
-`;
-
-const BackgroundOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(46, 90, 39, 0.7) 0%, rgba(245, 230, 211, 0.8) 100%);
-  z-index: 2;
-`;
-
-const BackgroundShapes = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 1;
-`;
-
-const Shape = styled.div`
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  animation: ${float} 6s ease-in-out infinite;
-  
-  &:nth-child(1) {
-    width: 200px;
-    height: 200px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-  }
-  
-  &:nth-child(2) {
-    width: 150px;
-    height: 150px;
-    top: 60%;
-    right: 10%;
-    animation-delay: 2s;
-  }
-  
-  &:nth-child(3) {
-    width: 100px;
-    height: 100px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 4s;
-  }
-`;
-
-const Content = styled.div`
-  position: relative;
-  z-index: 4;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.spacing.md};
+  padding-top: 80px;
 `;
 
 const HeroSection = styled.section`
-  min-height: calc(100vh - 80px); /* Subtract navigation height */
+  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: ${({ theme }) => theme.spacing.hero} 0;
+  background: linear-gradient(135deg, #2E5A27 0%, #4A7C59 100%);
   position: relative;
-  z-index: 3;
+  overflow: hidden;
+`;
+
+const HeroBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('/images/juice/product/juice_BG.jpg') center/cover;
+  opacity: 0.1;
+  z-index: 1;
 `;
 
 const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
   animation: ${fadeInUp} 1s ease-out;
 `;
 
 const HeroTitle = styled.h1`
-  font-family: ${({ theme }) => theme.typography.display};
-  font-size: clamp(2.5rem, 8vw, ${({ theme }) => theme.typography.h1});
-  font-weight: ${({ theme }) => theme.typography.extrabold};
-  color: ${({ theme }) => theme.colors.textDark};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
-  line-height: 1.2;
-  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.9);
-  position: relative;
-  z-index: 3;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: clamp(1.1rem, 3vw, ${({ theme }) => theme.typography.fontSizeLarge});
-  color: ${({ theme }) => theme.colors.textDark};
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #ffffff;
+  margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 1.6;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
-  position: relative;
-  z-index: 3;
+  line-height: 1.4;
+  font-weight: 300;
 `;
 
 const CTAButton = styled.button`
-  background: ${({ theme }) => theme.colors.gradients.accent};
-  color: ${({ theme }) => theme.colors.textWhite};
+  background: #ffffff;
+  color: #2E5A27;
   border: none;
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xxl};
-  font-size: ${({ theme }) => theme.typography.fontSizeLarge};
-  font-weight: ${({ theme }) => theme.typography.semibold};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
+  padding: 1.2rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 50px;
   cursor: pointer;
-  transition: ${({ theme }) => theme.transitions.normal};
-  box-shadow: ${({ theme }) => theme.shadows.lg};
-  animation: ${pulse} 2s ease-in-out infinite;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   
   &:hover {
+    background: #F5E6D3;
     transform: translateY(-2px);
-    box-shadow: ${({ theme }) => theme.shadows.xl};
-  }
-  
-  &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.accent};
-    outline-offset: 2px;
-  }
-  
-  &:active {
-    transform: translateY(0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const Section = styled.section`
-  padding: ${({ theme }) => theme.spacing.xxxl} 0;
+  padding: 6rem 0;
   position: relative;
 `;
 
-const SectionTitle = styled.h2`
-  font-size: clamp(2rem, 5vw, ${({ theme }) => theme.typography.h2});
-  font-weight: ${({ theme }) => theme.typography.bold};
-  color: ${({ theme }) => theme.colors.textDark};
-  text-align: center;
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 `;
 
-const GlassCard = styled.div`
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(93, 64, 55, 0.1);
-  border-radius: ${({ theme }) => theme.borderRadius.xl};
-  padding: ${({ theme }) => theme.spacing.xxl};
-  box-shadow: 0 8px 32px rgba(93, 64, 55, 0.1);
-  transition: ${({ theme }) => theme.transitions.normal};
-  
-  &:hover {
-    box-shadow: 0 12px 40px rgba(93, 64, 55, 0.15);
-    transform: translateY(-5px);
-  }
+const SectionTitle = styled.h2`
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #2E5A27;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+`;
+
+const SectionSubtitle = styled.p`
+  font-size: 1.3rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 4rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
 `;
 
 const ProductGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xxl};
-  margin-top: ${({ theme }) => theme.spacing.xxl};
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
 `;
 
-const TestimonialGrid = styled.div`
+const ProductCardStyled = styled.div`
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  animation: ${slideInLeft} 0.8s ease-out;
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:nth-child(even) {
+    animation: ${slideInRight} 0.8s ease-out;
+  }
+`;
+
+const ProductImage = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+`;
+
+const ProductContent = styled.div`
+  padding: 2rem;
+`;
+
+const ProductName = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2E5A27;
+  margin-bottom: 0.5rem;
+`;
+
+const ProductDescription = styled.p`
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+`;
+
+const ProductPrice = styled.div`
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #2E5A27;
+  margin-bottom: 1rem;
+`;
+
+const ShopButton = styled.button`
+  background: #2E5A27;
+  color: #ffffff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  &:hover {
+    background: #4A7C59;
+    transform: translateY(-2px);
+  }
+`;
+
+const BenefitsSection = styled.div`
+  background: #F5E6D3;
+  padding: 6rem 0;
+`;
+
+const BenefitsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  margin-top: ${({ theme }) => theme.spacing.xxl};
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-top: 4rem;
 `;
 
-const TestimonialCard = styled(GlassCard)`
+const BenefitCard = styled.div`
   text-align: center;
-  
-  p {
-    font-size: ${({ theme }) => theme.typography.fontSizeLarge};
-    color: ${({ theme }) => theme.colors.textDark};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    font-style: italic;
-    line-height: 1.6;
-  }
-  
-  span {
-    color: ${({ theme }) => theme.colors.textSecondary};
-    font-weight: ${({ theme }) => theme.typography.semibold};
-  }
+  animation: ${fadeInUp} 0.8s ease-out;
 `;
 
-const StatsSection = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  margin: ${({ theme }) => theme.spacing.xxxl} 0;
+const BenefitIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  background: #2E5A27;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #ffffff;
 `;
 
-const StatCard = styled(GlassCard)`
-  text-align: center;
-  
-  h3 {
-    font-size: ${({ theme }) => theme.typography.h1};
-    color: ${({ theme }) => theme.colors.accent};
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
-  }
-  
-  p {
-    color: ${({ theme }) => theme.colors.textDark};
-    font-weight: ${({ theme }) => theme.typography.medium};
-  }
+const BenefitTitle = styled.h3`
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2E5A27;
+  margin-bottom: 1rem;
+`;
+
+const BenefitDescription = styled.p`
+  color: #666;
+  line-height: 1.6;
+`;
+
+const IngredientsSection = styled.div`
+  background: #ffffff;
+  padding: 6rem 0;
 `;
 
 const IngredientsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xl};
-  margin-top: ${({ theme }) => theme.spacing.xxl};
+  gap: 3rem;
+  margin-top: 4rem;
 `;
 
-const IngredientCard = styled(GlassCard)`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  transition: ${({ theme }) => theme.transitions.normal};
+const IngredientCard = styled.div`
+  background: #ffffff;
+  border: 2px solid #F5E6D3;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  animation: ${fadeInUp} 0.8s ease-out;
   
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: ${({ theme }) => theme.shadows.glassHover};
+    border-color: #2E5A27;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(46, 90, 39, 0.1);
   }
 `;
 
-const IngredientImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: ${({ theme }) => theme.borderRadius.lg} ${({ theme }) => theme.borderRadius.lg} 0 0;
-`;
-
-const IngredientContent = styled.div`
-  padding: ${({ theme }) => theme.spacing.lg};
-  flex: 1;
+const IngredientNumber = styled.div`
+  width: 50px;
+  height: 50px;
+  background: #2E5A27;
+  color: #ffffff;
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  font-weight: 700;
+  margin: 0 auto 1rem;
 `;
 
 const IngredientTitle = styled.h3`
-  font-size: ${({ theme }) => theme.typography.h4};
-  font-weight: ${({ theme }) => theme.typography.bold};
-  color: ${({ theme }) => theme.colors.textDark};
-  margin-bottom: ${({ theme }) => theme.spacing.sm};
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2E5A27;
+  margin-bottom: 0.5rem;
 `;
 
 const IngredientDescription = styled.p`
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #666;
   line-height: 1.6;
-  font-size: ${({ theme }) => theme.typography.fontSize};
+  font-size: 0.9rem;
+`;
+
+const FinalCTASection = styled.div`
+  background: linear-gradient(135deg, #2E5A27 0%, #4A7C59 100%);
+  padding: 6rem 0;
+  text-align: center;
+`;
+
+const FinalCTATitle = styled.h2`
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+`;
+
+const FinalCTASubtitle = styled.p`
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+  opacity: 0.9;
+`;
+
+const FinalCTAButton = styled(CTAButton)`
+  background: #ffffff;
+  color: #2E5A27;
+  
+  &:hover {
+    background: #F5E6D3;
+  }
 `;
 
 const Home = () => {
   const { products, cart, removeFromCart, addToCart, updateQuantity } = useContext(ProductsContext) || {};
   const router = useRouter();
-  const [isVisible, setIsVisible] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState('');
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  // Fetch background image from Unsplash
-  useEffect(() => {
-    const fetchBackgroundImage = async () => {
-      try {
-        const response = await fetch('/api/images?query=fresh+fruits+juice&count=1');
-        const data = await response.json();
-        if (data.success && data.images.length > 0) {
-          setBackgroundImage(data.images[0].url);
-        }
-      } catch (error) {
-        console.log('Using fallback background');
-      }
-    };
-    
-    fetchBackgroundImage();
-  }, []);
 
   const handleShopClick = () => {
     router.push('/productGrid');
   };
 
-  const featuredProducts = products?.slice(0, 3) || [];
+  const featuredProducts = products?.slice(0, 6) || [];
 
-    return (
+  const benefits = [
+    {
+      icon: "🌱",
+      title: "100% Organic",
+      description: "All ingredients sourced from certified organic farms"
+    },
+    {
+      icon: "⚡",
+      title: "Fresh Daily",
+      description: "Pressed fresh every morning for maximum nutrition"
+    },
+    {
+      icon: "💚",
+      title: "No Preservatives",
+      description: "Pure juice with no artificial additives or preservatives"
+    },
+    {
+      icon: "🚚",
+      title: "Same Day Delivery",
+      description: "Delivered to your door within hours of pressing"
+    }
+  ];
+
+  const ingredients = [
+    {
+      number: "01",
+      title: "Fresh Fruits",
+      description: "Hand-picked at peak ripeness for maximum flavor and nutrition"
+    },
+    {
+      number: "02",
+      title: "Organic Vegetables",
+      description: "Certified organic vegetables for clean, pure taste"
+    },
+    {
+      number: "03",
+      title: "Natural Sweeteners",
+      description: "Only natural sweeteners like honey and agave when needed"
+    },
+    {
+      number: "04",
+      title: "Pure Water",
+      description: "Filtered spring water for the perfect consistency"
+    },
+    {
+      number: "05",
+      title: "Fresh Herbs",
+      description: "Aromatic herbs for enhanced flavor and health benefits"
+    },
+    {
+      number: "06",
+      title: "No Additives",
+      description: "Absolutely no artificial flavors, colors, or preservatives"
+    }
+  ];
+
+  return (
     <HomeContainer>
-      <BackgroundImage imageUrl={backgroundImage} />
-      <BackgroundOverlay />
-      
-      <Content>
-        {/* Hero Section */}
-        <HeroSection>
-          <HeroContent>
-            <HeroTitle>Heritage Juices Co.</HeroTitle>
-            <HeroSubtitle>
-              Experience the pure taste of nature with our handcrafted juices. 
-              Made with 100% organic ingredients, delivered fresh to your door.
-            </HeroSubtitle>
-            <CTAButton 
-              onClick={handleShopClick}
-              aria-label="Explore our juice collection"
-            >
-              Explore Our Juices
-            </CTAButton>
-          </HeroContent>
-        </HeroSection>
+      {/* Hero Section */}
+      <HeroSection>
+        <HeroBackground />
+        <HeroContent>
+          <HeroTitle>Heritage Juices</HeroTitle>
+          <HeroSubtitle>
+            Pure, fresh-pressed juices made with 100% organic ingredients. 
+            Delivered fresh to your door every day.
+          </HeroSubtitle>
+          <CTAButton onClick={handleShopClick}>
+            Shop Now
+          </CTAButton>
+        </HeroContent>
+      </HeroSection>
 
-        {/* Stats Section */}
-        <Section>
-          <StatsSection>
-            <StatCard>
-              <h3>15+</h3>
-              <p>Heritage Flavors</p>
-            </StatCard>
-            <StatCard>
-              <h3>100%</h3>
-              <p>Organic Ingredients</p>
-            </StatCard>
-            <StatCard>
-              <h3>500+</h3>
-              <p>Heritage Customers</p>
-            </StatCard>
-            <StatCard>
-              <h3>24h</h3>
-              <p>Fresh Delivery</p>
-            </StatCard>
-          </StatsSection>
-        </Section>
-
-        {/* Featured Products */}
-        <Section>
-          <SectionTitle>Best Sellers</SectionTitle>
+      {/* Featured Products */}
+      <Section>
+        <Container>
+          <SectionTitle>Our Signature Juices</SectionTitle>
+          <SectionSubtitle>
+            Each bottle is pressed fresh daily with the finest organic ingredients
+          </SectionSubtitle>
           <ProductGrid>
-            {featuredProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                cart={cart}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
-                updateQuantity={updateQuantity}
-              />
+            {featuredProducts.map((product, index) => (
+              <ProductCardStyled key={product.id}>
+                <ProductImage src={product.image} alt={product.name} />
+                <ProductContent>
+                  <ProductName>{product.name}</ProductName>
+                  <ProductDescription>{product.description}</ProductDescription>
+                  <ProductPrice>${product.price}</ProductPrice>
+                  <ShopButton onClick={() => addToCart(product)}>
+                    Add to Cart
+                  </ShopButton>
+                </ProductContent>
+              </ProductCardStyled>
             ))}
           </ProductGrid>
-        </Section>
+        </Container>
+      </Section>
 
-        {/* Fresh Ingredients Section */}
-        <Section>
-          <SectionTitle>Fresh From Nature</SectionTitle>
+      {/* Benefits Section */}
+      <BenefitsSection>
+        <Container>
+          <SectionTitle>Why Choose Heritage?</SectionTitle>
+          <SectionSubtitle>
+            We're committed to delivering the purest, most nutritious juices possible
+          </SectionSubtitle>
+          <BenefitsGrid>
+            {benefits.map((benefit, index) => (
+              <BenefitCard key={index}>
+                <BenefitIcon>{benefit.icon}</BenefitIcon>
+                <BenefitTitle>{benefit.title}</BenefitTitle>
+                <BenefitDescription>{benefit.description}</BenefitDescription>
+              </BenefitCard>
+            ))}
+          </BenefitsGrid>
+        </Container>
+      </BenefitsSection>
+
+      {/* Ingredients Section */}
+      <IngredientsSection>
+        <Container>
+          <SectionTitle>What's Inside Every Bottle</SectionTitle>
+          <SectionSubtitle>
+            Transparency in every ingredient. Here's what makes our juices special.
+          </SectionSubtitle>
           <IngredientsGrid>
-            <IngredientCard>
-              <IngredientImage src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" alt="Fresh Apples" />
-              <IngredientContent>
-                <IngredientTitle>Fresh Apples</IngredientTitle>
-                <IngredientDescription>
-                  Hand-picked from local orchards, our apples provide the perfect balance of sweetness and tartness.
-                </IngredientDescription>
-              </IngredientContent>
-            </IngredientCard>
-            
-            <IngredientCard>
-              <IngredientImage src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop" alt="Organic Oranges" />
-              <IngredientContent>
-                <IngredientTitle>Organic Oranges</IngredientTitle>
-                <IngredientDescription>
-                  Sun-ripened oranges bursting with vitamin C and natural citrus flavor.
-                </IngredientDescription>
-              </IngredientContent>
-            </IngredientCard>
-            
-            <IngredientCard>
-              <IngredientImage src="https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=400&h=300&fit=crop" alt="Fresh Berries" />
-              <IngredientContent>
-                <IngredientTitle>Fresh Berries</IngredientTitle>
-                <IngredientDescription>
-                  Antioxidant-rich berries picked at peak ripeness for maximum flavor and nutrition.
-                </IngredientDescription>
-              </IngredientContent>
-            </IngredientCard>
+            {ingredients.map((ingredient, index) => (
+              <IngredientCard key={index}>
+                <IngredientNumber>{ingredient.number}</IngredientNumber>
+                <IngredientTitle>{ingredient.title}</IngredientTitle>
+                <IngredientDescription>{ingredient.description}</IngredientDescription>
+              </IngredientCard>
+            ))}
           </IngredientsGrid>
-        </Section>
+        </Container>
+      </IngredientsSection>
 
-        {/* Testimonials */}
-        <Section>
-          <SectionTitle>What Our Customers Say</SectionTitle>
-          <TestimonialGrid>
-            <TestimonialCard>
-              <p>
-                "Absolutely love the orange juice! So fresh and tasty! 
-                It's become a daily ritual for me."
-              </p>
-              <span>— Sarah M.</span>
-            </TestimonialCard>
-            <TestimonialCard>
-              <p>
-                "Best juice ever! The mixed berry flavor is my favorite! 
-                I can taste the difference in quality."
-              </p>
-              <span>— James L.</span>
-            </TestimonialCard>
-            <TestimonialCard>
-              <p>
-                "The green juice is amazing! I feel so energized after drinking it. 
-                Highly recommend!"
-              </p>
-              <span>— Maria K.</span>
-            </TestimonialCard>
-          </TestimonialGrid>
-        </Section>
-
-        {/* Final CTA */}
-        <Section>
-          <GlassCard style={{ textAlign: 'center' }}>
-            <SectionTitle>Ready to Experience Fresh Juice?</SectionTitle>
-            <HeroSubtitle style={{ color: 'rgba(255, 255, 255, 0.9)', marginBottom: '2rem' }}>
-              Join thousands of customers who have discovered the difference fresh juice makes.
-            </HeroSubtitle>
-            <CTAButton 
-              onClick={handleShopClick}
-              aria-label="Shop our juice collection"
-            >
-              Shop Now
-            </CTAButton>
-          </GlassCard>
-        </Section>
-      </Content>
+      {/* Final CTA */}
+      <FinalCTASection>
+        <Container>
+          <FinalCTATitle>Ready to Experience Fresh Juice?</FinalCTATitle>
+          <FinalCTASubtitle>
+            Join thousands of customers who have discovered the difference fresh-pressed juice makes in their daily routine.
+          </FinalCTASubtitle>
+          <FinalCTAButton onClick={handleShopClick}>
+            Start Your Journey
+          </FinalCTAButton>
+        </Container>
+      </FinalCTASection>
     </HomeContainer>
   );
 };

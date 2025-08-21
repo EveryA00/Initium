@@ -33,15 +33,15 @@ const NavBar = styled.nav`
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(46, 90, 39, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   animation: ${slideDown} 0.6s ease-out;
-  transition: ${({ theme }) => theme.transitions.normal};
+  transition: all 0.3s ease;
   
   &.scrolled {
-    background: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
   }
 `;
@@ -49,35 +49,38 @@ const NavBar = styled.nav`
 const NavContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.spacing.md};
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: 80px;
 `;
 
 const Logo = styled.div`
-  font-family: ${({ theme }) => theme.typography.display};
-  font-size: ${({ theme }) => theme.typography.h4};
-  font-weight: ${({ theme }) => theme.typography.bold};
-  color: #1B3D1A;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #2E5A27;
   cursor: pointer;
-  transition: ${({ theme }) => theme.transitions.fast};
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
   
   &:hover {
-    color: #2E5A27;
+    color: #4A7C59;
+    transform: scale(1.05);
   }
 `;
 
 const NavList = styled.ul`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.xl};
+  gap: 2.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -87,23 +90,27 @@ const NavItem = styled.li`
 `;
 
 const NavLink = styled.a`
-  color: #1B3D1A;
+  color: #2E5A27;
   text-decoration: none;
-  font-weight: ${({ theme }) => theme.typography.medium};
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  transition: ${({ theme }) => theme.transitions.fast};
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   
   &:hover {
-    color: #2E5A27;
-    background: rgba(46, 90, 39, 0.1);
+    color: #ffffff;
+    background: #2E5A27;
+    transform: translateY(-2px);
   }
   
   &:focus {
     outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    color: #2E5A27;
-    background: rgba(46, 90, 39, 0.1);
+    color: #ffffff;
+    background: #2E5A27;
   }
 `;
 
@@ -117,24 +124,26 @@ const SearchContainer = styled.div`
 `;
 
 const SearchInput = styled.input`
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  color: #000000;
-  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(46, 90, 39, 0.2);
+  border-radius: 25px;
+  padding: 0.5rem 1rem;
+  color: #2E5A27;
+  font-size: 0.9rem;
   width: 160px;
-  transition: ${({ theme }) => theme.transitions.fast};
+  transition: all 0.3s ease;
+  font-weight: 500;
   
   &::placeholder {
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(46, 90, 39, 0.6);
   }
   
   &:focus {
     outline: none;
-    border-color: #3E2723;
+    border-color: #2E5A27;
     background: rgba(255, 255, 255, 1);
     width: 180px;
+    box-shadow: 0 0 0 3px rgba(46, 90, 39, 0.1);
   }
 `;
 
@@ -142,26 +151,26 @@ const SearchButton = styled.button`
   background: #2E5A27;
   color: white;
   border: none;
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  width: 32px;
-  height: 32px;
-  margin-left: ${({ theme }) => theme.spacing.sm};
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin-left: 0.5rem;
   cursor: pointer;
-  transition: ${({ theme }) => theme.transitions.fast};
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 14px;
   
   &:hover {
-    background: #1B3D1A;
-    transform: scale(1.05);
+    background: #4A7C59;
+    transform: scale(1.1);
   }
   
   &:focus {
     outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    background: #1B3D1A;
+    background: #4A7C59;
   }
 `;
 
@@ -169,71 +178,82 @@ const CartLink = styled.a`
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #1B3D1A;
-  padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  transition: ${({ theme }) => theme.transitions.fast};
+  color: #2E5A27;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
   position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   
   &:hover {
-    background: rgba(46, 90, 39, 0.1);
-    color: #2E5A27;
+    background: #2E5A27;
+    color: #ffffff;
+    transform: translateY(-2px);
   }
   
   &:focus {
     outline: 3px solid #2E5A27;
     outline-offset: 2px;
-    color: #2E5A27;
-    background: rgba(46, 90, 39, 0.1);
+    color: #ffffff;
+    background: #2E5A27;
   }
 `;
 
 const CartWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing.xs};
+  gap: 0.5rem;
 `;
 
 const Icon = styled.div`
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z' /%3E%3C/svg%3E") no-repeat center;
   background-size: contain;
 `;
 
 const Label = styled.span`
-  font-weight: ${({ theme }) => theme.typography.medium};
-  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
-  color: #1B3D1A;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: inherit;
 `;
 
 const ItemCount = styled.span`
   position: absolute;
-  top: -3px;
-  right: -3px;
-  background: ${({ theme }) => theme.colors.error};
-  color: ${({ theme }) => theme.colors.textWhite};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  width: 16px;
-  height: 16px;
+  top: -5px;
+  right: -5px;
+  background: #F44336;
+  color: #ffffff;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
-  font-weight: ${({ theme }) => theme.typography.bold};
+  font-size: 12px;
+  font-weight: 700;
   animation: ${fadeIn} 0.3s ease-out;
+  border: 2px solid #ffffff;
 `;
 
 const MobileMenuButton = styled.button`
   display: none;
   background: none;
   border: none;
-  color: #1B3D1A;
-  font-size: 24px;
+  color: #2E5A27;
+  font-size: 1.5rem;
   cursor: pointer;
-  padding: ${({ theme }) => theme.spacing.sm};
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
   
-  @media (max-width: ${({ theme }) => theme.breakpoints.tablet}) {
+  &:hover {
+    background: rgba(46, 90, 39, 0.1);
+  }
+  
+  @media (max-width: 768px) {
     display: block;
   }
 `;
@@ -268,7 +288,7 @@ const Navigation = () => {
   return (
     <NavBar className={isScrolled ? 'scrolled' : ''}>
       <NavContainer>
-                  <Logo>Heritage Juices Co.</Logo>
+        <Logo>Heritage Juices</Logo>
         
         <NavList>
           <NavItem>
@@ -282,7 +302,7 @@ const Navigation = () => {
               <form onSubmit={handleSearch}>
                 <SearchInput
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Search juices..."
                   value={searchQuery}
                   onChange={handleSearchChange}
                   aria-label="Search for juices"

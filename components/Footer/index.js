@@ -28,31 +28,33 @@ const YouTubeIcon = () => (
 
 // Styled Components
 const FooterContainer = styled.footer`
-  background: ${({ theme }) => theme.colors.gradients.primary};
-  color: ${({ theme }) => theme.colors.textWhite};
-  padding: ${({ theme }) => theme.spacing.xxxl} 0 ${({ theme }) => theme.spacing.xl};
+  background: #2E5A27;
+  color: #ffffff;
+  padding: 4rem 0 2rem;
   margin-top: auto;
 `;
 
 const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 ${({ theme }) => theme.spacing.md};
+  padding: 0 2rem;
 `;
 
 const FooterGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: ${({ theme }) => theme.spacing.xxl};
-  margin-bottom: ${({ theme }) => theme.spacing.xxl};
+  gap: 3rem;
+  margin-bottom: 3rem;
 `;
 
 const FooterSection = styled.div`
   h3 {
-    font-size: ${({ theme }) => theme.typography.h5};
-    font-weight: ${({ theme }) => theme.typography.semibold};
-    margin-bottom: ${({ theme }) => theme.spacing.lg};
-    color: ${({ theme }) => theme.colors.accent};
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #F5E6D3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
   
   ul {
@@ -62,101 +64,120 @@ const FooterSection = styled.div`
   }
   
   li {
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
+    margin-bottom: 0.8rem;
   }
   
   a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
-    transition: ${({ theme }) => theme.transitions.fast};
-    font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
     
     &:hover {
-      color: ${({ theme }) => theme.colors.accent};
+      color: #F5E6D3;
+      transform: translateX(5px);
     }
   }
   
   p {
     color: rgba(255, 255, 255, 0.8);
-    font-size: ${({ theme }) => theme.typography.fontSizeSmall};
+    font-size: 0.9rem;
     line-height: 1.6;
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
+    margin-bottom: 0.8rem;
+    font-weight: 400;
   }
 `;
 
 const CompanyInfo = styled.div`
   text-align: center;
-  padding-top: ${({ theme }) => theme.spacing.xl};
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+  border-top: 2px solid rgba(245, 230, 211, 0.2);
   
   h2 {
-    font-family: ${({ theme }) => theme.typography.display};
-    font-size: ${({ theme }) => theme.typography.h4};
-    font-weight: ${({ theme }) => theme.typography.bold};
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
-    color: ${({ theme }) => theme.colors.textWhite};
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
   }
   
   p {
     color: rgba(255, 255, 255, 0.7);
-    font-size: ${({ theme }) => theme.typography.fontSizeSmall};
-    margin-bottom: ${({ theme }) => theme.spacing.md};
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
   }
 `;
 
 const SocialLinks = styled.div`
   display: flex;
   justify-content: center;
-  gap: ${({ theme }) => theme.spacing.md};
-  margin-bottom: ${({ theme }) => theme.spacing.lg};
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const SocialLink = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  color: ${({ theme }) => theme.colors.textWhite};
+  border-radius: 50%;
+  color: #ffffff;
   text-decoration: none;
-  transition: ${({ theme }) => theme.transitions.fast};
+  transition: all 0.3s ease;
   
   &:hover {
-    background: ${({ theme }) => theme.colors.accent};
-    transform: translateY(-2px);
-    color: white;
+    background: #F5E6D3;
+    color: #2E5A27;
+    transform: translateY(-3px);
   }
   
   &:focus {
-    outline: 3px solid ${({ theme }) => theme.colors.accent};
+    outline: 3px solid #F5E6D3;
     outline-offset: 2px;
-    background: ${({ theme }) => theme.colors.accent};
-    color: white;
+    background: #F5E6D3;
+    color: #2E5A27;
   }
 `;
 
 const Copyright = styled.div`
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
-  font-size: ${({ theme }) => theme.typography.fontSizeSmall};
-  padding-top: ${({ theme }) => theme.spacing.lg};
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.8rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245, 230, 211, 0.2);
+  font-weight: 400;
+  
+  a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    margin-left: 0.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: #F5E6D3;
+    }
+  }
 `;
 
 const ContactInfo = styled.div`
   p {
     display: flex;
     align-items: center;
-    gap: ${({ theme }) => theme.spacing.sm};
-    margin-bottom: ${({ theme }) => theme.spacing.sm};
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
     
     &::before {
       content: '';
-      width: 4px;
-      height: 4px;
-      background: ${({ theme }) => theme.colors.accent};
+      width: 6px;
+      height: 6px;
+      background: #F5E6D3;
       border-radius: 50%;
     }
   }
@@ -171,15 +192,15 @@ const Footer = () => {
         <FooterGrid>
           {/* Company Info */}
           <FooterSection>
-            <h3>Heritage Juices Co.</h3>
+            <h3>Heritage Juices</h3>
             <p>
               Crafting premium, organic juices with traditional methods and 
               the finest natural ingredients. Every sip tells a story of heritage and quality.
             </p>
             <ContactInfo>
-                                    <p>123 Heritage Lane, Organic City</p>
-                      <p>(555) 123-4567</p>
-                      <p>hello@heritagejuices.com</p>
+              <p>123 Heritage Lane, Organic City</p>
+              <p>(555) 123-4567</p>
+              <p>hello@heritagejuices.com</p>
             </ContactInfo>
           </FooterSection>
 
@@ -222,7 +243,7 @@ const Footer = () => {
 
         {/* Company Branding */}
         <CompanyInfo>
-                              <h2>Heritage Juices Co.</h2>
+          <h2>Heritage Juices</h2>
           <p>Preserving tradition, delivering freshness</p>
           
           <SocialLinks>
@@ -243,9 +264,9 @@ const Footer = () => {
 
         {/* Copyright */}
         <Copyright>
-          <p>&copy; {currentYear} Heritage Juices Co. All rights reserved. | 
-             <a href="/privacy" style={{ marginLeft: '8px', color: 'rgba(255, 255, 255, 0.6)' }}>Privacy Policy</a> | 
-             <a href="/terms" style={{ marginLeft: '8px', color: 'rgba(255, 255, 255, 0.6)' }}>Terms of Service</a>
+          <p>&copy; {currentYear} Heritage Juices. All rights reserved.
+             <a href="/privacy">Privacy Policy</a>
+             <a href="/terms">Terms of Service</a>
           </p>
         </Copyright>
       </FooterContent>
