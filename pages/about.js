@@ -63,7 +63,7 @@ const About = () => {
         <SectionTitle>Our Values</SectionTitle>
         <ValuesGrid>
           <ValueCard>
-            <ValueIcon>🌱</ValueIcon>
+            <ValueIcon>Organic</ValueIcon>
             <ValueTitle>Organic & Natural</ValueTitle>
             <ValueDescription>
               We source only the finest organic fruits and vegetables, ensuring every ingredient 
@@ -72,7 +72,7 @@ const About = () => {
           </ValueCard>
           
           <ValueCard>
-            <ValueIcon>💚</ValueIcon>
+            <ValueIcon>Health</ValueIcon>
             <ValueTitle>Health First</ValueTitle>
             <ValueDescription>
               Your health is our priority. We create juices that not only taste amazing but also 
@@ -81,7 +81,7 @@ const About = () => {
           </ValueCard>
           
           <ValueCard>
-            <ValueIcon>🌍</ValueIcon>
+            <ValueIcon>Environment</ValueIcon>
             <ValueTitle>Environmental Care</ValueTitle>
             <ValueDescription>
               We're committed to protecting our planet through eco-friendly packaging, 
@@ -90,7 +90,7 @@ const About = () => {
           </ValueCard>
           
           <ValueCard>
-            <ValueIcon>🤝</ValueIcon>
+            <ValueIcon>Community</ValueIcon>
             <ValueTitle>Community Support</ValueTitle>
             <ValueDescription>
               We believe in giving back to our community by supporting local farmers, 

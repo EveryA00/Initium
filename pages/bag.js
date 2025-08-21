@@ -64,7 +64,7 @@ const Bag = () => {
       <Title>Shopping Bag</Title>
       
       {cart.length === 0 ? (
-        <EmptyBag>Your bag is empty 🍋 (Fixed!)</EmptyBag>
+        <EmptyBag>Your bag is empty</EmptyBag>
       ) : (
         <Content>
           <ItemsContainer>

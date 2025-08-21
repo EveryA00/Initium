@@ -151,9 +151,9 @@ const Footer = () => {
               the finest natural ingredients. Every sip tells a story of heritage and quality.
             </p>
             <ContactInfo>
-              <p>📍 123 Heritage Lane, Organic City</p>
-              <p>📞 (555) 123-4567</p>
-              <p>✉️ hello@heritagejuices.com</p>
+                                    <p>123 Heritage Lane, Organic City</p>
+                      <p>(555) 123-4567</p>
+                      <p>hello@heritagejuices.com</p>
             </ContactInfo>
           </FooterSection>
 
@@ -196,21 +196,21 @@ const Footer = () => {
 
         {/* Company Branding */}
         <CompanyInfo>
-          <h2>🍹 Heritage Juices Co.</h2>
+                              <h2>Heritage Juices Co.</h2>
           <p>Preserving tradition, delivering freshness</p>
           
           <SocialLinks>
             <SocialLink href="#" aria-label="Visit our Facebook page">
-              📘
+              Facebook
             </SocialLink>
             <SocialLink href="#" aria-label="Follow us on Instagram">
-              📷
+              Instagram
             </SocialLink>
             <SocialLink href="#" aria-label="Follow us on Twitter">
-              🐦
+              Twitter
             </SocialLink>
             <SocialLink href="#" aria-label="Watch our videos on YouTube">
-              📺
+              YouTube
             </SocialLink>
           </SocialLinks>
         </CompanyInfo>
