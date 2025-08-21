@@ -29,7 +29,7 @@ const pulse = keyframes`
 // Styled Components
 const HomeContainer = styled.div`
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(46, 90, 39, 0.8) 0%, rgba(245, 230, 211, 0.9) 100%);
   position: relative;
   overflow: hidden;
   padding-top: 80px; /* Add space for fixed navigation */
@@ -41,7 +41,7 @@ const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : 'linear-gradient(135deg, rgba(93, 64, 55, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%)'};
+  background-image: ${({ imageUrl }) => imageUrl ? `url(${imageUrl})` : 'linear-gradient(135deg, rgba(46, 90, 39, 0.8) 0%, rgba(245, 230, 211, 0.9) 100%)'};
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -55,7 +55,7 @@ const BackgroundOverlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(93, 64, 55, 0.7) 0%, rgba(255, 255, 255, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(46, 90, 39, 0.7) 0%, rgba(245, 230, 211, 0.8) 100%);
   z-index: 2;
 `;
 
