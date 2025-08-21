@@ -13,9 +13,6 @@ const MyApp = ({ Component, pageProps }) => {
       <GlobalStyle />
       <AppProvider>
         <ProductsProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
           <Navigation />
           <main id="main-content">
             <Component {...pageProps} />
