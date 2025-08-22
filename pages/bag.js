@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
 // Version: 2.0 - Fixed price.replace issue
 import { Container,
   Title,
@@ -22,6 +23,7 @@ import { Container,
 import { ProductsContext } from '../context/ProductsContext.js';
 
 const Bag = () => {
+  const router = useRouter();
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(ProductsContext);
   
   // Debug logging to see what's in the cart
@@ -48,6 +50,10 @@ const Bag = () => {
 
   const handleRemoveItem = (itemId) => {
     removeFromCart(itemId);
+  };
+
+  const handleCheckout = () => {
+    router.push('/checkout');
   };
 
   return (
@@ -94,7 +100,7 @@ const Bag = () => {
           <Summary>
             <SummaryTitle>Summary</SummaryTitle>
             <Total>Total: ${total.toFixed(2)}</Total>
-            <CheckoutButton>Checkout</CheckoutButton>
+            <CheckoutButton onClick={handleCheckout}>Checkout</CheckoutButton>
             <ClearAllButton onClick={clearCart}>
               Clear All Items
             </ClearAllButton>
