@@ -25,7 +25,8 @@ const Bag = () => {
   const { cart, removeFromCart, updateQuantity, clearCart } = useContext(ProductsContext);
   
   // Debug logging to see what's in the cart
-  console.log('Cart items:', cart);
+  console.log('Bag page - Cart items:', cart);
+  console.log('Bag page - Cart length:', cart?.length);
   
   // Fixed price calculation - ensure price is treated as number
   const total = cart?.reduce((sum, item) => {
@@ -54,7 +55,7 @@ const Bag = () => {
       <Title>Shopping Bag</Title>
       
       {cart.length === 0 ? (
-        <EmptyBag>Your bag is empty 🍋 (Fixed!)</EmptyBag>
+        <EmptyBag>Your bag is empty</EmptyBag>
       ) : (
         <Content>
           <ItemsContainer>

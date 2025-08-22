@@ -23,6 +23,16 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #__next {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   /* Typography */
@@ -75,6 +85,11 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Buttons */
   button {
     font-family: inherit;
@@ -99,8 +114,36 @@ const GlobalStyle = createGlobalStyle`
 
   /* Focus states */
   *:focus {
-    outline: 2px solid ${({ theme }) => theme.colors.primary};
+    outline: 3px solid ${({ theme }) => theme.colors.accent};
     outline-offset: 2px;
+  }
+  
+  /* Skip to main content link for screen readers */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.textWhite};
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 10000;
+  }
+  
+  .skip-link:focus {
+    top: 6px;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   /* Selection */

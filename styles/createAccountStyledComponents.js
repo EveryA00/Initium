@@ -7,6 +7,7 @@ export const Container = styled.div`
   min-height: 100vh;
   background: linear-gradient(135deg, ${({ theme }) => theme.colors.background} 0%, ${({ theme }) => theme.colors.borderLight} 100%);
   padding: ${({ theme }) => theme.spacing.xl};
+  padding-top: calc(80px + ${({ theme }) => theme.spacing.xl}); /* Add space for fixed navigation */
 `;
 
 export const FormWrapper = styled.div`

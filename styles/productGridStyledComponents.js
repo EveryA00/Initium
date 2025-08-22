@@ -27,6 +27,7 @@ export const FilterContainer = styled.div`
   box-shadow: ${({ theme }) => theme.shadows.md};
   padding: ${({ theme }) => theme.spacing.xl};
   margin: ${({ theme }) => theme.spacing.xl} auto;
+  margin-top: calc(80px + ${({ theme }) => theme.spacing.xl}); /* Add space for fixed navigation */
   max-width: 1200px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -36,6 +37,7 @@ export const FilterContainer = styled.div`
     grid-template-columns: 1fr;
     padding: ${({ theme }) => theme.spacing.lg};
     margin: ${({ theme }) => theme.spacing.lg} auto;
+    margin-top: calc(80px + ${({ theme }) => theme.spacing.lg}); /* Add space for fixed navigation */
   }
 `;
 

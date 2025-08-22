@@ -8,6 +8,30 @@ export const ProductsProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);  // Loading state
   const [error, setError] = useState(null); // Error state
 
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('heritage-juices-cart');
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        setCart(parsedCart);
+        console.log('Loaded cart from localStorage:', parsedCart);
+      }
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('heritage-juices-cart', JSON.stringify(cart));
+      console.log('Saved cart to localStorage:', cart);
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error);
+    }
+  }, [cart]);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -35,16 +59,28 @@ export const ProductsProvider = ({ children }) => {
   }, []);
 
   const addToCart = (product) => {
+    console.log('Adding to cart:', product);
     setCart(prev => {
+      console.log('Previous cart state:', prev);
       const existing = prev.find(item => item.id === product.id);
       if (existing) {
-        return prev.map(item =>
+        const updatedCart = prev.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
+        console.log('Updated existing item in cart:', updatedCart);
+        return updatedCart;
       }
-      return [...prev, { ...product, quantity: 1 }];
+      // Ensure price is always a number
+      const normalizedProduct = {
+        ...product,
+        price: typeof product.price === 'number' ? product.price : parseFloat(product.price || 0),
+        quantity: 1
+      };
+      const newCart = [...prev, normalizedProduct];
+      console.log('Added new item to cart:', newCart);
+      return newCart;
     });
   };
 
@@ -56,7 +92,12 @@ export const ProductsProvider = ({ children }) => {
     setCart(prev => 
       prev.map(item =>
         item.id === product.id
-          ? { ...item, quantity: newQuantity }
+          ? { 
+              ...item, 
+              quantity: newQuantity,
+              // Ensure price is always a number
+              price: typeof item.price === 'number' ? item.price : parseFloat(item.price || 0)
+            }
           : item
       )
     );

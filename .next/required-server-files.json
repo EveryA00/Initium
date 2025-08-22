@@ -2,6 +2,7 @@
   "version": 1,
   "config": {
     "env": {},
+    "webpack": null,
     "eslint": {
       "ignoreDuringBuilds": false
     },
@@ -13,14 +14,12 @@
     "cleanDistDir": true,
     "assetPrefix": "",
     "cacheMaxMemorySize": 52428800,
-    "configOrigin": "next.config.mjs",
+    "configOrigin": "next.config.js",
     "useFileSystemPublicRoutes": true,
     "generateEtags": true,
     "pageExtensions": [
-      "tsx",
-      "ts",
-      "jsx",
-      "js"
+      "js",
+      "jsx"
     ],
     "poweredByHeader": true,
     "compress": true,
@@ -58,7 +57,7 @@
       "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;",
       "contentDispositionType": "attachment",
       "remotePatterns": [],
-      "unoptimized": false
+      "unoptimized": true
     },
     "devIndicators": {
       "position": "bottom-left"
@@ -96,7 +95,7 @@
         "transform": "lodash/{{member}}"
       }
     },
-    "outputFileTracingRoot": "/Users/austinevery/Documents/GitHub/Initium/MyApp",
+    "outputFileTracingRoot": "",
     "experimental": {
       "useSkewCookie": false,
       "nodeMiddleware": false,
@@ -285,17 +284,7 @@
     },
     "htmlLimitedBots": "Mediapartners-Google|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti",
     "bundlePagesRouterDependencies": false,
-    "configFileName": "next.config.mjs",
-    "turbopack": {
-      "root": "/Users/austinevery/Documents/GitHub/Initium/MyApp"
-    },
-    "_originalRedirects": [
-      {
-        "source": "/products",
-        "destination": "/api/products",
-        "permanent": false
-      }
-    ]
+    "configFileName": "next.config.js"
   },
   "appDir": "/Users/austinevery/Documents/GitHub/Initium/MyApp",
   "relativeAppDir": "",

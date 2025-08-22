@@ -170,7 +170,7 @@ const Contact = () => {
           
           <InfoList>
             <InfoItem>
-              <InfoIcon>📞</InfoIcon>
+              <InfoIcon>Phone</InfoIcon>
               <InfoContent>
                 <InfoLabel>Phone</InfoLabel>
                 <InfoValue>(555) 123-4567</InfoValue>
@@ -178,7 +178,7 @@ const Contact = () => {
             </InfoItem>
             
             <InfoItem>
-              <InfoIcon>📧</InfoIcon>
+              <InfoIcon>Email</InfoIcon>
               <InfoContent>
                 <InfoLabel>Email</InfoLabel>
                 <InfoValue>hello@freshjuice.com</InfoValue>
@@ -186,7 +186,7 @@ const Contact = () => {
             </InfoItem>
             
             <InfoItem>
-              <InfoIcon>📍</InfoIcon>
+              <InfoIcon>Address</InfoIcon>
               <InfoContent>
                 <InfoLabel>Address</InfoLabel>
                 <InfoValue>
@@ -198,7 +198,7 @@ const Contact = () => {
             </InfoItem>
             
             <InfoItem>
-              <InfoIcon>🏢</InfoIcon>
+              <InfoIcon>Hours</InfoIcon>
               <InfoContent>
                 <InfoLabel>Business Hours</InfoLabel>
                 <InfoValue>
@@ -210,7 +210,7 @@ const Contact = () => {
             </InfoItem>
             
             <InfoItem>
-              <InfoIcon>🚚</InfoIcon>
+              <InfoIcon>Delivery</InfoIcon>
               <InfoContent>
                 <InfoLabel>Delivery</InfoLabel>
                 <InfoValue>
@@ -222,7 +222,7 @@ const Contact = () => {
             </InfoItem>
             
             <InfoItem>
-              <InfoIcon>💬</InfoIcon>
+              <InfoIcon>Support</InfoIcon>
               <InfoContent>
                 <InfoLabel>Customer Support</InfoLabel>
                 <InfoValue>
@@ -241,7 +241,7 @@ const Contact = () => {
         <MapTitle>Visit Our Location</MapTitle>
         <MapContainer>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🗺️</div>
+            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>Map</div>
             <p>Interactive map coming soon!</p>
             <p style={{ marginTop: '1rem', opacity: 0.8 }}>
               123 Fresh Street, Organic District<br />
