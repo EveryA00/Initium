@@ -14,7 +14,7 @@ const MyApp = ({ Component, pageProps }) => {
       <AppProvider>
         <ProductsProvider>
           <Navigation />
-          <main id="main-content">
+          <main id="main-content-update">
             <Component {...pageProps} />
           </main>
           <Footer />
