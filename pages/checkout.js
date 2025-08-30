@@ -1,5 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useRouter } from 'next/router';
+import { Elements } from '@stripe/react-stripe-js';
+import stripePromise from '../lib/stripe';
+import StripePaymentForm from '../components/StripePaymentForm';
 import {
   Container,
   Title,
@@ -49,13 +52,6 @@ const Checkout = () => {
     zipCode: '',
     country: 'United States',
     
-    // Payment Information
-    cardNumber: '',
-    cardName: '',
-    expiryMonth: '',
-    expiryYear: '',
-    cvv: '',
-    
     // Additional Information
     specialInstructions: ''
   });
@@ -99,8 +95,7 @@ const Checkout = () => {
     // Required fields validation
     const requiredFields = [
       'firstName', 'lastName', 'email', 'phone', 
-      'address', 'city', 'state', 'zipCode',
-      'cardNumber', 'cardName', 'expiryMonth', 'expiryYear', 'cvv'
+      'address', 'city', 'state', 'zipCode'
     ];
     
     requiredFields.forEach(field => {
@@ -119,15 +114,7 @@ const Checkout = () => {
       newErrors.phone = 'Please enter a valid phone number';
     }
     
-    // Card number validation (basic)
-    if (formData.cardNumber && formData.cardNumber.replace(/\s/g, '').length < 13) {
-      newErrors.cardNumber = 'Please enter a valid card number';
-    }
-    
-    // CVV validation
-    if (formData.cvv && formData.cvv.length < 3) {
-      newErrors.cvv = 'CVV must be at least 3 digits';
-    }
+
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -344,84 +331,24 @@ const Checkout = () => {
           {/* Payment Information */}
           <Section>
             <SectionTitle>Payment Information</SectionTitle>
-            <FormGrid>
-              <FormGroup style={{ gridColumn: '1 / -1' }}>
-                <Label htmlFor="cardNumber">Card Number *</Label>
-                <Input
-                  type="text"
-                  id="cardNumber"
-                  name="cardNumber"
-                  value={formData.cardNumber}
-                  onChange={handleInputChange}
-                  placeholder="1234 5678 9012 3456"
-                  maxLength="19"
-                />
-                {errors.cardNumber && <ErrorMessage>{errors.cardNumber}</ErrorMessage>}
-              </FormGroup>
-              
-              <FormGroup style={{ gridColumn: '1 / -1' }}>
-                <Label htmlFor="cardName">Name on Card *</Label>
-                <Input
-                  type="text"
-                  id="cardName"
-                  name="cardName"
-                  value={formData.cardName}
-                  onChange={handleInputChange}
-                  placeholder="Enter the name on your card"
-                />
-                {errors.cardName && <ErrorMessage>{errors.cardName}</ErrorMessage>}
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="expiryMonth">Expiry Month *</Label>
-                <Select
-                  id="expiryMonth"
-                  name="expiryMonth"
-                  value={formData.expiryMonth}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Month</option>
-                  {Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
-                    <option key={month} value={month.toString().padStart(2, '0')}>
-                      {month.toString().padStart(2, '0')}
-                    </option>
-                  ))}
-                </Select>
-                {errors.expiryMonth && <ErrorMessage>{errors.expiryMonth}</ErrorMessage>}
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="expiryYear">Expiry Year *</Label>
-                <Select
-                  id="expiryYear"
-                  name="expiryYear"
-                  value={formData.expiryYear}
-                  onChange={handleInputChange}
-                >
-                  <option value="">Select Year</option>
-                  {Array.from({ length: 10 }, (_, i) => new Date().getFullYear() + i).map(year => (
-                    <option key={year} value={year}>
-                      {year}
-                    </option>
-                  ))}
-                </Select>
-                {errors.expiryYear && <ErrorMessage>{errors.expiryYear}</ErrorMessage>}
-              </FormGroup>
-              
-              <FormGroup>
-                <Label htmlFor="cvv">CVV *</Label>
-                <Input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  value={formData.cvv}
-                  onChange={handleInputChange}
-                  placeholder="123"
-                  maxLength="4"
-                />
-                {errors.cvv && <ErrorMessage>{errors.cvv}</ErrorMessage>}
-              </FormGroup>
-            </FormGrid>
+            <Elements stripe={stripePromise}>
+              <StripePaymentForm
+                amount={Math.round(total * 100)} // Convert to cents
+                onPaymentSuccess={(result) => {
+                  console.log('Payment successful:', result);
+                  setOrderSuccess(true);
+                  clearCart();
+                  setTimeout(() => {
+                    router.push('/');
+                  }, 3000);
+                }}
+                onPaymentError={(error) => {
+                  console.error('Payment error:', error);
+                  setErrors({ general: error.message || 'Payment failed. Please try again.' });
+                }}
+                isProcessing={isSubmitting}
+              />
+            </Elements>
           </Section>
           
           {/* Additional Information */}
