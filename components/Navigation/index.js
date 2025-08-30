@@ -314,10 +314,10 @@ const Navigation = () => {
             </SearchContainer>
           </NavItem>
           <NavItem>
-            <CartLink href="/bag">
+            <CartLink href="/checkout">
               <CartWrapper>
                 <Icon />
-                <Label>Bag</Label>
+                <Label>Checkout</Label>
                 {itemCount > 0 && <ItemCount>{itemCount}</ItemCount>}
               </CartWrapper>
             </CartLink>

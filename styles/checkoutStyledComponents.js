@@ -230,7 +230,7 @@ export const PriceRow = styled.div`
   align-items: center;
   padding: ${({ theme }) => theme.spacing.sm} 0;
   
-  ${({ isTotal }) => isTotal && `
+  ${({ $isTotal }) => $isTotal && `
     border-top: 2px solid ${({ theme }) => theme.colors.border};
     padding-top: ${({ theme }) => theme.spacing.md};
     font-weight: ${({ theme }) => theme.typography.bold};
@@ -300,7 +300,7 @@ export const PlaceOrderButton = styled.button`
   }
 `;
 
-export const BackToBagButton = styled.button`
+export const BackToShopButton = styled.button`
   width: 100%;
   padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.xl};
   font-size: ${({ theme }) => theme.typography.fontSize};

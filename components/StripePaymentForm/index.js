@@ -55,17 +55,23 @@ const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcess
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('Pay button clicked!');
+    console.log('Stripe object:', stripe);
+    console.log('Elements object:', elements);
 
     if (!stripe || !elements) {
+      console.log('Stripe or Elements not loaded');
       return;
     }
 
     // Validate form if validation function is provided
     if (validateForm && !validateForm()) {
+      console.log('Form validation failed');
       setError('Please fill in all required fields correctly.');
       return;
     }
 
+    console.log('Starting payment process...');
     setError(null);
     setSuccess(false);
 
@@ -111,33 +117,32 @@ const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcess
 
   return (
     <PaymentFormContainer>
-      <form onSubmit={handleSubmit}>
-        <CardElementContainer>
-          <CardElement options={cardElementOptions} />
-        </CardElementContainer>
-        
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-        {success && <SuccessMessage>Payment successful!</SuccessMessage>}
-        
-        <button
-          type="submit"
-          disabled={!stripe || isProcessing}
-          style={{
-            width: '100%',
-            padding: '12px 24px',
-            backgroundColor: '#2E5A27',
-            color: 'white',
-            border: 'none',
-            borderRadius: '8px',
-            fontSize: '16px',
-            fontWeight: '600',
-            cursor: isProcessing ? 'not-allowed' : 'pointer',
-            opacity: isProcessing ? 0.6 : 1,
-          }}
-        >
-          {isProcessing ? 'Processing...' : `Pay $${(amount / 100).toFixed(2)}`}
-        </button>
-      </form>
+      <CardElementContainer>
+        <CardElement options={cardElementOptions} />
+      </CardElementContainer>
+      
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {success && <SuccessMessage>Payment successful!</SuccessMessage>}
+      
+      <button
+        type="button"
+        disabled={!stripe || isProcessing}
+        onClick={handleSubmit}
+        style={{
+          width: '100%',
+          padding: '12px 24px',
+          backgroundColor: '#2E5A27',
+          color: 'white',
+          border: 'none',
+          borderRadius: '8px',
+          fontSize: '16px',
+          fontWeight: '600',
+          cursor: isProcessing ? 'not-allowed' : 'pointer',
+          opacity: isProcessing ? 0.6 : 1,
+        }}
+      >
+        {isProcessing ? 'Processing...' : `Pay $${(amount / 100).toFixed(2)}`}
+      </button>
     </PaymentFormContainer>
   );
 };

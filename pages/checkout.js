@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Elements } from '@stripe/react-stripe-js';
 import stripePromise from '../lib/stripe';
@@ -29,15 +29,16 @@ import {
   PriceLabel,
   PriceValue,
   PlaceOrderButton,
-  BackToBagButton,
   ErrorMessage,
   SuccessMessage
 } from '../styles/checkoutStyledComponents.js';
 import { ProductsContext } from '../context/ProductsContext.js';
+import { useAppContext } from '../context/context.js';
 
 const Checkout = () => {
   const router = useRouter();
   const { cart, clearCart } = useContext(ProductsContext);
+  const { user, isLoggedIn } = useAppContext();
   
   // Form state
   const [formData, setFormData] = useState({
@@ -55,6 +56,25 @@ const Checkout = () => {
     // Additional Information
     specialInstructions: ''
   });
+  
+  // Auto-populate form with user data when signed in
+  useEffect(() => {
+    if (isLoggedIn && user) {
+      // Split full name into first and last name
+      const nameParts = (user.name || '').split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+      
+      setFormData(prev => ({
+        ...prev,
+        firstName: firstName,
+        lastName: lastName,
+        email: user.email || '',
+        phone: user.phone || '',
+        address: user.address || ''
+      }));
+    }
+  }, [isLoggedIn, user]);
   
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -120,7 +140,7 @@ const Checkout = () => {
   };
   
   // Handle form submission - this will be called by Stripe after successful payment
-  const handleOrderSuccess = (paymentResult) => {
+  const handleOrderSuccess = async (paymentResult) => {
     // Store order details for confirmation page
     const orderDetails = {
       orderId: paymentResult.paymentIntentId,
@@ -134,14 +154,35 @@ const Checkout = () => {
     
     localStorage.setItem('lastOrder', JSON.stringify(orderDetails));
     
+    // Save shipping information to user profile if signed in
+    if (isLoggedIn && user) {
+      try {
+        await fetch('/api/auth/profile', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: `${formData.firstName} ${formData.lastName}`.trim(),
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address
+          }),
+        });
+      } catch (error) {
+        console.log('Could not save profile information:', error);
+        // Don't block the order completion if profile save fails
+      }
+    }
+    
     // Clear cart and redirect to confirmation
     clearCart();
     router.push('/order-confirmation');
   };
   
-  // Handle back to bag
-  const handleBackToBag = () => {
-    router.push('/bag');
+  // Handle back to shop
+  const handleBackToShop = () => {
+    router.push('/productGrid');
   };
   
   // If cart is empty, redirect to bag
@@ -151,9 +192,9 @@ const Checkout = () => {
         <Title>Checkout</Title>
         <div style={{ textAlign: 'center', padding: '2rem' }}>
           <p>Your cart is empty. Please add some items before checkout.</p>
-          <BackToBagButton onClick={() => router.push('/bag')}>
-            Back to Shopping Bag
-          </BackToBagButton>
+          <BackToShopButton onClick={() => router.push('/productGrid')}>
+            Back to Shop
+          </BackToShopButton>
         </div>
       </Container>
     );
@@ -163,13 +204,63 @@ const Checkout = () => {
   
   return (
     <Container>
-      <Title>Checkout</Title>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <Title>Checkout</Title>
+        <button
+          onClick={handleBackToShop}
+          style={{
+            background: 'transparent',
+            border: '1px solid #d1d5db',
+            color: '#6b7280',
+            padding: '0.5rem 1rem',
+            borderRadius: '8px',
+            cursor: 'pointer',
+            fontSize: '0.9rem',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#f3f4f6';
+            e.target.style.color = '#374151';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'transparent';
+            e.target.style.color = '#6b7280';
+          }}
+        >
+          ← Back to Shop
+        </button>
+      </div>
       
       <Content>
         <CheckoutForm>
           {/* Shipping Information */}
           <Section>
-            <SectionTitle>Shipping Information</SectionTitle>
+            <SectionTitle>
+              Shipping Information
+              {isLoggedIn && (
+                <span style={{ 
+                  fontSize: '0.9rem', 
+                  fontWeight: 'normal', 
+                  color: '#10b981',
+                  marginLeft: '0.5rem'
+                }}>
+                  ✓ Auto-filled from your account
+                </span>
+              )}
+            </SectionTitle>
+            {!isLoggedIn && (
+              <div style={{ 
+                background: '#f0f9ff', 
+                border: '1px solid #0ea5e9', 
+                borderRadius: '8px', 
+                padding: '0.75rem', 
+                marginBottom: '1rem',
+                fontSize: '0.9rem',
+                color: '#0369a1'
+              }}>
+                💡 <strong>Sign in</strong> to auto-fill your shipping information and save time on future orders!
+              </div>
+            )}
             <FormGrid>
               <FormGroup>
                 <Label htmlFor="firstName">First Name *</Label>
@@ -292,22 +383,7 @@ const Checkout = () => {
             </FormGrid>
           </Section>
           
-          {/* Payment Information */}
-          <Section>
-            <SectionTitle>Payment Information</SectionTitle>
-            <Elements stripe={stripePromise}>
-              <StripePaymentForm
-                amount={Math.round(total * 100)} // Convert to cents
-                onPaymentSuccess={handleOrderSuccess}
-                onPaymentError={(error) => {
-                  console.error('Payment error:', error);
-                  setErrors({ general: error.message || 'Payment failed. Please try again.' });
-                }}
-                isProcessing={isSubmitting}
-                validateForm={validateForm}
-              />
-            </Elements>
-          </Section>
+
           
           {/* Additional Information */}
           <Section>
@@ -324,11 +400,7 @@ const Checkout = () => {
             </FormGroup>
           </Section>
           
-          {errors.general && (
-            <ErrorMessage style={{ textAlign: 'center', fontSize: '1rem' }}>
-              {errors.general}
-            </ErrorMessage>
-          )}
+
         </CheckoutForm>
         
         {/* Order Summary */}
@@ -362,21 +434,34 @@ const Checkout = () => {
               <PriceLabel>Tax</PriceLabel>
               <PriceValue>${tax.toFixed(2)}</PriceValue>
             </PriceRow>
-            <PriceRow isTotal>
+            <PriceRow $isTotal>
               <PriceLabel>Total</PriceLabel>
               <PriceValue>${total.toFixed(2)}</PriceValue>
             </PriceRow>
           </PriceBreakdown>
           
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <p style={{ color: '#6b7280', fontSize: '0.9rem' }}>
-              Complete your payment above to place your order
-            </p>
+          {/* Payment Information */}
+          <div style={{ marginTop: '2rem', borderTop: '1px solid #e5e7eb', paddingTop: '2rem' }}>
+            <SectionTitle style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>Payment Information</SectionTitle>
+            <Elements stripe={stripePromise}>
+              <StripePaymentForm
+                amount={Math.round(total * 100)} // Convert to cents
+                onPaymentSuccess={handleOrderSuccess}
+                onPaymentError={(error) => {
+                  console.error('Payment error:', error);
+                  setErrors({ general: error.message || 'Payment failed. Please try again.' });
+                }}
+                isProcessing={isSubmitting}
+                validateForm={validateForm}
+              />
+            </Elements>
           </div>
           
-          <BackToBagButton onClick={handleBackToBag}>
-            Back to Shopping Bag
-          </BackToBagButton>
+          {errors.general && (
+            <ErrorMessage style={{ textAlign: 'center', fontSize: '1rem', marginTop: '1rem' }}>
+              {errors.general}
+            </ErrorMessage>
+          )}
         </OrderSummary>
       </Content>
     </Container>

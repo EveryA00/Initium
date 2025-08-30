@@ -1,4 +1,5 @@
 import React from "react";
+import { useRouter } from "next/router";
 import styled, { keyframes } from "styled-components";
 
 // Animations
@@ -119,7 +120,7 @@ const Price = styled.div`
 `;
 
 const Button = styled.button`
-  width: 100%;
+  flex: 1;
   background: ${({ theme }) => theme.colors.gradients.accent};
   color: ${({ theme }) => theme.colors.textWhite};
   border: none;
@@ -196,8 +197,14 @@ const Quantity = styled.span`
   text-align: center;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing.sm};
+  margin-top: ${({ theme }) => theme.spacing.md};
+`;
+
 const RemoveButton = styled.button`
-  width: 100%;
+  flex: 1;
   background: transparent;
   color: ${({ theme }) => theme.colors.error};
   border: 2px solid ${({ theme }) => theme.colors.error};
@@ -241,6 +248,7 @@ const ProductCard = ({
   removeFromCart,
   updateQuantity,
 }) => {
+  const router = useRouter();
   const isInCart = cart?.some((item) => item.id === product.id);
   const cartItem = cart?.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 1;
@@ -253,6 +261,15 @@ const ProductCard = ({
     if (quantity > 1) {
       updateQuantity(product, quantity - 1);
     }
+  };
+
+  const handleBuyNow = () => {
+    // Clear cart and add only this product
+    if (cart && cart.length > 0) {
+      cart.forEach(item => removeFromCart(item.id));
+    }
+    addToCart(product);
+    router.push('/checkout');
   };
 
   return (
@@ -284,20 +301,37 @@ const ProductCard = ({
                 +
               </QuantityButton>
             </QuantityControls>
-            <RemoveButton 
-              onClick={() => removeFromCart(product.id)}
-              aria-label={`Remove ${product?.name} from cart`}
-            >
-              Remove from Cart
-            </RemoveButton>
+            <ButtonContainer>
+              <Button 
+                onClick={() => router.push('/checkout')}
+                aria-label={`Checkout with ${product?.name}`}
+              >
+                Checkout Now
+              </Button>
+              <RemoveButton 
+                onClick={() => removeFromCart(product.id)}
+                aria-label={`Remove ${product?.name} from cart`}
+              >
+                Remove
+              </RemoveButton>
+            </ButtonContainer>
           </QuantityContainer>
         ) : (
-          <Button 
-            onClick={() => addToCart(product)}
-            aria-label={`Add ${product?.name} to cart`}
-          >
-            Add to Cart
-          </Button>
+          <ButtonContainer>
+            <Button 
+              onClick={() => addToCart(product)}
+              aria-label={`Add ${product?.name} to cart`}
+            >
+              Add to Cart
+            </Button>
+            <Button 
+              onClick={handleBuyNow}
+              aria-label={`Buy ${product?.name} now`}
+              style={{ backgroundColor: '#2E5A27' }}
+            >
+              Buy Now
+            </Button>
+          </ButtonContainer>
         )}
       </ProductInfo>
     </Card>

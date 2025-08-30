@@ -212,7 +212,7 @@ const Footer = () => {
               <li><a href="/productGrid">All Juices</a></li>
               <li><a href="/about">Our Story</a></li>
               <li><a href="/contact">Contact Us</a></li>
-              <li><a href="/bag">Shopping Bag</a></li>
+              <li><a href="/checkout">Checkout</a></li>
             </ul>
           </FooterSection>
 
