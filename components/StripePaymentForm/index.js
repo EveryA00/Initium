@@ -47,7 +47,7 @@ const cardElementOptions = {
   },
 };
 
-const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcessing }) => {
+const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcessing, validateForm }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -57,6 +57,12 @@ const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcess
     event.preventDefault();
 
     if (!stripe || !elements) {
+      return;
+    }
+
+    // Validate form if validation function is provided
+    if (validateForm && !validateForm()) {
+      setError('Please fill in all required fields correctly.');
       return;
     }
 

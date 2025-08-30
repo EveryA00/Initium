@@ -58,7 +58,6 @@ const Checkout = () => {
   
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [orderSuccess, setOrderSuccess] = useState(false);
   
   // Calculate totals
   const subtotal = cart?.reduce((sum, item) => {
@@ -120,46 +119,24 @@ const Checkout = () => {
     return Object.keys(newErrors).length === 0;
   };
   
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // Handle form submission - this will be called by Stripe after successful payment
+  const handleOrderSuccess = (paymentResult) => {
+    // Store order details for confirmation page
+    const orderDetails = {
+      orderId: paymentResult.paymentIntentId,
+      amount: total,
+      orderNumber: `ORD-${Date.now()}`,
+      date: new Date().toLocaleDateString(),
+      status: 'Paid',
+      customerInfo: formData,
+      items: cart
+    };
     
-    if (!validateForm()) {
-      return;
-    }
+    localStorage.setItem('lastOrder', JSON.stringify(orderDetails));
     
-    if (cart.length === 0) {
-      setErrors({ general: 'Your cart is empty' });
-      return;
-    }
-    
-    setIsSubmitting(true);
-    
-    try {
-      // Simulate order processing
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Here you would typically send the order to your backend
-      console.log('Order submitted:', {
-        customerInfo: formData,
-        items: cart,
-        total: total
-      });
-      
-      setOrderSuccess(true);
-      clearCart();
-      
-      // Redirect to success page after 3 seconds
-      setTimeout(() => {
-        router.push('/');
-      }, 3000);
-      
-    } catch (error) {
-      console.error('Order submission error:', error);
-      setErrors({ general: 'There was an error processing your order. Please try again.' });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Clear cart and redirect to confirmation
+    clearCart();
+    router.push('/order-confirmation');
   };
   
   // Handle back to bag
@@ -168,7 +145,7 @@ const Checkout = () => {
   };
   
   // If cart is empty, redirect to bag
-  if (cart.length === 0 && !orderSuccess) {
+  if (cart.length === 0) {
     return (
       <Container>
         <Title>Checkout</Title>
@@ -182,20 +159,7 @@ const Checkout = () => {
     );
   }
   
-  // Success message
-  if (orderSuccess) {
-    return (
-      <Container>
-        <Title>Order Confirmed!</Title>
-        <div style={{ textAlign: 'center', padding: '2rem' }}>
-          <SuccessMessage style={{ fontSize: '1.2rem', marginBottom: '1rem' }}>
-            Thank you for your order! You will receive a confirmation email shortly.
-          </SuccessMessage>
-          <p>Redirecting to home page...</p>
-        </div>
-      </Container>
-    );
-  }
+
   
   return (
     <Container>
@@ -334,19 +298,13 @@ const Checkout = () => {
             <Elements stripe={stripePromise}>
               <StripePaymentForm
                 amount={Math.round(total * 100)} // Convert to cents
-                onPaymentSuccess={(result) => {
-                  console.log('Payment successful:', result);
-                  setOrderSuccess(true);
-                  clearCart();
-                  setTimeout(() => {
-                    router.push('/');
-                  }, 3000);
-                }}
+                onPaymentSuccess={handleOrderSuccess}
                 onPaymentError={(error) => {
                   console.error('Payment error:', error);
                   setErrors({ general: error.message || 'Payment failed. Please try again.' });
                 }}
                 isProcessing={isSubmitting}
+                validateForm={validateForm}
               />
             </Elements>
           </Section>
@@ -410,13 +368,11 @@ const Checkout = () => {
             </PriceRow>
           </PriceBreakdown>
           
-          <PlaceOrderButton 
-            type="submit" 
-            onClick={handleSubmit}
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Processing...' : 'Place Order'}
-          </PlaceOrderButton>
+          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <p style={{ color: '#6b7280', fontSize: '0.9rem' }}>
+              Complete your payment above to place your order
+            </p>
+          </div>
           
           <BackToBagButton onClick={handleBackToBag}>
             Back to Shopping Bag
