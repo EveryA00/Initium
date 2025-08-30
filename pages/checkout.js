@@ -166,7 +166,7 @@ const Checkout = () => {
       <Title>Checkout</Title>
       
       <Content>
-        <CheckoutForm onSubmit={handleSubmit}>
+        <CheckoutForm>
           {/* Shipping Information */}
           <Section>
             <SectionTitle>Shipping Information</SectionTitle>
