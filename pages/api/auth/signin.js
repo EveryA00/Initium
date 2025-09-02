@@ -21,6 +21,12 @@ export default function handler(req, res) {
         id: 1,
         name: email.split('@')[0],
         email: email,
+        phone: '+1 (555) 123-4567',
+        address: '123 Main Street',
+        city: 'New York',
+        state: 'NY',
+        zipCode: '10001',
+        country: 'United States',
         role: 'user'
       };
 

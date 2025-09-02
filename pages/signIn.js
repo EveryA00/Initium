@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useAppContext } from "../context/context";
 import {
   SubmitButton,
   SuccessMessage,
@@ -13,6 +14,7 @@ import {
 } from "../styles/signInStyledComponents";
 
 const SignIn = () => {
+  const { login } = useAppContext();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -157,6 +159,9 @@ const SignIn = () => {
         if (data.data && data.data.token) {
           localStorage.setItem('token', data.data.token);
           localStorage.setItem('user', JSON.stringify(data.data.user));
+          
+          // Update authentication context
+          login(data.data.user);
         }
         
         // Reset form and redirect to home page after successful sign-in

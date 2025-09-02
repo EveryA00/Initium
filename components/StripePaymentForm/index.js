@@ -47,7 +47,7 @@ const cardElementOptions = {
   },
 };
 
-const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcessing, validateForm }) => {
+const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcessing, validateForm, customerInfo }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -97,6 +97,7 @@ const StripePaymentForm = ({ amount, onPaymentSuccess, onPaymentError, isProcess
         body: JSON.stringify({
           paymentMethodId: paymentMethod.id,
           amount: amount, // Amount in cents
+          customerInfo: customerInfo, // Send shipping information
         }),
       });
 

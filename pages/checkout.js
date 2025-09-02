@@ -59,20 +59,111 @@ const Checkout = () => {
   
   // Auto-populate form with user data when signed in
   useEffect(() => {
+    console.log('Auto-population effect triggered:', { isLoggedIn, user });
+    
     if (isLoggedIn && user) {
-      // Split full name into first and last name
-      const nameParts = (user.name || '').split(' ');
-      const firstName = nameParts[0] || '';
-      const lastName = nameParts.slice(1).join(' ') || '';
+      console.log('User data for auto-population:', user);
       
-      setFormData(prev => ({
-        ...prev,
-        firstName: firstName,
-        lastName: lastName,
-        email: user.email || '',
-        phone: user.phone || '',
-        address: user.address || ''
-      }));
+      // Get user data from localStorage (this contains the profile information)
+      const getUserProfileFromStorage = () => {
+        try {
+          const storedUser = localStorage.getItem('user');
+          if (storedUser) {
+            const profileUser = JSON.parse(storedUser);
+            console.log('User data from localStorage:', profileUser);
+            console.log('Profile user fields:', {
+              name: profileUser.name,
+              email: profileUser.email,
+              phone: profileUser.phone,
+              address: profileUser.address,
+              city: profileUser.city,
+              state: profileUser.state,
+              zipCode: profileUser.zipCode,
+              country: profileUser.country
+            });
+            
+            // Use profile data if available, otherwise use basic user data
+            const userData = profileUser || user;
+            
+            // Split full name into first and last name
+            const nameParts = (userData.name || '').split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+            
+            console.log('Parsed name parts:', { firstName, lastName });
+            
+            setFormData(prev => {
+              const newFormData = {
+                ...prev,
+                firstName: firstName,
+                lastName: lastName,
+                email: userData.email || '',
+                phone: userData.phone || '',
+                address: userData.address || '',
+                city: userData.city || '',
+                state: userData.state || '',
+                zipCode: userData.zipCode || '',
+                country: userData.country || 'United States'
+              };
+              console.log('Updated form data from localStorage:', newFormData);
+              console.log('Form data fields being set:', {
+                firstName: newFormData.firstName,
+                lastName: newFormData.lastName,
+                email: newFormData.email,
+                phone: newFormData.phone,
+                address: newFormData.address,
+                city: newFormData.city,
+                state: newFormData.state,
+                zipCode: newFormData.zipCode,
+                country: newFormData.country
+              });
+              return newFormData;
+            });
+          } else {
+            console.log('No user data in localStorage, using basic user data');
+            
+            // Fallback to basic user data
+            const nameParts = (user.name || '').split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.slice(1).join(' ') || '';
+            
+            setFormData(prev => {
+              const newFormData = {
+                ...prev,
+                firstName: firstName,
+                lastName: lastName,
+                email: user.email || '',
+                phone: user.phone || '',
+                address: user.address || ''
+              };
+              console.log('Updated form data (fallback):', newFormData);
+              return newFormData;
+            });
+          }
+        } catch (error) {
+          console.log('Error parsing localStorage user data:', error);
+          
+          // Fallback to basic user data
+          const nameParts = (user.name || '').split(' ');
+          const firstName = nameParts[0] || '';
+          const lastName = nameParts.slice(1).join(' ') || '';
+          
+          setFormData(prev => {
+            const newFormData = {
+              ...prev,
+              firstName: firstName,
+              lastName: lastName,
+              email: user.email || '',
+              phone: user.phone || '',
+              address: user.address || ''
+            };
+            console.log('Updated form data (fallback):', newFormData);
+            return newFormData;
+          });
+        }
+      };
+      
+      getUserProfileFromStorage();
     }
   }, [isLoggedIn, user]);
   
@@ -141,6 +232,46 @@ const Checkout = () => {
   
   // Handle form submission - this will be called by Stripe after successful payment
   const handleOrderSuccess = async (paymentResult) => {
+    console.log('Payment successful:', paymentResult);
+    
+    try {
+      // Create order in database
+      const orderResponse = await fetch('/api/orders/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customerInfo: formData,
+          items: cart,
+          paymentInfo: {
+            paymentIntentId: paymentResult.paymentIntentId,
+            customerId: paymentResult.customerId,
+            amount: paymentResult.amount,
+          },
+          totals: {
+            subtotal,
+            tax,
+            shipping: 0,
+            total
+          },
+          shippingInfo: {
+            method: 'Standard Shipping',
+          },
+        }),
+      });
+
+      const orderResult = await orderResponse.json();
+      
+      if (!orderResult.success) {
+        console.error('Failed to create order:', orderResult.error);
+      } else {
+        console.log('Order created successfully:', orderResult.orderId);
+      }
+    } catch (error) {
+      console.error('Error creating order:', error);
+    }
+    
     // Store order details for confirmation page
     const orderDetails = {
       orderId: paymentResult.paymentIntentId,
@@ -166,7 +297,11 @@ const Checkout = () => {
             name: `${formData.firstName} ${formData.lastName}`.trim(),
             email: formData.email,
             phone: formData.phone,
-            address: formData.address
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zipCode: formData.zipCode,
+            country: formData.country,
           }),
         });
       } catch (error) {
@@ -192,9 +327,22 @@ const Checkout = () => {
         <Title>Checkout</Title>
         <div style={{ textAlign: 'center', padding: '2rem' }}>
           <p>Your cart is empty. Please add some items before checkout.</p>
-          <BackToShopButton onClick={() => router.push('/productGrid')}>
+          <button
+            onClick={() => router.push('/productGrid')}
+            style={{
+              background: '#2E5A27',
+              color: 'white',
+              border: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              fontSize: '1rem',
+              fontWeight: '600',
+              marginTop: '1rem'
+            }}
+          >
             Back to Shop
-          </BackToShopButton>
+          </button>
         </div>
       </Container>
     );
@@ -453,6 +601,7 @@ const Checkout = () => {
                 }}
                 isProcessing={isSubmitting}
                 validateForm={validateForm}
+                customerInfo={formData} // Pass shipping information to Stripe
               />
             </Elements>
           </div>
